@@ -8,20 +8,22 @@ class Leaderboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: items.map((item) {
         return Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 2,
+          padding: EdgeInsets.symmetric(
+            vertical: screenHeight * 0.0013,
           ),
           child: Row(
             children: [
               Text(
                 item.name,
-                style: const TextStyle(
-                    color: Color.fromRGBO(180, 196, 0, 1),
-                    fontFamily: 'HomeFont'),
+                style: TextStyle(
+                    color: const Color.fromRGBO(180, 196, 0, 1),
+                    fontFamily: 'Arial',
+                    fontSize: screenHeight * 0.0137),
               ),
               const SizedBox(width: 6),
               Expanded(
@@ -30,7 +32,7 @@ class Leaderboard extends StatelessWidget {
                   child: FractionallySizedBox(
                     widthFactor: item.score,
                     child: Container(
-                      height: 15,
+                      height: screenHeight * 0.012,
                       decoration: BoxDecoration(
                         color: const Color.fromRGBO(180, 196, 0, 1),
                         borderRadius: BorderRadius.circular(10),
