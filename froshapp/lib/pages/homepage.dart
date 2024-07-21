@@ -15,7 +15,7 @@ class _HomepageState extends State<Homepage> {
   bool _isMenuOpen = false;
   bool _isGestureDetectorActive = false;
   int _current = 0;
-  bool _isPressed = false;
+  final bool _isPressed = false;
 
   void _toggleMenu() {
     setState(() {
