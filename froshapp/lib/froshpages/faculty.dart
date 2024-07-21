@@ -37,16 +37,16 @@ class Faculty extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 20), // Adjust space at the top
+         SizedBox(height: MediaQuery.of(context).size.width * 0.05), // Adjust space at the top
 
         // GridView for team members
         Expanded(
           child: GridView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              crossAxisSpacing: 20.0,
-              mainAxisSpacing: 40.0,
+              crossAxisSpacing: MediaQuery.of(context).size.height * 0.036,
+              mainAxisSpacing: MediaQuery.of(context).size.width * 0.08,
               childAspectRatio: 0.5,
             ),
             itemCount: teamMembers.length,
@@ -54,31 +54,31 @@ class Faculty extends StatelessWidget {
               Map<String, String> member = teamMembers[index];
               return GridTile(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(40.0),
                       child: Image.asset(
                         member['image']!,
-                        width: 200,
-                        height: 300,
+                        width: MediaQuery.of(context).size.height * 0.9,
+                        height: MediaQuery.of(context).size.width * 0.74,
                       ),
                     ),
-                    const SizedBox(height: 8.0),
+                   SizedBox(height: MediaQuery.of(context).size.width * 0.024),
                     Text(
                       member['name']!,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Inter',
-                        fontSize: 16,
+                        fontSize: MediaQuery.of(context).size.width * 0.045,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
                     Text(
                       member['role']!,
-                      style: const TextStyle(
+                      style:TextStyle(
                         fontFamily: 'Inter',
-                        fontSize: 14,
+                        fontSize: MediaQuery.of(context).size.width * 0.03,
                         color: Colors.white,
                       ),
                     ),

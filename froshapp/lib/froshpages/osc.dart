@@ -20,7 +20,7 @@ class Osc extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 20), // Adjusted spacing
+         SizedBox(height: MediaQuery.of(context).size.width * 0.04), // Adjusted spacing
         Expanded(
           child: ListView.builder(
             itemCount: teamMembers.length,
@@ -45,16 +45,16 @@ class TeamMemberRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20),
+      margin: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.width * 0.053),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: imageOnLeft
             ? [
                 Container(
-                  width: 146,
-                  height: 227,
-                  margin: const EdgeInsets.only(left: 20),
+                  width: MediaQuery.of(context).size.height * 0.18,
+                  height: MediaQuery.of(context).size.width * 0.65,
+                  margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.048),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(41.0),
                     child: Image.asset(
@@ -70,25 +70,25 @@ class TeamMemberRow extends StatelessWidget {
                     children: [
                       Text(
                         member['name']!,
-                        style: const TextStyle(
+                        style:  TextStyle(
                           fontFamily: 'Inter',
-                          fontSize: 20,
+                          fontSize: MediaQuery.of(context).size.width * 0.05,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                         textAlign: TextAlign.center,
                       ),
                       Container(
-                        width: 100,
-                        height: 2,
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        height: MediaQuery.of(context).size.width * 0.0048,
                         color: Colors.white,
-                        margin: const EdgeInsets.symmetric(vertical: 4.0),
+                        margin: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.005),
                       ),
                       Text(
                         member['role']!,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'Inter',
-                          fontSize: 20,
+                          fontSize: MediaQuery.of(context).size.width * 0.05,
                           color: Colors.white,
                         ),
                         textAlign: TextAlign.center,
@@ -96,10 +96,10 @@ class TeamMemberRow extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(width: 20),
+                 SizedBox(width: MediaQuery.of(context).size.height * 0.02),
               ]
             : [
-                const SizedBox(width: 20),
+                 SizedBox(width: MediaQuery.of(context).size.height * 0.01),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -107,25 +107,25 @@ class TeamMemberRow extends StatelessWidget {
                     children: [
                       Text(
                         member['name']!,
-                        style: const TextStyle(
+                        style:  TextStyle(
                           fontFamily: 'Inter',
-                          fontSize: 20,
+                          fontSize: MediaQuery.of(context).size.width * 0.05,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                         textAlign: TextAlign.center,
                       ),
                       Container(
-                        width: 100,
-                        height: 2,
+                        width: MediaQuery.of(context).size.width * 0.24,
+                        height: MediaQuery.of(context).size.width * 0.0048,
                         color: Colors.white,
-                        margin: const EdgeInsets.symmetric(vertical: 4.0),
+                        margin:  EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.005),
                       ),
                       Text(
                         member['role']!,
-                        style: const TextStyle(
+                        style:  TextStyle(
                           fontFamily: 'Inter',
-                          fontSize: 20,
+                          fontSize:  MediaQuery.of(context).size.width * 0.05,
                           color: Colors.white,
                         ),
                         textAlign: TextAlign.center,
@@ -134,9 +134,9 @@ class TeamMemberRow extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: 146,
-                  height: 227,
-                  margin: const EdgeInsets.only(right: 20),
+                  width: MediaQuery.of(context).size.height * 0.18,
+                  height: MediaQuery.of(context).size.width * 0.65,
+                  margin: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.048),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(41.0),
                     child: Image.asset(

@@ -15,10 +15,10 @@ class Mentors extends StatelessWidget {
               child: GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  crossAxisSpacing: 10.0,
-                  mainAxisSpacing: 10.0,
+                  crossAxisSpacing: MediaQuery.of(context).size.width * 0.02,
+                  mainAxisSpacing: MediaQuery.of(context).size.height * 0.01,
                   childAspectRatio: 100 / 172,
                 ),
                 itemCount: 17,

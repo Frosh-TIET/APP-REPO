@@ -76,16 +76,16 @@ class _AboutUsState extends State<AboutUsPage> {
               : const Color(0xff5b615f),
           border: Border.all(
               color: selectedPage == title
-                  ? const Color(0xff006c48)
-                  : const Color(0xff5b615f),
-              width: 7),
+                  ?  Color(0xff006c48)
+                  :  Color(0xff5b615f),
+              width: MediaQuery.of(context).size.width * 0.017),
           borderRadius: const BorderRadius.all(Radius.circular(6)),
         ),
         child: Text(
           title.toUpperCase(),
           textAlign: TextAlign.center,
-          style: const TextStyle(
-              color: Colors.white, fontSize: 12, fontFamily: 'Audiowide'),
+          style:  TextStyle(
+              color: Colors.white, fontSize: MediaQuery.of(context).size.width * 0.03, fontFamily: 'Audiowide'),
         ),
       ),
     );
