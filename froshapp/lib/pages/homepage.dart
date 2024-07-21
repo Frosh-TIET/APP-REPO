@@ -11,11 +11,14 @@ class Homepage extends StatefulWidget {
   _HomepageState createState() => _HomepageState();
 }
 
-class _HomepageState extends State<Homepage> {
+class _HomepageState extends State<Homepage>
+    with SingleTickerProviderStateMixin {
   bool _isMenuOpen = false;
   bool _isGestureDetectorActive = false;
   int _current = 0;
   final bool _isPressed = false;
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   void _toggleMenu() {
     setState(() {
@@ -30,6 +33,25 @@ class _HomepageState extends State<Homepage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 100),
+    )..repeat(reverse: true);
+    _animation = Tween(begin: -0.3, end: 0.3).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.fastEaseInToSlowEaseOut,
+    ));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
@@ -37,7 +59,7 @@ class _HomepageState extends State<Homepage> {
       'ORIENTATION',
       'WHODUNIT',
       'WITTY\nVENDATTA',
-      'ELYSIRA',
+      'ELYSERRA',
       'E-SPORTS\nMANIA',
       'BEG BORROW\nSTEAL'
     ];
@@ -50,12 +72,12 @@ class _HomepageState extends State<Homepage> {
       'assets/images/event.png',
     ];
     final List<String> _eventDates = [
-      '5 AUGUST 2024',
-      '8 AUGUST 2024',
-      '10 AUGUST 2024',
-      '12 AUGUST 2024',
-      '14 AUGUST 2024',
-      '16 AUGUST 2024',
+      '5 AUGUST ',
+      '8 AUGUST ',
+      '10 AUGUST ',
+      '12 AUGUST ',
+      '14 AUGUST ',
+      '16 AUGUST ',
     ];
     List<String> time = [
       '10:00 AM',
@@ -74,14 +96,6 @@ class _HomepageState extends State<Homepage> {
       'FETE AREA',
       'OAT'
     ];
-    // final List<String> _bookingLinks = [
-    //   'https://www.froshtiet.com/',
-    //   'https://www.froshtiet.com/',
-    //   'https://www.froshtiet.com/',
-    //   'https://www.froshtiet.com/',
-    //   'https://www.froshtiet.com/',
-    //   'https://www.froshtiet.com/',
-    // ];
 
     final List<LeaderboardItem> leaderboardItems = [
       LeaderboardItem(name: 'Hood 1 ', score: 0.3),
@@ -135,48 +149,62 @@ class _HomepageState extends State<Homepage> {
                             child: Column(
                               children: [
                                 Center(
-                                  child: AnimatedContainer(
+                                  child: AnimatedPadding(
                                     duration: const Duration(milliseconds: 800),
                                     curve: Curves.easeInOut,
                                     padding: EdgeInsets.only(
-                                        left: isCenter
-                                            ? screenWidth * 0.063
-                                            : screenHeight * 0.045,
-                                        top: isCenter
-                                            ? screenHeight * 0.04
-                                            : screenHeight * 0.036),
-                                    child: Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Text(
-                                        _eventNames[index],
+                                      left: isCenter
+                                          ? screenWidth * 0.063
+                                          : screenHeight * 0.045,
+                                      top: isCenter
+                                          ? screenHeight * 0.04
+                                          : screenHeight * 0.036,
+                                    ),
+                                    child: AnimatedAlign(
+                                      duration:
+                                          const Duration(milliseconds: 800),
+                                      alignment: isCenter
+                                          ? Alignment.topLeft
+                                          : Alignment.center,
+                                      child: AnimatedDefaultTextStyle(
+                                        duration:
+                                            const Duration(milliseconds: 800),
                                         style: TextStyle(
-                                            fontSize: isCenter
-                                                ? screenHeight * 0.025
-                                                : screenHeight * 0.019,
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            shadows: <Shadow>[
-                                              const Shadow(
-                                                  offset: Offset(2, 4.0),
-                                                  blurRadius: 5.0,
-                                                  color: Color.fromRGBO(
-                                                      29, 29, 29, 0.3))
-                                            ],
-                                            fontFamily: 'MainFont'),
+                                          fontSize: isCenter
+                                              ? screenHeight * 0.025
+                                              : screenHeight * 0.019,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          shadows: const <Shadow>[
+                                            Shadow(
+                                              offset: Offset(2, 4.0),
+                                              blurRadius: 5.0,
+                                              color: Color.fromRGBO(
+                                                  29, 29, 29, 0.3),
+                                            ),
+                                          ],
+                                          fontFamily: 'MainFont',
+                                        ),
+                                        child: Text(_eventNames[index]),
                                       ),
                                     ),
                                   ),
                                 ),
-                                AnimatedContainer(
+                                SizedBox(
+                                    height: isCenter
+                                        ? screenHeight * 0.01
+                                        : screenHeight * 0.01),
+                                AnimatedPadding(
                                   duration: const Duration(milliseconds: 1500),
-                                  curve: Curves.bounceOut,
+                                  curve: Curves.linearToEaseOut,
                                   padding: EdgeInsets.only(
-                                      left: isCenter
-                                          ? screenWidth * 0.07
-                                          : screenHeight * 0.056,
-                                      top: isCenter
-                                          ? screenHeight * 0.03
-                                          : screenHeight * 0.0),
+                                    left: isCenter
+                                        ? screenWidth * 0.07
+                                        : screenHeight * 0.056,
+                                    top: isCenter
+                                        ? screenHeight * 0.03
+                                        : screenHeight * 0.0,
+                                  ),
                                   child: Column(
                                     children: [
                                       Align(
@@ -192,11 +220,10 @@ class _HomepageState extends State<Homepage> {
                                               child: Text(
                                                 _eventDates[index],
                                                 style: TextStyle(
-                                                    fontSize:
-                                                        isCenter ? 18 : 14,
-                                                    fontFamily: 'SubFont',
-                                                    fontWeight:
-                                                        FontWeight.w600),
+                                                  fontSize: isCenter ? 18 : 14,
+                                                  fontFamily: 'SubFont',
+                                                  fontWeight: FontWeight.w600,
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -205,9 +232,17 @@ class _HomepageState extends State<Homepage> {
                                       const SizedBox(height: 5),
                                       Row(
                                         children: [
-                                          Icon(
-                                            Icons.alarm_on_rounded,
-                                            size: isCenter ? 24 : 20,
+                                          AnimatedBuilder(
+                                            animation: _animation,
+                                            builder: (context, child) {
+                                              return Transform.rotate(
+                                                angle: _animation.value,
+                                                child: Icon(
+                                                  Icons.alarm_on_rounded,
+                                                  size: isCenter ? 24 : 20,
+                                                ),
+                                              );
+                                            },
                                           ),
                                           Padding(
                                             padding:
@@ -215,9 +250,10 @@ class _HomepageState extends State<Homepage> {
                                             child: Text(
                                               time[index],
                                               style: TextStyle(
-                                                  fontSize: isCenter ? 18 : 14,
-                                                  fontFamily: 'SubFont',
-                                                  fontWeight: FontWeight.w600),
+                                                fontSize: isCenter ? 18 : 14,
+                                                fontFamily: 'SubFont',
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                             ),
                                           ),
                                         ],
@@ -235,13 +271,14 @@ class _HomepageState extends State<Homepage> {
                                             child: Text(
                                               _location[index],
                                               style: TextStyle(
-                                                  fontSize: isCenter ? 18 : 14,
-                                                  fontFamily: 'SubFont',
-                                                  fontWeight: FontWeight.w600),
+                                                fontSize: isCenter ? 18 : 14,
+                                                fontFamily: 'SubFont',
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                             ),
                                           ),
                                         ],
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -276,8 +313,9 @@ class _HomepageState extends State<Homepage> {
                                     child: Text(
                                       'BOOK NOW',
                                       style: TextStyle(
+                                        fontFamily: 'ButtonFont',
                                         fontSize: isCenter ? 20 : 14,
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.w800,
                                         color: _isPressed
                                             ? Colors.white
                                             : Colors.black,
@@ -292,16 +330,16 @@ class _HomepageState extends State<Homepage> {
                       );
                     },
                     options: CarouselOptions(
-                      height: 320,
+                      height: 300,
                       viewportFraction: 0.6,
                       initialPage: 0,
                       enableInfiniteScroll: true,
                       reverse: false,
                       autoPlay: true,
-                      autoPlayInterval: const Duration(seconds: 3),
+                      autoPlayInterval: const Duration(seconds: 10),
                       autoPlayAnimationDuration:
-                          const Duration(milliseconds: 1200),
-                      autoPlayCurve: Curves.fastEaseInToSlowEaseOut,
+                          const Duration(milliseconds: 1800),
+                      autoPlayCurve: Curves.linearToEaseOut,
                       enlargeCenterPage: true,
                       enlargeFactor: 0.3,
                       scrollDirection: Axis.horizontal,
@@ -313,7 +351,6 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.006),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Container(
@@ -352,7 +389,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.126),
+                SizedBox(height: screenHeight * 0.16),
               ],
             ),
           ),
@@ -380,8 +417,8 @@ class _HomepageState extends State<Homepage> {
               alignment: Alignment.bottomCenter,
               child: Container(
                 alignment: Alignment.bottomCenter,
-                height: screenHeight * 0.18,
-                width: screenWidth * 0.26,
+                height: screenHeight * 0.2,
+                width: screenWidth * 0.3,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     alignment: Alignment.bottomCenter,

@@ -75,6 +75,9 @@ flutter:
     - family: SubFont
       fonts:
         - asset: assets/fonts/Rasputin.otf
+    - family: ButtonFont
+      fonts:
+        - asset: assets/fonts/carme-regular.otf        
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
     # - family: SubFont
