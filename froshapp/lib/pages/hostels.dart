@@ -28,137 +28,167 @@ class _HostelPageState extends State<HostelPage> {
   @override
   void initState() {
     super.initState();
+  }
 
-    // Add this to start the animation
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _carouselController1.nextPage(
-          duration: const Duration(milliseconds: 2500));
-      _carouselController2.nextPage(
-          duration: const Duration(milliseconds: 2500));
-    });
+  void _navigateToPage(int index) {
+    Navigator.pushNamed(context, getRoute(index));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/bgr.png'),
-              fit: BoxFit.cover,
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/bgr.png'),
+                fit: BoxFit.cover,
+              ),
             ),
+            height: double.infinity,
+            width: double.infinity,
           ),
-          height: double.maxFinite,
-          width: double.maxFinite,
-          child: SingleChildScrollView(
+          SingleChildScrollView(
             physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics()),
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  height: 130,
-                  width: 130,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/logo.png'),
-                      fit: BoxFit.contain,
+                Center(
+                  child: Container(
+                    height: screenHeight * 0.165,
+                    width: screenWidth * 0.79,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/logo.png"),
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
                 ),
-                Text(
-                  'HOSTEL',
+                SizedBox(
+                  height: 50,
+                ),
+                const Text(
+                  'HOSTELS',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(
-                  height: 25,
+                const SizedBox(
+                  height: 40,
                 ),
-                Text(
+                const Text(
                   'Boys hostel',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
-                Divider(
+                const Divider(
                   color: Colors.white,
                   thickness: 1.5,
                   indent: 80,
                   endIndent: 80,
                 ),
-                // Carousel
+                // Carousel for boys hostel
                 CarouselSlider(
                   carouselController: _carouselController1,
                   options: CarouselOptions(
                     enableInfiniteScroll: true,
                     reverse: true,
-                    pageSnapping: false,
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 2),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 800),
                     height: 146,
                     viewportFraction: 114 / MediaQuery.of(context).size.width,
-                    onPageChanged: (_, __) {
-                      _carouselController1.nextPage(
-                          duration: const Duration(milliseconds: 2500));
-                    },
+                    onPageChanged: (index, reason) {},
                   ),
                   items: widget._images2
-                      .map((image) => ClipRRect(
-                            borderRadius: BorderRadius.circular(16.0),
-                            child: Image.asset(image,
-                                width: 90, fit: BoxFit.cover),
+                      .asMap()
+                      .entries
+                      .map((entry) => GestureDetector(
+                            onTap: () => _navigateToPage(entry.key),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(16.0),
+                              child: Image.asset(entry.value,
+                                  width: 90, fit: BoxFit.cover),
+                            ),
                           ))
                       .toList(),
                 ),
-                SizedBox(
-                  height: 30,
+                const SizedBox(
+                  height: 50,
                 ),
-                Text(
+                const Text(
                   'Girls hostel',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
-                Divider(
+                const Divider(
                   color: Colors.white,
                   thickness: 1.5,
                   indent: 80,
                   endIndent: 80,
                 ),
-                // Carousel
+                // Carousel for girls hostel
                 CarouselSlider(
                   carouselController: _carouselController2,
                   options: CarouselOptions(
                     enableInfiniteScroll: true,
                     reverse: false,
-                    pageSnapping: false,
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 2),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 800),
                     height: 146,
                     viewportFraction: 114 / MediaQuery.of(context).size.width,
-                    onPageChanged: (_, __) {
-                      _carouselController2.nextPage(
-                          duration: const Duration(milliseconds: 2500));
-                    },
+                    onPageChanged: (index, reason) {},
                   ),
                   items: widget._images1
-                      .map((image) => ClipRRect(
-                            borderRadius: BorderRadius.circular(16.0),
-                            child: Image.asset(image,
-                                width: 90, fit: BoxFit.cover),
+                      .asMap()
+                      .entries
+                      .map((entry) => GestureDetector(
+                            onTap: () => _navigateToPage(entry.key),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(16.0),
+                              child: Image.asset(entry.value,
+                                  width: 90, fit: BoxFit.cover),
+                            ),
                           ))
                       .toList(),
                 ),
               ],
             ),
           ),
-        ),
+        ]),
       ),
     );
+  }
+
+  String getRoute(int index) {
+    switch (index) {
+      case 0:
+        return '/hostelB';
+      case 1:
+        return '/hostelD';
+      case 2:
+        return '/hostelE';
+      case 3:
+        return '/hostelL';
+      default:
+        return '/';
+    }
   }
 }

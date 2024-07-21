@@ -14,6 +14,11 @@ import 'package:froshapp/froshpages/core.dart';
 import 'package:froshapp/froshpages/faculty.dart';
 import 'package:froshapp/froshpages/mentors.dart';
 import 'package:froshapp/froshpages/osc.dart';
+import 'package:froshapp/hostelpages/hostelB.dart';
+import 'package:froshapp/hostelpages/hostelD.dart';
+import 'package:froshapp/hostelpages/hostelE.dart';
+import 'package:froshapp/hostelpages/hostelL.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -46,6 +51,10 @@ class MyApp extends StatelessWidget {
         '/core': (context) => Core(),
         '/osc': (context) => Osc(),
         '/mentors': (context) => Mentors(),
+        '/hostelB': (context) => HostelBPage(),
+        '/hostelD': (context) => HostelDPage(),
+        '/hostelE': (context) => HostelEPage(),
+        '/hostelL': (context) => HostelLPage(),
       },
     );
   }

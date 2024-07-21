@@ -29,7 +29,7 @@ class _ScheduleState extends State<Schedule> {
 
   final List<LeaderboardItem> leaderboardItems = [
     LeaderboardItem(name: 'Hood 1', score: 0.3),
-    LeaderboardItem(name: 'Hood 2', score: 0.4),
+    LeaderboardItem(name: 'Hood 2', score: 0.5),
     LeaderboardItem(name: 'Hood 3', score: 0.7),
     LeaderboardItem(name: 'Hood 4', score: 0.5),
   ];
@@ -261,6 +261,7 @@ class _ScheduleState extends State<Schedule> {
                                       width: 180,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
+                                        color: Color.fromRGBO(222, 227, 204, 1),
                                         boxShadow: [
                                           BoxShadow(
                                             color:
@@ -291,7 +292,7 @@ class _ScheduleState extends State<Schedule> {
                           height: 320,
                           viewportFraction: 0.6,
                           initialPage: 0,
-                          enableInfiniteScroll: false,
+                          enableInfiniteScroll: true,
                           reverse: false,
                           autoPlay: false,
                           enlargeCenterPage: true,

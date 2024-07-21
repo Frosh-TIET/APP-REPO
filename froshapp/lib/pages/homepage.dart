@@ -85,9 +85,9 @@ class _HomepageState extends State<Homepage> {
 
     final List<LeaderboardItem> leaderboardItems = [
       LeaderboardItem(name: 'Hood 1 ', score: 0.3),
-      LeaderboardItem(name: 'Hood 2 ', score: 0.7),
-      LeaderboardItem(name: 'Hood 3 ', score: 0.5),
-      LeaderboardItem(name: 'Hood 4 ', score: 0.9),
+      LeaderboardItem(name: 'Hood 2 ', score: 0.5),
+      LeaderboardItem(name: 'Hood 3 ', score: 0.8),
+      LeaderboardItem(name: 'Hood 4 ', score: 0.2),
     ];
 
     return Scaffold(
