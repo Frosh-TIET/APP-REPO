@@ -46,7 +46,7 @@ class _SocietyPageState extends State<SocietyPage> {
                     onTap: () => _toggleView(true),
                     child: Container(
 
-                      height: MediaQuery.of(context).size.height * 0.0430,
+                      height: MediaQuery.of(context).size.height * 0.043,
                       width: MediaQuery.of(context).size.width * 0.42,
                       decoration: BoxDecoration(
                         color: isTechSelected
@@ -60,13 +60,17 @@ class _SocietyPageState extends State<SocietyPage> {
                         borderRadius:
                         const BorderRadius.all(Radius.circular(6)),
                       ),
-                      child:  Text(
-                        'T E C H',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: MediaQuery.of(context).size.width * 0.042,
-                            fontFamily: 'Audiowide'),
+                      child:  Padding(
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.width * 0.009),
+                        child: Text(
+                          'T E C H',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: MediaQuery.of(context).size.width * 0.042,
+                              fontFamily: 'Audiowide'),
+
+                        ),
                       ),
                     ),
                   ),
@@ -87,13 +91,16 @@ class _SocietyPageState extends State<SocietyPage> {
                         borderRadius:
                         const BorderRadius.all(Radius.circular(6)),
                       ),
-                      child:  Text(
-                        'N O N  T E C H',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: MediaQuery.of(context).size.width * 0.042,
-                            fontFamily: 'Audiowide'),
+                      child:  Padding(
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.width * 0.009),
+                        child: Text(
+                          'N O N  T E C H',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: MediaQuery.of(context).size.width * 0.042,
+                              fontFamily: 'Audiowide'),
+                        ),
                       ),
                     ),
                   ),

@@ -37,7 +37,7 @@ class Faculty extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         SizedBox(height: MediaQuery.of(context).size.width * 0.05), // Adjust space at the top
+        SizedBox(height: MediaQuery.of(context).size.width * 0.05), // Adjust space at the top
 
         // GridView for team members
         Expanded(
@@ -64,12 +64,12 @@ class Faculty extends StatelessWidget {
                         height: MediaQuery.of(context).size.width * 0.74,
                       ),
                     ),
-                   SizedBox(height: MediaQuery.of(context).size.width * 0.024),
+                    SizedBox(height: MediaQuery.of(context).size.width * 0.024),
                     Text(
                       member['name']!,
                       style: TextStyle(
                         fontFamily: 'Inter',
-                        fontSize: MediaQuery.of(context).size.width * 0.045,
+                        fontSize: MediaQuery.of(context).size.width * 0.04,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -82,12 +82,15 @@ class Faculty extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
+
                   ],
                 ),
               );
             },
           ),
+
         ),
+        SizedBox(height: MediaQuery.of(context).size.width * 0.04)
       ],
     );
   }
