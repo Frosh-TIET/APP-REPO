@@ -1,5 +1,4 @@
-// ignore_for_file: prefer_const_constructors
-
+import 'package:connection_notifier/connection_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:connectivity_widget/connectivity_widget.dart';
 import 'package:froshapp/pages/homepage.dart';
@@ -15,11 +14,6 @@ import 'package:froshapp/froshpages/core.dart';
 import 'package:froshapp/froshpages/faculty.dart';
 import 'package:froshapp/froshpages/mentors.dart';
 import 'package:froshapp/froshpages/osc.dart';
-import 'package:froshapp/hostelpages/hostelB.dart';
-import 'package:froshapp/hostelpages/hostelD.dart';
-import 'package:froshapp/hostelpages/hostelE.dart';
-import 'package:froshapp/hostelpages/hostelL.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -30,32 +24,51 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        hoverColor: Colors.transparent,
+    return Directionality(
+      textDirection:
+          TextDirection.ltr, // Specify the text direction as LTR or RTL
+      child: ConnectionNotifier(
+        connectionNotificationOptions: ConnectionNotificationOptions(
+          alignment: AlignmentDirectional.topCenter,
+          height: MediaQuery.of(context).size.width * 0.22,
+          connectedTextStyle: TextStyle(
+            fontSize: MediaQuery.of(context).size.width * 0.05,
+            color: Colors.white,
+          ),
+          disconnectedTextStyle: TextStyle(
+            fontSize: MediaQuery.of(context).size.width * 0.05,
+            color: Colors.white,
+          ),
+          animationDuration: Duration(milliseconds: 300),
+        ),
+        child: ConnectivityWidget(
+          builder: (context, isOnline) => isOnline
+              ? MaterialApp(
+                  theme: ThemeData(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                  ),
+                  debugShowCheckedModeBanner: false,
+                  home: FirstPage(),
+                  routes: {
+                    '/homepage': (context) => Homepage(),
+                    '/map': (context) => CampusMap(),
+                    '/schedule': (context) => Schedule(),
+                    '/contactus': (context) => ContactUs(),
+                    '/society': (context) => SocietyPage(),
+                    '/aboutus': (context) => AboutUsPage(),
+                    '/hostels': (context) => HostelPage(),
+                    '/lifetiet': (context) => LifeThaparPage(),
+                    '/faculty': (context) => Faculty(),
+                    '/core': (context) => Core(),
+                    '/osc': (context) => Osc(),
+                    '/mentors': (context) => Mentors(),
+                  },
+                )
+              : OfflinePage(),
+        ),
       ),
-      debugShowCheckedModeBanner: false,
-      home: FirstPage(),
-      routes: {
-        '/homepage': (context) => Homepage(),
-        '/map': (context) => CampusMap(),
-        '/schedule': (context) => Schedule(),
-        '/contactus': (context) => ContactUs(),
-        '/society': (context) => SocietyPage(),
-        '/aboutus': (context) => AboutUsPage(),
-        '/hostels': (context) => HostelPage(),
-        '/lifetiet': (context) => LifeThaparPage(),
-        '/faculty': (context) => Faculty(),
-        '/core': (context) => Core(),
-        '/osc': (context) => Osc(),
-        '/mentors': (context) => Mentors(),
-        '/hostelB': (context) => HostelBPage(),
-        '/hostelD': (context) => HostelDPage(),
-        '/hostelE': (context) => HostelEPage(),
-        '/hostelL': (context) => HostelLPage(),
-      },
     );
   }
 }
