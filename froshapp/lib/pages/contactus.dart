@@ -6,11 +6,10 @@ class ContactUs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
           children: <Widget>[
             Container(
               decoration: const BoxDecoration(
@@ -24,7 +23,7 @@ class ContactUs extends StatelessWidget {
               alignment: Alignment.topCenter, // move downwards by 0.05
               child: Container(
                 height: screenHeight * 0.165,
-                width: screenWidth * 0.79,
+                width: screenHeight * 0.36,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage("assets/images/logo.png"),
@@ -34,17 +33,17 @@ class ContactUs extends StatelessWidget {
               ),
             ),
             Align(
-              alignment: Alignment(-0.3, -0.6), // left aligned
+              alignment: Alignment(-0.5, -0.3), // left aligned
               child: GestureDetector(
                 onTap: () async {
-                  if (!await launchUrl(Uri.parse(
-                      'https://www.linkedin.com/company/frosh-tiet/?originalSubdomain=in'))) {
-                    throw 'Could not launch https://www.linkedin.com/';
+                  if (!await launchUrl(
+                      Uri.parse('https://github.com/Frosh-TIET'))) {
+                    throw 'Could not launch https://www.github.com/';
                   }
                 },
                 child: Transform.scale(
-                  scale: 0.2, // increase the scale by 20%
-                  child: Image.asset('assets/images/linkedin.png'),
+                  scale: 1.8, // increase the scale by 20%
+                  child: Image.asset('assets/images/github.png'),
                 ),
               ),
             ),

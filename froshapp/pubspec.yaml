@@ -37,7 +37,9 @@ dependencies:
   circular_menu: ^4.0.0
   carousel_slider: ^4.2.1
   url_launcher: ^6.3.0
-  tap_debouncer: ^2.2.0
+  connection_notifier: ^2.0.1
+  flutter_bloc: ^7.3.3
+  connectivity_widget: ^3.0.0
 
 dev_dependencies:
   flutter_test:

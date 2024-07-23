@@ -6,10 +6,10 @@ class CampusMap extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: const Color(0xff8db3d7),
-        body: Stack(
+    return Scaffold(
+      backgroundColor: const Color(0xff8db3d7),
+      body: SafeArea(
+        child: Stack(
           children: [
             Center(
               child: Padding(
@@ -46,7 +46,7 @@ class CampusMap extends StatelessWidget {
                 padding: const EdgeInsets.all(13.0),
                 child: SizedBox(
                   height: screenHeight * 0.063,
-                  width: screenWidth * 0.45,
+                  width: screenHeight * 0.23,
                   child: Link(
                     target: LinkTarget.blank,
                     uri: Uri.parse('https://www.froshtiet.com/'),
@@ -70,7 +70,7 @@ class CampusMap extends StatelessWidget {
                               fontSize: screenHeight * 0.0205,
                             ),
                           ),
-                          SizedBox(width: screenWidth * 0.016),
+                          SizedBox(width: screenHeight * 0.005),
                           Icon(
                             Icons.directions,
                             color: Color.fromARGB(255, 87, 166, 231),

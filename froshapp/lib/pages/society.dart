@@ -20,6 +20,7 @@ class _SocietyPageState extends State<SocietyPage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
         children: [
@@ -33,10 +34,22 @@ class _SocietyPageState extends State<SocietyPage> {
           // Foreground content
           Column(
             children: [
-              // Logo
-              Padding(
-                padding: const EdgeInsets.all(40),
-                child: Image.asset('assets/images/logo.png'),
+              Center(
+                child: SafeArea(
+                  child: Container(
+                    height: screenHeight * 0.165,
+                    width: screenHeight * 0.36,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/logo.png"),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: screenHeight * 0.035,
               ),
               // Buttons
               Row(
@@ -45,31 +58,31 @@ class _SocietyPageState extends State<SocietyPage> {
                   GestureDetector(
                     onTap: () => _toggleView(true),
                     child: Container(
-
                       height: MediaQuery.of(context).size.height * 0.043,
-                      width: MediaQuery.of(context).size.width * 0.42,
+                      width: MediaQuery.of(context).size.height * 0.22,
                       decoration: BoxDecoration(
                         color: isTechSelected
                             ? const Color(0xff006c48)
                             : const Color(0xff5b615f),
                         border: Border.all(
                             color: isTechSelected
-                                ?  Color(0xff006c48)
-                                :  Color(0xff5b615f),
-                            width: MediaQuery.of(context).size.width * 0.009),
+                                ? Color(0xff006c48)
+                                : Color(0xff5b615f),
+                            width: MediaQuery.of(context).size.height * 0.001),
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(6)),
+                            const BorderRadius.all(Radius.circular(6)),
                       ),
-                      child:  Padding(
-                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.width * 0.009),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).size.width * 0.009),
                         child: Text(
                           'T E C H',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: MediaQuery.of(context).size.width * 0.042,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.042,
                               fontFamily: 'Audiowide'),
-
                         ),
                       ),
                     ),
@@ -78,27 +91,29 @@ class _SocietyPageState extends State<SocietyPage> {
                     onTap: () => _toggleView(false),
                     child: Container(
                       height: MediaQuery.of(context).size.height * 0.0430,
-                      width: MediaQuery.of(context).size.width * 0.42,
+                      width: MediaQuery.of(context).size.height * 0.22,
                       decoration: BoxDecoration(
                         color: isTechSelected
                             ? const Color(0xff5b615f)
                             : const Color(0xff006c48),
                         border: Border.all(
                             color: isTechSelected
-                                ?  Color(0xff5b615f)
-                                :  Color(0xff006c48),
-                            width: MediaQuery.of(context).size.width * 0.009),
+                                ? Color(0xff5b615f)
+                                : Color(0xff006c48),
+                            width: MediaQuery.of(context).size.height * 0.001),
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(6)),
+                            const BorderRadius.all(Radius.circular(6)),
                       ),
-                      child:  Padding(
-                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.width * 0.009),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).size.width * 0.009),
                         child: Text(
                           'N O N  T E C H',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: MediaQuery.of(context).size.width * 0.042,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.042,
                               fontFamily: 'Audiowide'),
                         ),
                       ),

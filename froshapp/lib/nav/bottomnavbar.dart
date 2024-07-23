@@ -10,14 +10,14 @@ class NavBar extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return SafeArea(
-      child: Container(
-        color: Colors.black,
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: screenHeight * 0.008,
-            vertical: screenHeight * 0.014,
-          ),
+    return Container(
+      color: Colors.black,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: screenHeight * 0.008,
+          vertical: screenHeight * 0.014,
+        ),
+        child: SafeArea(
           child: Row(
             children: [
               Flexible(
