@@ -15,19 +15,19 @@ class NavBar extends StatelessWidget {
         color: Colors.black,
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: screenWidth * 0.02,
-            vertical: screenHeight * 0.02,
+            horizontal: screenHeight * 0.008,
+            vertical: screenHeight * 0.014,
           ),
           child: Row(
             children: [
               Flexible(
                 child: GNav(
                   textStyle: TextStyle(
-                      fontSize: screenWidth * 0.035,
+                      fontSize: screenHeight * 0.015,
                       color: Colors.white,
                       fontWeight: FontWeight.w600),
-                  iconSize: screenWidth * 0.06,
-                  tabBorderRadius: screenWidth * 0.1,
+                  iconSize: screenHeight * 0.03,
+                  tabBorderRadius: screenHeight * 0.1,
                   backgroundColor: Colors.black,
                   color: Colors.white,
                   haptic: true,

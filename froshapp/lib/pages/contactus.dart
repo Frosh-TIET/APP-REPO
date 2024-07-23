@@ -34,7 +34,7 @@ class ContactUs extends StatelessWidget {
               ),
             ),
             Align(
-              alignment: Alignment(-0.5, -0.3), // left aligned
+              alignment: Alignment(-0.3, -0.6), // left aligned
               child: GestureDetector(
                 onTap: () async {
                   if (!await launchUrl(Uri.parse(
@@ -43,7 +43,7 @@ class ContactUs extends StatelessWidget {
                   }
                 },
                 child: Transform.scale(
-                  scale: 1.2, // increase the scale by 20%
+                  scale: 0.2, // increase the scale by 20%
                   child: Image.asset('assets/images/linkedin.png'),
                 ),
               ),
@@ -99,8 +99,8 @@ class ContactUs extends StatelessWidget {
 
               child: GestureDetector(
                 onTap: () async {
-                  if (!await launchUrl(
-                      Uri.parse('https://mail.google.com/mail/u/0/?pli=1#inbox?compose=CllgCJfqbpnBzPxWsnLDmpHgQCZKbcHntVSWchDzZwjXvXhDHXhMjzCTkQgmZNXQNLHzJxTXhXV'))) {
+                  if (!await launchUrl(Uri.parse(
+                      'https://mail.google.com/mail/u/0/?pli=1#inbox?compose=CllgCJfqbpnBzPxWsnLDmpHgQCZKbcHntVSWchDzZwjXvXhDHXhMjzCTkQgmZNXQNLHzJxTXhXV'))) {
                     throw 'Could not launch https://mail.google.com.';
                   }
                 },

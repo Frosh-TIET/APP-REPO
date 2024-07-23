@@ -306,12 +306,12 @@ class _ScheduleState extends State<Schedule> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                       child: Container(
                         width: screenWidth * 0.95,
-                        height: screenHeight * 0.14,
+                        height: screenWidth * 0.28,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
                           borderRadius: BorderRadius.circular(20),
@@ -322,45 +322,44 @@ class _ScheduleState extends State<Schedule> {
                         ),
                         child: Padding(
                           padding: EdgeInsets.only(
-                            left: screenWidth * 0.04,
-                            top: screenHeight * 0.0065,
+                            left: screenWidth * 0.025,
+                            top: screenHeight * 0.0030,
                           ),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              const Text(
+                              Text(
                                 "LEADERBOARD",
                                 style: TextStyle(
-                                  fontFamily: 'HomeFont',
-                                  fontSize: 20,
-                                  color: Color.fromRGBO(180, 196, 0, 1),
+                                  fontFamily: 'MainFont',
+                                  fontSize: screenHeight * 0.019,
+                                  color: const Color.fromRGBO(180, 196, 0, 1),
                                 ),
                               ),
-                              SizedBox(height: screenHeight * 0.001),
-                              Expanded(
-                                child: Leaderboard(items: leaderboardItems),
-                              ),
+                              Leaderboard(items: leaderboardItems),
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: screenHeight * 0.126),
+                    SizedBox(height: screenHeight * 0.16),
                   ],
                 ),
               ),
             ],
           ),
-          Positioned(
-            bottom: screenHeight * 0.01,
-            left: MediaQuery.of(context).size.width / 2 - 55,
-            child: Container(
-              height: screenHeight * 0.18,
-              width: MediaQuery.of(context).size.width * 0.26,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  alignment: Alignment.bottomCenter,
-                  image: AssetImage("assets/images/Vector.png"),
+          Padding(
+            padding: EdgeInsets.only(bottom: screenHeight * 0.02),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                height: screenHeight * 0.12,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    alignment: Alignment.bottomCenter,
+                    image: AssetImage("assets/images/Vector.png"),
+                  ),
                 ),
               ),
             ),

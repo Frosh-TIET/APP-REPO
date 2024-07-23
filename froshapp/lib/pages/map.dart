@@ -1,9 +1,11 @@
-
 import 'package:flutter/material.dart';
+import 'package:url_launcher/link.dart';
 
 class CampusMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xff8db3d7),
@@ -11,7 +13,8 @@ class CampusMap extends StatelessWidget {
           children: [
             Center(
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 60.0, top: 10),
+                padding: EdgeInsets.only(
+                    bottom: screenHeight * 0.07, top: screenHeight * 0.01),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   height: MediaQuery.of(context).size.height * 0.75,
@@ -25,17 +28,13 @@ class CampusMap extends StatelessWidget {
                         offset: const Offset(0, 0),
                       ),
                     ],
-                    image: const DecorationImage(
-                      image: AssetImage('assets/images/map.png'),
-                      fit: BoxFit.cover,
-                    ),
                   ),
                   child: InteractiveViewer(
                     minScale: 0.1,
                     maxScale: 4.0,
                     child: Image.asset(
                       'assets/images/map.png',
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
@@ -46,37 +45,39 @@ class CampusMap extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(13.0),
                 child: SizedBox(
-                  height: 50,
-                  width: 183.5,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      print("Get Directions button pressed");
-                      // Add your navigation logic here
-                    },
-                    style: ElevatedButton.styleFrom(
-                      elevation: 5,
-                      backgroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                  height: screenHeight * 0.063,
+                  width: screenWidth * 0.45,
+                  child: Link(
+                    target: LinkTarget.blank,
+                    uri: Uri.parse('https://www.froshtiet.com/'),
+                    builder: (context, followlink) => ElevatedButton(
+                      onPressed: followlink,
+                      style: ElevatedButton.styleFrom(
+                        elevation: 10,
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: screenWidth * 0.043, vertical: 8),
                       ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 18, vertical: 8),
-                    ),
-                    child: const Row(
-                      children: [
-                        Text(
-                          'Get Directions',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
+                      child: Row(
+                        children: [
+                          Text(
+                            'Get Directions',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: screenHeight * 0.0205,
+                            ),
                           ),
-                        ),
-                        SizedBox(width: 8),
-                        Icon(
-                          Icons.directions,
-                          color: Color.fromARGB(255, 87, 166, 231),
-                        ),
-                      ],
+                          SizedBox(width: screenWidth * 0.016),
+                          Icon(
+                            Icons.directions,
+                            color: Color.fromARGB(255, 87, 166, 231),
+                            size: screenHeight * 0.028,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
