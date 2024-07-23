@@ -105,6 +105,21 @@ class _HomepageState extends State<Homepage>
             children: [
               Center(
                 child: SafeArea(
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/bgr.png"),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          Column(
+            children: [
+              Center(
+                child: SafeArea(
                   child: Container(
                     height: screenHeight * 0.165,
                     width: screenHeight * 0.36,
