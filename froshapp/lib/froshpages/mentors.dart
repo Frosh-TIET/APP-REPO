@@ -7,7 +7,7 @@ class Mentors extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 20),
+         SizedBox(height: MediaQuery.of(context).size.height * 0.001),
         Expanded(
           child: SingleChildScrollView(
             child: Padding(
@@ -50,7 +50,7 @@ class Mentors extends StatelessWidget {
 
   Widget buildElevatedButton(BuildContext context, String text, String route) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: ElevatedButton(
         onPressed: () {
           Navigator.pushNamed(context, route);

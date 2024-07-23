@@ -43,7 +43,7 @@ class Faculty extends StatelessWidget {
       children: [
         SizedBox(
             height: MediaQuery.of(context).size.width *
-                0.05), // Adjust space at the top
+                0.12), // Adjust space at the top
 
         // GridView for team members
         Expanded(

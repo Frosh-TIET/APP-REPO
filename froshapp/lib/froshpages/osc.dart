@@ -20,7 +20,6 @@ class Osc extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-         SizedBox(height: MediaQuery.of(context).size.width * 0.04), // Adjusted spacing
         Expanded(
           child: ListView.builder(
             itemCount: teamMembers.length,
@@ -45,7 +44,7 @@ class TeamMemberRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.width * 0.053),
+      margin: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.width * 0.03),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

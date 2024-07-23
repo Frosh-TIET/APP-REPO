@@ -34,7 +34,6 @@ class Core extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: MediaQuery.of(context).size.height * 0.03),
         Expanded(
           child: ListView.builder(
             itemCount: teamMembers.length,
@@ -52,7 +51,7 @@ class Core extends StatelessWidget {
 
   Widget buildElevatedButton(BuildContext context, String text, String route) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.03),
+      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.12),
       child: ElevatedButton(
         onPressed: () {
           Navigator.pushNamed(context, route);
@@ -81,18 +80,18 @@ class TeamMemberRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.02),
+      margin: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.012),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: imageOnLeft
             ? [
           Container(
-            width: MediaQuery.of(context).size.width * 0.397,
-            height: MediaQuery.of(context).size.height * 0.3,
-            margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.05),
+            width: MediaQuery.of(context).size.height * 0.18,
+            height: MediaQuery.of(context).size.width * 0.65,
+            margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.048),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width * 0.08),
+              borderRadius: BorderRadius.circular(41.0),
               child: Image.asset(
                 member['image']!,
                 fit: BoxFit.cover,

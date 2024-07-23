@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "260540748281",
+    "project_id": "frosh-app-e7e4a",
+    "storage_bucket": "frosh-app-e7e4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260540748281:android:528a0c8669728957716d28",
+        "android_client_info": {
+          "package_name": "com.example.froshapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5dyARnKZU2mA_6P6CL7Iao4CvTHUz6z8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
