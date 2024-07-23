@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CampusMap extends StatelessWidget {
   @override
@@ -28,13 +29,17 @@ class CampusMap extends StatelessWidget {
                         offset: const Offset(0, 0),
                       ),
                     ],
+                    image: const DecorationImage(
+                      image: AssetImage('assets/images/map.png'),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   child: InteractiveViewer(
                     minScale: 0.1,
                     maxScale: 4.0,
                     child: Image.asset(
                       'assets/images/map.png',
-                      fit: BoxFit.fill,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
@@ -43,10 +48,10 @@ class CampusMap extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Padding(
-                padding: const EdgeInsets.all(13.0),
+                padding:  EdgeInsets.only(right: screenWidth * 0.052,bottom: screenHeight * 0.013 ),
                 child: SizedBox(
                   height: screenHeight * 0.063,
-                  width: screenWidth * 0.45,
+                  width: screenWidth * 0.44,
                   child: Link(
                     target: LinkTarget.blank,
                     uri: Uri.parse('https://www.froshtiet.com/'),
@@ -59,7 +64,7 @@ class CampusMap extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         padding: EdgeInsets.symmetric(
-                            horizontal: screenWidth * 0.043, vertical: 8),
+                            horizontal: screenWidth * 0.03, vertical: 8),
                       ),
                       child: Row(
                         children: [
@@ -67,10 +72,10 @@ class CampusMap extends StatelessWidget {
                             'Get Directions',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: screenHeight * 0.0205,
+                              fontSize: screenHeight * 0.0195,
                             ),
                           ),
-                          SizedBox(width: screenWidth * 0.016),
+                          SizedBox(width: screenWidth * 0.02),
                           Icon(
                             Icons.directions,
                             color: Color.fromARGB(255, 87, 166, 231),
