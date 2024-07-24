@@ -28,7 +28,7 @@ class NavBar extends StatelessWidget {
                       fontWeight: FontWeight.w600),
                   iconSize: screenHeight * 0.03,
                   tabBorderRadius: screenHeight * 0.1,
-                  backgroundColor: Colors.black,
+                  backgroundColor: Colors.transparent,
                   color: Colors.white,
                   haptic: true,
                   activeColor: Colors.white,
@@ -43,7 +43,7 @@ class NavBar extends StatelessWidget {
                       text: 'Home',
                     ),
                     const GButton(
-                      icon: Icons.person_2_rounded,
+                      icon: Icons.calendar_month,
                       text: 'Schedule',
                     ),
                     const GButton(

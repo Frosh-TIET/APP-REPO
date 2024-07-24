@@ -108,7 +108,7 @@ class HostelDetailPage extends StatelessWidget {
                                       hostel.detail,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: screenHeight * 0.018,
+                                        fontSize: screenHeight * 0.017,
                                       ),
                                       textAlign: TextAlign.center,
                                     ),

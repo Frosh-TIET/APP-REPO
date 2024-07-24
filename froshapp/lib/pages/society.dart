@@ -59,7 +59,7 @@ class _SocietyPageState extends State<SocietyPage> {
                     onTap: () => _toggleView(true),
                     child: Container(
                       height: MediaQuery.of(context).size.height * 0.043,
-                      width: MediaQuery.of(context).size.height * 0.22,
+                      width: MediaQuery.of(context).size.height * 0.19,
                       decoration: BoxDecoration(
                         color: isTechSelected
                             ? const Color(0xff006c48)
@@ -91,7 +91,7 @@ class _SocietyPageState extends State<SocietyPage> {
                     onTap: () => _toggleView(false),
                     child: Container(
                       height: MediaQuery.of(context).size.height * 0.0430,
-                      width: MediaQuery.of(context).size.height * 0.22,
+                      width: MediaQuery.of(context).size.height * 0.19,
                       decoration: BoxDecoration(
                         color: isTechSelected
                             ? const Color(0xff5b615f)

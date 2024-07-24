@@ -43,7 +43,7 @@ class CampusMap extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Padding(
-                padding: const EdgeInsets.all(13.0),
+                padding:  EdgeInsets.only(bottom: screenHeight * 0.01,right: screenWidth * 0.05),
                 child: SizedBox(
                   height: screenHeight * 0.063,
                   width: screenHeight * 0.23,
@@ -58,8 +58,8 @@ class CampusMap extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: screenWidth * 0.043, vertical: 8),
+                        // padding: EdgeInsets.symmetric(
+                        //     horizontal: screenWidth * 0.073, vertical: 6),
                       ),
                       child: Row(
                         children: [
@@ -70,7 +70,7 @@ class CampusMap extends StatelessWidget {
                               fontSize: screenHeight * 0.0205,
                             ),
                           ),
-                          SizedBox(width: screenHeight * 0.005),
+                          SizedBox(width: screenHeight * 0.019),
                           Icon(
                             Icons.directions,
                             color: Color.fromARGB(255, 87, 166, 231),

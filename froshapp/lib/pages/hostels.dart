@@ -9,38 +9,35 @@ class HostelPage extends StatefulWidget {
 
   final List<Hostel> boysHostels = [
     Hostel(
-        name: 'Hostel B',
+        name: 'Tejas Hall',
         imageUrl: 'assets/images/hostelB.jpg',
-        detail: 'Hostel B ki information'),
+        detail: 'Tejas Hall has single-seated rooms furnished with modern furniture and integrated with all basic facilities. There is a well-equipped gym, air-conditioned reading room, and open-air theatre in the hostel. Water coolers with RO systems and four elevators have been provided to ensure convenience. With an integrated security system and CCTVs security is given utmost importance. Regular cleaning, CCTV cameras, and fire alarms maintain hygiene and security. Fully air-conditioned guest rooms facilitate comfort to the visitors and add to better living.'),
     Hostel(
-        name: 'Hostel D',
+        name: 'Vyan Hall',
         imageUrl: 'assets/images/hostelD.jpg',
-        detail: 'Hostel D ki information'),
+        detail: 'Vyan Hall will offer the students a well-equipped living environment inclusive of all facilities in the hostels, with gyms, TV rooms, indoor games, reading rooms, RO-integrated water coolers for clean drinking water, and 24/7 Wi-Fi. Regular maintenance and the mess facility ensure a hygienic and nutritious living experience and foster a helpful and friendly atmosphere among residents.'),
     Hostel(
-        name: 'Hostel E',
+        name: 'Hostel FRF/G',
         imageUrl: 'assets/images/hostelE.jpg',
-        detail: 'Hostel E ki information'),
-    Hostel(
-        name: 'Hostel L',
-        imageUrl: 'assets/images/hostelL.jpeg',
-        detail: 'Hostel L ki information'),
+        detail: ' The hostel offers 3-seater non-AC rooms with attached washrooms, equipped with modern facilities. It offers the latest facilities including high-speed Wi-Fi, a Sodexo-run mess, laundry facilities, and proximity to the 400 Mtr track, which provides convenience for recreation. Hostel FRF/G offers an environment full of comfort and engagement, serving students amidst their academic journey.'),
+
   ];
 
   final List<Hostel> girlsHostels = [
     Hostel(
-        name: 'Hostel B',
+        name: 'Vasudha Hall',
         imageUrl: 'assets/images/hostelB.jpg',
-        detail: 'hello'),
+        detail: 'Block-G:\n\nThere are different types of rooms available in Vasudha Hall, which are well-furnished with all the necessary facilities. Gyms are well-equipped in the hostel, along with housekeeping, laundry, and Wi-Fi facilities. Water coolers fitted with RO systems and a mess service monitored by a student committee provide all necessary conveniences. Security guards are available 24 hours a day to guard the safety aspects'),
     Hostel(
-        name: 'Hostel D', imageUrl: 'assets/images/hostelD.jpg', detail: 'hi'),
+        name: 'Vasudha Hall', imageUrl: 'assets/images/hostelD.jpg', detail: 'Block-E:\n \nBlock-E offers a variety of well-furnished room types, each equipped with essential facilities. The hostel features well-equipped gyms, housekeeping, laundry, and Wi-Fi services. Water coolers with RO systems and a mess service overseen by a student committee ensure all necessary conveniences. The shared hangout area with Block G adds vibrancy to the living space, enhancing the residents\' overall experience. Security guards are on duty around the clock to ensure safety.'),
     Hostel(
-        name: 'Hostel E',
+        name: 'Ira Hall',
         imageUrl: 'assets/images/hostelE.jpg',
-        detail: 'hola'),
+        detail: 'Ira Hall provides accommodation to undergraduate female students. The hall boasts of an energetic social atmosphere and has a dedicated mess, a night mess, a well-equipped gymnasium, an air-conditioned reading-cum-library room, and guest rooms. It is also integrated with high-speed Wi-Fi, laundry services, and lifts in the hall for ease. With an integrated security system and CCTVs security is given utmost importance. Amidst such facilities, Ira Hall focuses on holistic development and student experience.'),
     Hostel(
-        name: 'Hostel L',
+        name: 'Hostel PG',
         imageUrl: 'assets/images/hostelL.jpeg',
-        detail: 'namaste'),
+        detail: 'Agira Hall is the newest entry to the hostels at Thapar Institute. It has comfortable accommodations with requisite furnishing. Internet connectivity through Wi-Fi, shared bathrooms with hot water, RO water dispenser, Television room, Gymnasium, Air-conditioned Study room, Night canteen, and Laundry facility are some of the amenities. Safety is ensured through CCTV cameras and security guards available 24/7. The mess offers a nutritious menu approved by students and hence offers a very conducive atmosphere of living.'),
   ];
 
   @override
