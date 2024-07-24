@@ -91,14 +91,14 @@ class OfflinePage extends StatelessWidget {
           children: [
             Image.asset(
               'assets/images/FROSHlogo.png', // Replace with your app logo asset path
-              width: MediaQuery.of(context).size.height * 0.22,
-              height: MediaQuery.of(context).size.width * 0.22,
+              width: MediaQuery.of(context).size.height * 0.4,
+              height: MediaQuery.of(context).size.width * 0.4,
             ),
             SizedBox(height: MediaQuery.of(context).size.width * 0.22),
             Icon(
               Icons.wifi_off,
               color: Colors.white,
-              size: MediaQuery.of(context).size.width * 0.12,
+              size: MediaQuery.of(context).size.width * 0.15,
             ),
           ],
         ),

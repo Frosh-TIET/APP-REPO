@@ -474,13 +474,7 @@ class LibraryCard extends StatelessWidget {
                       transitionDuration: const Duration(milliseconds: 400),
                       pageBuilder: (context, animation, secondaryAnimation) {
                         return const ParkCard();
-                      },
-                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                        return FadeTransition(
-                          opacity: animation,
-                          child: child,
-                        );
-                      },
+                      }
                     ),
                   );
                 },
