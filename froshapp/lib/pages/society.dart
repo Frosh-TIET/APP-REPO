@@ -21,6 +21,7 @@ class _SocietyPageState extends State<SocietyPage> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
         children: [
@@ -70,7 +71,7 @@ class _SocietyPageState extends State<SocietyPage> {
                                 : Color(0xff5b615f),
                             width: MediaQuery.of(context).size.height * 0.001),
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(6)),
+                        const BorderRadius.all(Radius.circular(6)),
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(
@@ -81,7 +82,7 @@ class _SocietyPageState extends State<SocietyPage> {
                           style: TextStyle(
                               color: Colors.white,
                               fontSize:
-                                  MediaQuery.of(context).size.width * 0.042,
+                              MediaQuery.of(context).size.width * 0.042,
                               fontFamily: 'Audiowide'),
                         ),
                       ),
@@ -102,7 +103,7 @@ class _SocietyPageState extends State<SocietyPage> {
                                 : Color(0xff006c48),
                             width: MediaQuery.of(context).size.height * 0.001),
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(6)),
+                        const BorderRadius.all(Radius.circular(6)),
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(
@@ -113,7 +114,7 @@ class _SocietyPageState extends State<SocietyPage> {
                           style: TextStyle(
                               color: Colors.white,
                               fontSize:
-                                  MediaQuery.of(context).size.width * 0.042,
+                              MediaQuery.of(context).size.width * 0.042,
                               fontFamily: 'Audiowide'),
                         ),
                       ),
@@ -126,6 +127,27 @@ class _SocietyPageState extends State<SocietyPage> {
                 child: isTechSelected ? const Tech() : const NonTech(),
               ),
             ],
+          ),
+          Positioned(
+            top: screenHeight * 0.09,
+            left: screenWidth * 0.03,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.black.withOpacity(0.5),
+                ),
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
+                  size: 30,
+                ),
+              ),
+            ),
           ),
         ],
       ),
