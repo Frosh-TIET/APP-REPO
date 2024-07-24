@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
 
     // Navigate to the home page after video duration
-    Future.delayed(Duration(milliseconds: 2300), () {
+    Future.delayed(Duration(milliseconds: 2230), () {
       // Navigator.of(context).pushReplacement(
       //   MaterialPageRoute(builder: (context) => MainApp()),
       // );
@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: child,
             );
           },
-          transitionDuration: Duration(milliseconds: 900),
+          transitionDuration: Duration(milliseconds: 400),
         ),
       );
     });
@@ -43,13 +43,19 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         child: _controller.value.isInitialized
-            ? AspectRatio(
-          aspectRatio: _controller.value.aspectRatio,
-          child: VideoPlayer(_controller),
-        )
-            : CircularProgressIndicator(),
+            ? FittedBox(
+                fit: BoxFit.cover,
+                child: SizedBox(
+                  width: _controller.value.size.width,
+                  height: _controller.value.size.height,
+                  child: VideoPlayer(_controller),
+                ),
+              )
+            : Center(child: CircularProgressIndicator()),
       ),
     );
   }
