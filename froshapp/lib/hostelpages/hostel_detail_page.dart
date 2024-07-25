@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'hostel_model.dart';
 
-class HostelDetailPage extends StatelessWidget {
+class HostelDetailPage extends StatefulWidget {
   final List<Hostel> hostels;
-  final int currentIndex;
+  final int initialIndex;
 
-  HostelDetailPage({required this.hostels, required this.currentIndex});
+  HostelDetailPage({required this.hostels, required this.initialIndex});
+
+  @override
+  _HostelDetailPageState createState() => _HostelDetailPageState();
+}
+
+class _HostelDetailPageState extends State<HostelDetailPage> {
+  late CarouselController _carouselController;
+  late int currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    currentIndex = widget.initialIndex;
+    _carouselController = CarouselController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +46,7 @@ class HostelDetailPage extends StatelessWidget {
             top: screenHeight * 0.087,
             left: screenHeight * 0.012,
             child: IconButton(
-              icon: Icon(Icons.arrow_back_ios, color: Colors.white,size: 30,),
+              icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 30),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -61,13 +77,25 @@ class HostelDetailPage extends StatelessWidget {
                   ),
                 ),
               ),
-              // Hostel Details
+              // Hostel Details Carousel
               Expanded(
-                child: PageView.builder(
-                  controller: PageController(initialPage: currentIndex),
-                  itemCount: hostels.length,
-                  itemBuilder: (context, index) {
-                    final hostel = hostels[index];
+                child: CarouselSlider.builder(
+                  itemCount: widget.hostels.length,
+                  carouselController: _carouselController,
+                  options: CarouselOptions(
+                    height: screenHeight * 0.8,
+                    viewportFraction: 1.0,
+                    enlargeCenterPage: false,
+                    enableInfiniteScroll: true,
+                    initialPage: currentIndex,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        currentIndex = index;
+                      });
+                    },
+                  ),
+                  itemBuilder: (context, index, realIndex) {
+                    final hostel = widget.hostels[index];
                     return Container(
                       height: screenHeight * 0.8,
                       width: double.infinity,
@@ -87,8 +115,7 @@ class HostelDetailPage extends StatelessWidget {
                           Align(
                             alignment: Alignment.topCenter,
                             child: Padding(
-                              padding:
-                              EdgeInsets.only(top: screenHeight * 0.053),
+                              padding: EdgeInsets.only(top: screenHeight * 0.053),
                               child: Text(
                                 hostel.name,
                                 textAlign: TextAlign.center,
@@ -111,8 +138,7 @@ class HostelDetailPage extends StatelessWidget {
                           Align(
                             alignment: Alignment.bottomCenter,
                             child: Padding(
-                              padding: EdgeInsets.only(
-                                  bottom: screenHeight * 0.063),
+                              padding: EdgeInsets.only(bottom: screenHeight * 0.063),
                               child: Container(
                                 height: screenHeight * 0.5,
                                 width: screenHeight * 0.41,
@@ -122,8 +148,7 @@ class HostelDetailPage extends StatelessWidget {
                                 ),
                                 child: Center(
                                   child: Padding(
-                                    padding: EdgeInsets.all(
-                                        screenHeight * 0.0217),
+                                    padding: EdgeInsets.all(screenHeight * 0.0217),
                                     child: Text(
                                       hostel.detail,
                                       style: TextStyle(

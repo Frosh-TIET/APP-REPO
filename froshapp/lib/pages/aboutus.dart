@@ -23,7 +23,6 @@ class _AboutUsState extends State<AboutUsPage> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: Stack(
@@ -72,20 +71,13 @@ class _AboutUsState extends State<AboutUsPage> {
           ),
           // Back button
           Positioned(
-            top: screenHeight * 0.147,
+            top: screenHeight * 0.087,
             left: screenHeight * 0.012,
-            child: GestureDetector(
-              onTap: () {
+            child: IconButton(
+              icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 30),
+              onPressed: () {
                 Navigator.pop(context);
               },
-              child: Container(
-                padding: EdgeInsets.all(8),
-                child: Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.white,
-                  size: 30,
-                ),
-              ),
             ),
           ),
         ],
