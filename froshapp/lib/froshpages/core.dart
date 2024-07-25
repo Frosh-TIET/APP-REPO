@@ -5,7 +5,7 @@ class Core extends StatelessWidget {
     {'name': 'Abhay Bagla', 'role': 'COE', 'image': 'assets/images/abhay.webp'},
     {'name': 'Anuj Pathak', 'role': 'COE', 'image': 'assets/images/anuj.webp'},
     {'name': 'Anushka Tiwari', 'role': 'ENC', 'image': 'assets/images/anushka.webp'},
-    {'name': 'Bhavneet Kaur', 'role': 'COPC', 'image': 'assets/images/Bhavneet.webp'},
+    {'name': 'Bhavneet Kaur', 'role': 'COPC', 'image': 'assets/images/bhavneet.webp'},
     {'name': 'Diya Wadhawan', 'role': 'TSLAS', 'image': 'assets/images/diya.webp'},
     {'name': 'Hritish Mahajan', 'role': 'CSBS', 'image': 'assets/images/hritish.webp'},
     {'name': 'Jai Raj Singh Ahluwalia', 'role': 'CIE', 'image': 'assets/images/jai.webp'},

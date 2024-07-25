@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:froshapp/nav/refer_nav.dart';
 import 'package:froshapp/pages/homepage.dart';
 
 void main() => runApp(const LifeThaparPage());
@@ -57,7 +58,7 @@ class InfoCard extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Homepage()),
+                    MaterialPageRoute(builder: (context) => FirstPage()),
                   );
                 },
                 child: Image.asset(
