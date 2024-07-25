@@ -125,7 +125,7 @@ class _HomepageState extends State<Homepage>
                         Icons.close,
                         color: Colors.white,
                         size: screenHeight * 0.04,
-                      ).animate().fadeIn() // uses `Animate.defaultDuration`
+                      ).animate().fadeIn() // uses Animate.defaultDuration
                           .scale() // inherits duration from fadeIn
                           .moveX(delay: 100.ms, duration: 200.ms) // runs after the above w/new duration
                       ,
@@ -332,12 +332,12 @@ class _HomepageState extends State<Homepage>
                                             : screenHeight * 0.019,
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
-                                        shadows: const <Shadow>[
+                                        shadows:  <Shadow>[
                                           Shadow(
-                                            offset: Offset(2, 4.0),
-                                            blurRadius: 5.0,
+                                            offset: Offset(1, 1),
+                                            blurRadius: 1.5,
                                             color:
-                                            Color.fromRGBO(29, 29, 29, 0.3),
+                                            Colors.white,
                                           ),
                                         ],
                                         fontFamily: 'MainFont',
