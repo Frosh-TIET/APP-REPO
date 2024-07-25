@@ -18,8 +18,41 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final List<String> imageAssets = [
+    'assets/images/bgr.jpg',
+    'assets/images/logo.png',
+    'assets/images/githubicon2.png',
+    'assets/images/meta.png',
+    'assets/images/instagram.png',
+    'assets/images/youtube.png',
+    'assets/images/Gmail.png',
+    'assets/images/web.png',
+    'assets/images/hostelC.jpg'
+    'assets/images/hostelD.jpg'
+    'assets/images/hostelE.jpg'
+    'assets/images/hostelL.jpeg'
+    'assets/images/map.png'
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _precacheImages();
+  }
+
+  Future<void> _precacheImages() async {
+    for (final asset in imageAssets) {
+      await precacheImage(AssetImage(asset), context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
