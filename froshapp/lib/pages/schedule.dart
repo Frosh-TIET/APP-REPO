@@ -319,7 +319,7 @@ class _ScheduleState extends State<Schedule> {
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 child: Container(
                   width: screenWidth * 0.9,
-                  height: screenHeight * 0.13,
+                  height: screenHeight * 0.145,
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(20),

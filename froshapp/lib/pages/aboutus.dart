@@ -96,11 +96,11 @@ class _AboutUsState extends State<AboutUsPage> {
                 : 90,
         decoration: BoxDecoration(
           color: selectedPage == title
-              ? const Color.fromRGBO(23, 87, 151, 1)
+              ? const Color.fromRGBO(29, 78, 137, 1)
               : const Color(0xff5b615f),
           border: Border.all(
               color: selectedPage == title
-                  ? Color.fromRGBO(23, 87, 151, 1)
+                  ? Color.fromRGBO(29, 78, 137, 1)
                   : Color(0xff5b615f),
               width: MediaQuery.of(context).size.width * 0.017),
           borderRadius: const BorderRadius.all(Radius.circular(6)),

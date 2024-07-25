@@ -62,11 +62,11 @@ class _SocietyPageState extends State<SocietyPage> {
                       width: MediaQuery.of(context).size.height * 0.19,
                       decoration: BoxDecoration(
                         color: isTechSelected
-                            ? Color.fromRGBO(63, 193, 192, 1)
+                            ? Color.fromRGBO(29, 78, 137, 1)
                             : const Color(0xff5b615f),
                         border: Border.all(
                             color: isTechSelected
-                                ? Color.fromRGBO(126, 181, 208, 1)
+                                ? Color.fromRGBO(29, 78, 137, 1)
                                 : Color(0xff5b615f),
                             width: MediaQuery.of(context).size.height * 0.001),
                         borderRadius:
@@ -95,11 +95,11 @@ class _SocietyPageState extends State<SocietyPage> {
                       decoration: BoxDecoration(
                         color: isTechSelected
                             ? const Color(0xff5b615f)
-                            : Color.fromRGBO(126, 181, 208, 1),
+                            : Color.fromRGBO(29, 78, 137, 1),
                         border: Border.all(
                             color: isTechSelected
                                 ? Color(0xff5b615f)
-                                : Color.fromRGBO(126, 181, 208, 1),
+                                : Color.fromRGBO(29, 78, 137, 1),
                             width: MediaQuery.of(context).size.height * 0.001),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(6)),

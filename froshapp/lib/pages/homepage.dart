@@ -305,10 +305,10 @@ class _HomepageState extends State<Homepage>
                                         fontWeight: FontWeight.bold,
                                         shadows: const <Shadow>[
                                           Shadow(
-                                            offset: Offset(2, 4.0),
-                                            blurRadius: 5.0,
-                                            color:
-                                                Color.fromRGBO(29, 29, 29, 0.3),
+                                            offset: Offset(1.5, 2.5),
+                                            blurRadius: 3.5,
+                                            color: Color.fromARGB(
+                                                196, 255, 255, 255),
                                           ),
                                         ],
                                         fontFamily: 'MainFont',
@@ -355,7 +355,7 @@ class _HomepageState extends State<Homepage>
                                               eventDates[index],
                                               style: TextStyle(
                                                 fontSize: isCenter
-                                                    ? screenHeight * 0.021
+                                                    ? screenHeight * 0.019
                                                     : screenHeight * 0.014,
                                                 fontFamily: 'SubFont',
                                                 fontWeight: FontWeight.w600,
@@ -390,7 +390,7 @@ class _HomepageState extends State<Homepage>
                                             time[index],
                                             style: TextStyle(
                                               fontSize: isCenter
-                                                  ? screenHeight * 0.021
+                                                  ? screenHeight * 0.019
                                                   : screenHeight * 0.014,
                                               fontFamily: 'SubFont',
                                               fontWeight: FontWeight.w600,
@@ -416,7 +416,7 @@ class _HomepageState extends State<Homepage>
                                             location[index],
                                             style: TextStyle(
                                               fontSize: isCenter
-                                                  ? screenHeight * 0.021
+                                                  ? screenHeight * 0.019
                                                   : screenHeight * 0.014,
                                               fontFamily: 'SubFont',
                                               fontWeight: FontWeight.w600,
@@ -508,7 +508,7 @@ class _HomepageState extends State<Homepage>
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
                 child: Container(
                   width: screenWidth * 0.9,
-                  height: screenHeight * 0.13,
+                  height: screenHeight * 0.145,
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(20),
@@ -519,7 +519,7 @@ class _HomepageState extends State<Homepage>
                   ),
                   child: Padding(
                     padding: EdgeInsets.only(
-                      left: screenWidth * 0.025,
+                      left: screenWidth * 0.028,
                       top: screenHeight * 0.0030,
                     ),
                     child: Column(

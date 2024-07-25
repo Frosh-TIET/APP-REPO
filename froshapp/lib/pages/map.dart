@@ -19,7 +19,6 @@ class CampusMap extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.9,
                   height: MediaQuery.of(context).size.height * 0.75,
                   decoration: BoxDecoration(
-                    color: Colors.white, // Add a background color here
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.5),
@@ -46,8 +45,8 @@ class CampusMap extends StatelessWidget {
                 padding: EdgeInsets.only(
                     bottom: screenHeight * 0.01, right: screenWidth * 0.05),
                 child: SizedBox(
-                  height: screenHeight * 0.063,
-                  width: screenHeight * 0.23,
+                  height: screenHeight * 0.06,
+                  width: screenHeight * 0.234,
                   child: Link(
                     target: LinkTarget.blank,
                     uri: Uri.parse('https://www.froshtiet.com/'),
@@ -68,14 +67,13 @@ class CampusMap extends StatelessWidget {
                             'Get Directions',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: screenHeight * 0.0205,
+                              fontSize: screenHeight * 0.019,
                             ),
                           ),
-                          SizedBox(width: screenHeight * 0.019),
                           Icon(
                             Icons.directions,
                             color: Color.fromARGB(255, 87, 166, 231),
-                            size: screenHeight * 0.028,
+                            size: screenHeight * 0.03,
                           ),
                         ],
                       ),
