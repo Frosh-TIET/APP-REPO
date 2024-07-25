@@ -107,7 +107,31 @@ class _HomepageState extends State<Homepage>
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
-                SizedBox(height: screenHeight * 0.25),
+
+                SizedBox(height: screenHeight * 0.08),
+                Padding(
+                  padding: EdgeInsets.only(top: screenHeight*0.017,left: screenWidth*0.001),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0),
+                      borderRadius: BorderRadius.circular(screenHeight * 0.025),
+                    ),
+                    width: screenWidth * 0.0048,
+
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.close,
+                        color: Colors.white,
+                        size: screenHeight * 0.04,
+                      ),
+
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                ),
+                SizedBox(height: screenHeight * 0.1),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.7),
@@ -296,7 +320,7 @@ class _HomepageState extends State<Homepage>
                                         : Alignment.center,
                                     child: AnimatedDefaultTextStyle(
                                       duration:
-                                          const Duration(milliseconds: 800),
+                                      const Duration(milliseconds: 800),
                                       style: TextStyle(
                                         fontSize: isCenter
                                             ? screenHeight * 0.025
@@ -305,10 +329,10 @@ class _HomepageState extends State<Homepage>
                                         fontWeight: FontWeight.bold,
                                         shadows: const <Shadow>[
                                           Shadow(
-                                            offset: Offset(1.5, 2.5),
-                                            blurRadius: 3.5,
-                                            color: Color.fromARGB(
-                                                196, 255, 255, 255),
+                                            offset: Offset(2, 4.0),
+                                            blurRadius: 5.0,
+                                            color:
+                                            Color.fromRGBO(29, 29, 29, 0.3),
                                           ),
                                         ],
                                         fontFamily: 'MainFont',
@@ -350,12 +374,12 @@ class _HomepageState extends State<Homepage>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsets.only(left: 10),
+                                            const EdgeInsets.only(left: 10),
                                             child: Text(
                                               eventDates[index],
                                               style: TextStyle(
                                                 fontSize: isCenter
-                                                    ? screenHeight * 0.019
+                                                    ? screenHeight * 0.021
                                                     : screenHeight * 0.014,
                                                 fontFamily: 'SubFont',
                                                 fontWeight: FontWeight.w600,
@@ -385,12 +409,12 @@ class _HomepageState extends State<Homepage>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(left: 10),
+                                          const EdgeInsets.only(left: 10),
                                           child: Text(
                                             time[index],
                                             style: TextStyle(
                                               fontSize: isCenter
-                                                  ? screenHeight * 0.019
+                                                  ? screenHeight * 0.021
                                                   : screenHeight * 0.014,
                                               fontFamily: 'SubFont',
                                               fontWeight: FontWeight.w600,
@@ -411,12 +435,12 @@ class _HomepageState extends State<Homepage>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(left: 10),
+                                          const EdgeInsets.only(left: 10),
                                           child: Text(
                                             location[index],
                                             style: TextStyle(
                                               fontSize: isCenter
-                                                  ? screenHeight * 0.019
+                                                  ? screenHeight * 0.021
                                                   : screenHeight * 0.014,
                                               fontFamily: 'SubFont',
                                               fontWeight: FontWeight.w600,
@@ -434,48 +458,48 @@ class _HomepageState extends State<Homepage>
                                 uri: Uri.parse('https://www.froshtiet.com/'),
                                 builder: (context, followlink) =>
                                     GestureDetector(
-                                  onTap: followlink,
-                                  child: AnimatedContainer(
-                                    duration: const Duration(milliseconds: 800),
-                                    curve: Curves.easeInOut,
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: isCenter
-                                          ? screenHeight * 0.009
-                                          : screenHeight * 0.005,
-                                      horizontal: isCenter
-                                          ? screenHeight * 0.0008
-                                          : screenHeight * 0.0005,
-                                    ),
-                                    height: screenHeight * 0.05,
-                                    width: screenHeight * 0.22,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: const Color.fromRGBO(
-                                          213, 224, 202, 1),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black.withOpacity(0.5),
-                                          spreadRadius: 1,
-                                          blurRadius: 5,
-                                          offset: Offset(0, 5),
+                                      onTap: followlink,
+                                      child: AnimatedContainer(
+                                        duration: const Duration(milliseconds: 800),
+                                        curve: Curves.easeInOut,
+                                        padding: EdgeInsets.symmetric(
+                                          vertical: isCenter
+                                              ? screenHeight * 0.009
+                                              : screenHeight * 0.005,
+                                          horizontal: isCenter
+                                              ? screenHeight * 0.0008
+                                              : screenHeight * 0.0005,
                                         ),
-                                      ],
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        'BOOK NOW',
-                                        style: TextStyle(
-                                          fontFamily: 'ButtonFont',
-                                          fontSize: isCenter
-                                              ? screenHeight * 0.022
-                                              : screenHeight * 0.02,
-                                          fontWeight: FontWeight.w800,
-                                          color: Colors.black,
+                                        height: screenHeight * 0.05,
+                                        width: screenHeight * 0.22,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: const Color.fromRGBO(
+                                              213, 224, 202, 1),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black.withOpacity(0.5),
+                                              spreadRadius: 1,
+                                              blurRadius: 5,
+                                              offset: Offset(0, 5),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            'BOOK NOW',
+                                            style: TextStyle(
+                                              fontFamily: 'ButtonFont',
+                                              fontSize: isCenter
+                                                  ? screenHeight * 0.022
+                                                  : screenHeight * 0.02,
+                                              fontWeight: FontWeight.w800,
+                                              color: Colors.black,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
                               ),
                             ],
                           ),
@@ -491,7 +515,7 @@ class _HomepageState extends State<Homepage>
                     reverse: false,
                     autoPlayInterval: const Duration(seconds: 10),
                     autoPlayAnimationDuration:
-                        const Duration(milliseconds: 1800),
+                    const Duration(milliseconds: 1800),
                     autoPlayCurve: Curves.linearToEaseOut,
                     enlargeCenterPage: true,
                     enlargeFactor: 0.3,
@@ -508,7 +532,7 @@ class _HomepageState extends State<Homepage>
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
                 child: Container(
                   width: screenWidth * 0.9,
-                  height: screenHeight * 0.145,
+                  height: screenHeight * 0.13,
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(20),
@@ -519,7 +543,7 @@ class _HomepageState extends State<Homepage>
                   ),
                   child: Padding(
                     padding: EdgeInsets.only(
-                      left: screenWidth * 0.028,
+                      left: screenWidth * 0.025,
                       top: screenHeight * 0.0030,
                     ),
                     child: Column(
