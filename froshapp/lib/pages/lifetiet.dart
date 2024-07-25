@@ -173,7 +173,7 @@ class ParkCard extends StatelessWidget {
         title: 'CENTRAL\nPARK',
         image: 'assets/images/park.png',
         description:
-            'The Central Park serves as an oasis of tranquility amidst the academic bustle. It’s lush-green abode helps students to relax and unwind. The sparkling fountains add up to the soothing ambience. The fresh air and open space fosters a sense of community and well-being among the students.',
+            'The Central Park serves as an oasis of tranquillity amidst the academic bustle. Its lush-green abode helps students to relax and unwind. The sparkling fountains add up to the soothing ambience, their gentle murmur creating a calming backdrop. The fresh air and open space foster a sense of community and well-being among the students, encouraging spontaneous gatherings and peaceful solitude alike. The seating areas in the lap of nature invite both quiet reflection and lively conversations, making the park a cherished retreat.',
         currentPage: 3,
         nextPage: const CosCard(), // Cycle back to the first card
       );

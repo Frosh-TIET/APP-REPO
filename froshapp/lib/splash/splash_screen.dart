@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
 
     // Navigate to the home page after video duration
-    Future.delayed(Duration(milliseconds: 2400), () {
+    Future.delayed(Duration(milliseconds: 2000), () {
       // Navigator.of(context).pushReplacement(
       //   MaterialPageRoute(builder: (context) => MainApp()),
       // );

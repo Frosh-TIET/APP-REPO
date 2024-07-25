@@ -5,12 +5,12 @@ class Osc extends StatelessWidget {
     {
       'name': 'Ananya Varshneya',
       'role': 'ELE',
-      'image': 'assets/images/Ananya.png'
+      'image': 'assets/images/Ananya.webp'
     },
     {
       'name': 'Swastik Raghav',
       'role': 'COE',
-      'image': 'assets/images/Swastik.png'
+      'image': 'assets/images/Swastik.webp'
     },
   ];
 

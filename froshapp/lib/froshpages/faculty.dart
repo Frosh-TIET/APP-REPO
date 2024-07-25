@@ -5,32 +5,32 @@ class Faculty extends StatelessWidget {
     {
       'name': 'Dr. MD Singh',
       'role': 'President',
-      'image': 'assets/images/md.png'
+      'image': 'assets/images/md.webp'
     },
     {
       'name': 'Dr. Hemdutt Joshi',
       'role': 'Vice-President',
-      'image': 'assets/images/hemdutt.png'
+      'image': 'assets/images/hemdutt.webp'
     },
     {
       'name': 'Dr. Vishal Gupta',
       'role': 'Vice-President',
-      'image': 'assets/images/vishal.png'
+      'image': 'assets/images/vishal.webp'
     },
     {
       'name': 'Dr. Avinash Chandra',
       'role': 'Vice-President',
-      'image': 'assets/images/avinash.png'
+      'image': 'assets/images/avinash.webp'
     },
     {
       'name': 'Dr. Devendar Kumar',
       'role': 'Vice-President',
-      'image': 'assets/images/devender.png'
+      'image': 'assets/images/devender.webp'
     },
     {
       'name': 'Dr.Tarunpreet Bhatia',
       'role': 'Vice-President',
-      'image': 'assets/images/tarunpreet.png'
+      'image': 'assets/images/tarunpreet.webp'
     },
   ];
 
