@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
 
     // Navigate to the home page after video duration
-    Future.delayed(Duration(milliseconds: 2230), () {
+    Future.delayed(Duration(milliseconds: 2400), () {
       // Navigator.of(context).pushReplacement(
       //   MaterialPageRoute(builder: (context) => MainApp()),
       // );
@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: child,
             );
           },
-          transitionDuration: Duration(milliseconds: 400),
+          transitionDuration: Duration(milliseconds: 1500),
         ),
       );
     });

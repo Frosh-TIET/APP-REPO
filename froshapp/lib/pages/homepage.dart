@@ -11,7 +11,7 @@ import 'package:url_launcher/link.dart';
 import 'package:froshapp/video_loader/VideoLoadingScreen.dart';
 
 class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+  const Homepage({Key? key}) : super(key: key);
 
   @override
   _HomepageState createState() => _HomepageState();
@@ -96,6 +96,136 @@ class _HomepageState extends State<Homepage>
     ];
 
     return Scaffold(
+      drawer: Drawer(
+        child: Container(
+          color: Colors.black,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color(0xff006c48),
+                ),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Hallo',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: screenWidth * 0.075,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: screenHeight * 0.04),
+              ListTile(
+                leading: const Icon(
+                  Icons.groups,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  'About Us',
+                  style: TextStyle(
+                      color: Colors.white, fontSize: screenWidth * 0.05),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    VideoPageRoute(
+                      page: AboutUsPage(),
+                      videoAsset: 'assets/videos/load.mp4',
+                    ),
+                  );
+                },
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: screenHeight * 0.04),
+              ListTile(
+                leading: const Icon(
+                  Icons.home_work_rounded,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  'Hostels',
+                  style: TextStyle(
+                      color: Colors.white, fontSize: screenWidth * 0.05),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    VideoPageRoute(
+                      page: HostelPage(),
+                      videoAsset: 'assets/videos/load.mp4',
+                    ),
+                  );
+                },
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: screenHeight * 0.04),
+
+              ListTile(
+                leading: const Icon(
+                  Icons.local_activity,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  'Societies',
+                  style: TextStyle(
+                      color: Colors.white, fontSize: screenWidth * 0.05),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    VideoPageRoute(
+                      page: SocietyPage(),
+                      videoAsset: 'assets/videos/load.mp4',
+                    ),
+                  );
+                },
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: screenHeight * 0.04),
+              ListTile(
+                leading: const Icon(
+                  Icons.sports_basketball,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  'Life at Thapar',
+                  style: TextStyle(
+                      color: Colors.white, fontSize: screenWidth * 0.05),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    VideoPageRoute(
+                      page: LifeThaparPage(),
+                      videoAsset: 'assets/videos/load.mp4',
+                    ),
+                  );
+                },
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: Stack(
         children: [
           Container(
@@ -159,7 +289,7 @@ class _HomepageState extends State<Homepage>
                                         : Alignment.center,
                                     child: AnimatedDefaultTextStyle(
                                       duration:
-                                      const Duration(milliseconds: 800),
+                                          const Duration(milliseconds: 800),
                                       style: TextStyle(
                                         fontSize: isCenter
                                             ? screenHeight * 0.025
@@ -171,7 +301,7 @@ class _HomepageState extends State<Homepage>
                                             offset: Offset(2, 4.0),
                                             blurRadius: 5.0,
                                             color:
-                                            Color.fromRGBO(29, 29, 29, 0.3),
+                                                Color.fromRGBO(29, 29, 29, 0.3),
                                           ),
                                         ],
                                         fontFamily: 'MainFont',
@@ -213,7 +343,7 @@ class _HomepageState extends State<Homepage>
                                           ),
                                           Padding(
                                             padding:
-                                            const EdgeInsets.only(left: 10),
+                                                const EdgeInsets.only(left: 10),
                                             child: Text(
                                               eventDates[index],
                                               style: TextStyle(
@@ -248,7 +378,7 @@ class _HomepageState extends State<Homepage>
                                         ),
                                         Padding(
                                           padding:
-                                          const EdgeInsets.only(left: 10),
+                                              const EdgeInsets.only(left: 10),
                                           child: Text(
                                             time[index],
                                             style: TextStyle(
@@ -274,7 +404,7 @@ class _HomepageState extends State<Homepage>
                                         ),
                                         Padding(
                                           padding:
-                                          const EdgeInsets.only(left: 10),
+                                              const EdgeInsets.only(left: 10),
                                           child: Text(
                                             location[index],
                                             style: TextStyle(
@@ -297,48 +427,48 @@ class _HomepageState extends State<Homepage>
                                 uri: Uri.parse('https://www.froshtiet.com/'),
                                 builder: (context, followlink) =>
                                     GestureDetector(
-                                      onTap: followlink,
-                                      child: AnimatedContainer(
-                                        duration: const Duration(milliseconds: 800),
-                                        curve: Curves.easeInOut,
-                                        padding: EdgeInsets.symmetric(
-                                          vertical: isCenter
-                                              ? screenHeight * 0.009
-                                              : screenHeight * 0.005,
-                                          horizontal: isCenter
-                                              ? screenHeight * 0.0008
-                                              : screenHeight * 0.0005,
+                                  onTap: followlink,
+                                  child: AnimatedContainer(
+                                    duration: const Duration(milliseconds: 800),
+                                    curve: Curves.easeInOut,
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: isCenter
+                                          ? screenHeight * 0.009
+                                          : screenHeight * 0.005,
+                                      horizontal: isCenter
+                                          ? screenHeight * 0.0008
+                                          : screenHeight * 0.0005,
+                                    ),
+                                    height: screenHeight * 0.05,
+                                    width: screenHeight * 0.22,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: const Color.fromRGBO(
+                                          213, 224, 202, 1),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.5),
+                                          spreadRadius: 1,
+                                          blurRadius: 5,
+                                          offset: Offset(0, 5),
                                         ),
-                                        height: screenHeight * 0.05,
-                                        width: screenHeight * 0.22,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: const Color.fromRGBO(
-                                              213, 224, 202, 1),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black.withOpacity(0.5),
-                                              spreadRadius: 1,
-                                              blurRadius: 5,
-                                              offset: Offset(0, 5),
-                                            ),
-                                          ],
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            'BOOK NOW',
-                                            style: TextStyle(
-                                              fontFamily: 'ButtonFont',
-                                              fontSize: isCenter
-                                                  ? screenHeight * 0.022
-                                                  : screenHeight * 0.02,
-                                              fontWeight: FontWeight.w800,
-                                              color: Colors.black,
-                                            ),
-                                          ),
+                                      ],
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'BOOK NOW',
+                                        style: TextStyle(
+                                          fontFamily: 'ButtonFont',
+                                          fontSize: isCenter
+                                              ? screenHeight * 0.022
+                                              : screenHeight * 0.02,
+                                          fontWeight: FontWeight.w800,
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -354,7 +484,7 @@ class _HomepageState extends State<Homepage>
                     reverse: false,
                     autoPlayInterval: const Duration(seconds: 10),
                     autoPlayAnimationDuration:
-                    const Duration(milliseconds: 1800),
+                        const Duration(milliseconds: 1800),
                     autoPlayCurve: Curves.linearToEaseOut,
                     enlargeCenterPage: true,
                     enlargeFactor: 0.3,
@@ -368,7 +498,7 @@ class _HomepageState extends State<Homepage>
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
                 child: Container(
                   width: screenWidth * 0.95,
                   height: screenWidth * 0.28,
@@ -409,82 +539,98 @@ class _HomepageState extends State<Homepage>
             padding: EdgeInsets.only(bottom: screenHeight * 0.02),
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
-                alignment: Alignment.bottomCenter,
-                height: screenHeight * 0.12,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    alignment: Alignment.bottomCenter,
-                    image: AssetImage("assets/images/Vector.png"),
+              child: Transform.translate(
+                offset: Offset(0, screenHeight * 0.06),
+                child: Container(
+                  alignment: Alignment.bottomCenter,
+                  height: screenHeight * 0.12,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      alignment: Alignment.bottomCenter,
+                      image: AssetImage("assets/images/Vector.png"),
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-          CircularMenu(
-            toggleButtonSize:
-            _isMenuOpen ? screenHeight * 0.16 : screenHeight * 0.1,
-            toggleButtonColor: Colors.transparent,
-            toggleButtonIconColor: Colors.transparent,
-            radius: screenWidth * 0.35,
-            items: [
-              CircularMenuItem(
-                icon: Icons.home_work,
-                color: const Color.fromRGBO(180, 196, 0, 1),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    VideoPageRoute(
-                      page: HostelPage(),
-                      videoAsset: 'assets/videos/load.mp4',
-                    ),
-                  );
-                },
+          // CircularMenu(
+          //   toggleButtonSize:
+          //   _isMenuOpen ? screenHeight * 0.16 : screenHeight * 0.1,
+          //   toggleButtonColor: Colors.transparent,
+          //   toggleButtonIconColor: Colors.transparent,
+          //   radius: screenWidth * 0.35,
+          //   items: [
+          //     CircularMenuItem(
+          //       icon: Icons.home_work,
+          //       color: const Color.fromRGBO(180, 196, 0, 1),
+          //       onTap: () {
+          //         Navigator.push(
+          //           context,
+          //           VideoPageRoute(
+          //             page: HostelPage(),
+          //             videoAsset: 'assets/videos/load.mp4',
+          //           ),
+          //         );
+          //       },
+          //     ),
+          //     CircularMenuItem(
+          //       icon: Icons.groups,
+          //       color: const Color.fromRGBO(180, 196, 0, 1),
+          //       onTap: () {
+          //         Navigator.push(
+          //           context,
+          //           VideoPageRoute(
+          //             page: AboutUsPage(),
+          //             videoAsset: 'assets/videos/load.mp4',
+          //           ),
+          //         );
+          //       },
+          //     ),
+          //     CircularMenuItem(
+          //       icon: Icons.handshake_rounded,
+          //       color: const Color.fromRGBO(180, 196, 0, 1),
+          //       onTap: () {
+          //         Navigator.push(
+          //           context,
+          //           VideoPageRoute(
+          //             page: SocietyPage(),
+          //             videoAsset: 'assets/videos/load.mp4',
+          //           ),
+          //         );
+          //       },
+          //     ),
+          //     CircularMenuItem(
+          //       icon: Icons.sports_basketball,
+          //       color: const Color.fromRGBO(180, 196, 0, 1),
+          //       onTap: () {
+          //         Navigator.push(
+          //           context,
+          //           VideoPageRoute(
+          //             page: LifeThaparPage(),
+          //             videoAsset: 'assets/videos/load.mp4',
+          //           ),
+          //         );
+          //       },
+          //     ),
+          //   ],
+          // ),
+          Positioned(
+            top: screenHeight * 0.1,
+            left: screenWidth * 0.02,
+            child: Builder(
+              builder: (context) => IconButton(
+                icon: Icon(
+                  Icons.menu,
+                  size: screenWidth * 0.085,
+                  color: Colors.white,
+                ),
+                onPressed: () => Scaffold.of(context).openDrawer(),
               ),
-              CircularMenuItem(
-                icon: Icons.groups,
-                color: const Color.fromRGBO(180, 196, 0, 1),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    VideoPageRoute(
-                      page: AboutUsPage(),
-                      videoAsset: 'assets/videos/load.mp4',
-                    ),
-                  );
-                },
-              ),
-              CircularMenuItem(
-                icon: Icons.handshake_rounded,
-                color: const Color.fromRGBO(180, 196, 0, 1),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    VideoPageRoute(
-                      page: SocietyPage(),
-                      videoAsset: 'assets/videos/load.mp4',
-                    ),
-                  );
-                },
-              ),
-              CircularMenuItem(
-                icon: Icons.sports_basketball,
-                color: const Color.fromRGBO(180, 196, 0, 1),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    VideoPageRoute(
-                      page: LifeThaparPage(),
-                      videoAsset: 'assets/videos/load.mp4',
-                    ),
-                  );
-                },
-              ),
-            ],
+            ),
           ),
         ],
       ),
     );
   }
 }
-

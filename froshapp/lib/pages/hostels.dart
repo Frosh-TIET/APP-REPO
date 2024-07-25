@@ -219,10 +219,6 @@ class _HostelPageState extends State<HostelPage> {
               },
               child: Container(
                 padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.black.withOpacity(0.5),
-                ),
                 child: Icon(
                   Icons.arrow_back_ios,
                   color: Colors.white,
