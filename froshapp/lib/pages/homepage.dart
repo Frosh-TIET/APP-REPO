@@ -149,7 +149,7 @@ class _HomepageState extends State<Homepage>
                       color: Colors.white,
                     ),
                     title: Text(
-                      'About Us',
+                      'Our Team',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: screenWidth * 0.048,
@@ -315,7 +315,7 @@ class _HomepageState extends State<Homepage>
                                         ? screenHeight * 0.028
                                         : screenHeight * 0.045,
                                     top: isCenter
-                                        ? screenHeight * 0.04
+                                        ? screenHeight * 0.045
                                         : screenHeight * 0.036,
                                   ),
                                   child: AnimatedAlign(
@@ -351,7 +351,7 @@ class _HomepageState extends State<Homepage>
                               ),
                               SizedBox(
                                   height: isCenter
-                                      ? screenHeight * 0.002
+                                      ? screenHeight * 0.001
                                       : screenHeight * 0.01),
                               //icons
                               AnimatedPadding(

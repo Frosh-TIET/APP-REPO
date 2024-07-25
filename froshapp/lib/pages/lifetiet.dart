@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:froshapp/nav/refer_nav.dart';
-import 'package:froshapp/pages/homepage.dart';
 
 void main() => runApp(const LifeThaparPage());
 
@@ -9,9 +8,9 @@ class LifeThaparPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: CosCard(),
-      );
+    debugShowCheckedModeBanner: false,
+    home: CosCard(),
+  );
 }
 
 class InfoCard extends StatelessWidget {
@@ -20,6 +19,7 @@ class InfoCard extends StatelessWidget {
   final String description;
   final int currentPage;
   final Widget nextPage;
+  final Widget previousPage;
 
   const InfoCard({
     super.key,
@@ -28,23 +28,42 @@ class InfoCard extends StatelessWidget {
     required this.description,
     required this.currentPage,
     required this.nextPage,
+    required this.previousPage,
   });
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: GestureDetector(
-        onTap: () => Navigator.push(
-          context,
-          PageRouteBuilder(
-            transitionDuration: const Duration(milliseconds: 400),
-            pageBuilder: (_, animation, __) => FadeTransition(
-              opacity: animation,
-              child: nextPage,
-            ),
-          ),
-        ),
+        onPanUpdate: (details) {
+          if (details.delta.dx > 0) {
+            // Swiping in right direction
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                transitionDuration: const Duration(milliseconds: 400),
+                pageBuilder: (_, animation, __) => FadeTransition(
+                  opacity: animation,
+                  child: previousPage,
+                ),
+              ),
+            );
+          } else if (details.delta.dx < 0) {
+            // Swiping in left direction
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                transitionDuration: const Duration(milliseconds: 400),
+                pageBuilder: (_, animation, __) => FadeTransition(
+                  opacity: animation,
+                  child: nextPage,
+                ),
+              ),
+            );
+          }
+        },
         child: Stack(
           children: [
             Image.asset('assets/images/bgr.jpg',
@@ -129,13 +148,14 @@ class CosCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const InfoCard(
-        title: 'CULTURAL OAT AND\nSHOPPING COMPLEX',
-        image: 'assets/images/cos.png',
-        description:
-            'The COS Complex at TIET offers a range of convenient stores and eateries for students. VI Mini Store sells electronic devices, accessories, and sports gear. Shadowz Salon and Spa provides beauty services, while Fashion Point offers skincare essentials. The Stationery Store supplies college essentials, and the Dessert Club offers sweet treats. Kabir Multi-Store stocks everyday essentials, and Pizza Nation serves unique pizzas. Honey Coffee Cafe is a vegetarian snack spot, Iqbal Juice Centre offers fresh juices, and RS Laundry handles garment care. Sips & Bites and Wrapchik offer hearty meals and snacks, while Bombay Munchery serves Indian classics. It is one stop shop for all your needs.',
-        currentPage: 0,
-        nextPage: SportsCard(),
-      );
+    title: 'CULTURAL OAT AND\nSHOPPING COMPLEX',
+    image: 'assets/images/cos.png',
+    description:
+    'The COS Complex at TIET offers a range of convenient stores and eateries for students. VI Mini Store sells electronic devices, accessories, and sports gear. Shadowz Salon and Spa provides beauty services, while Fashion Point offers skincare essentials. The Stationery Store supplies college essentials, and the Dessert Club offers sweet treats. Kabir Multi-Store stocks everyday essentials, and Pizza Nation serves unique pizzas. Honey Coffee Cafe is a vegetarian snack spot, Iqbal Juice Centre offers fresh juices, and RS Laundry handles garment care. Sips & Bites and Wrapchik offer hearty meals and snacks, while Bombay Munchery serves Indian classics. It is one stop shop for all your needs.',
+    currentPage: 0,
+    nextPage: SportsCard(),
+    previousPage: ParkCard(), // The last page in the cycle
+  );
 }
 
 class SportsCard extends StatelessWidget {
@@ -143,13 +163,14 @@ class SportsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const InfoCard(
-        title: 'SPORTS\nCOMPLEX',
-        image: 'assets/images/sports.png',
-        description:
-            'Sports Complex TIET has many comprehensive sports facilities, from courts for basketball, volleyball, badminton, and tennis to a swimming pool, a cricket ground, and so on. The sports department organises various tournaments, such as URJA, Thaparlympics, SPADES, IGNITE, and the Annual Athletic Meet. Tracksuits with T-shirts are given to freshers for easy identification, providing an impetus to fitness and enthusiasm. Eight full-time coaches and a Deputy Director of Sports ensure coaching and organisation of a high order.',
-        currentPage: 1,
-        nextPage: LibraryCard(),
-      );
+    title: 'SPORTS\nCOMPLEX',
+    image: 'assets/images/sports.png',
+    description:
+    'Sports Complex TIET has many comprehensive sports facilities, from courts for basketball, volleyball, badminton, and tennis to a swimming pool, a cricket ground, and so on. The sports department organises various tournaments, such as URJA, Thaparlympics, SPADES, IGNITE, and the Annual Athletic Meet. Tracksuits with T-shirts are given to freshers for easy identification, providing an impetus to fitness and enthusiasm. Eight full-time coaches and a Deputy Director of Sports ensure coaching and organisation of a high order.',
+    currentPage: 1,
+    nextPage: LibraryCard(),
+    previousPage: CosCard(),
+  );
 }
 
 class LibraryCard extends StatelessWidget {
@@ -157,13 +178,14 @@ class LibraryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const InfoCard(
-        title: 'NAVA NALANDA\nCENTRAL\nLIBRARY',
-        image: 'assets/images/library.png',
-        description:
-            'The Nava Nalanda Library at Thapar Institute is a state-of-the-art facility offering a vast collection of academic resources, including books, journals, and digital materials. It provides a serene environment for study and research, equipped with spacious reading areas, group discussion rooms, and access to online resources. The library\'s user-friendly services and knowledgeable staff support the academic endeavours of students and faculty, fostering a culture of learning and intellectual growth on campus.',
-        currentPage: 2,
-        nextPage: ParkCard(),
-      );
+    title: 'NAVA NALANDA\nCENTRAL\nLIBRARY',
+    image: 'assets/images/library.png',
+    description:
+    'The Nava Nalanda Library at Thapar Institute is a state-of-the-art facility offering a vast collection of academic resources, including books, journals, and digital materials. It provides a serene environment for study and research, equipped with spacious reading areas, group discussion rooms, and access to online resources. The library\'s user-friendly services and knowledgeable staff support the academic endeavours of students and faculty, fostering a culture of learning and intellectual growth on campus.',
+    currentPage: 2,
+    nextPage: ParkCard(),
+    previousPage: SportsCard(),
+  );
 }
 
 class ParkCard extends StatelessWidget {
@@ -171,13 +193,14 @@ class ParkCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => InfoCard(
-        title: 'CENTRAL\nPARK',
-        image: 'assets/images/park.png',
-        description:
-            'The Central Park serves as an oasis of tranquillity amidst the academic bustle. Its lush-green abode helps students to relax and unwind. The sparkling fountains add up to the soothing ambience, their gentle murmur creating a calming backdrop. The fresh air and open space foster a sense of community and well-being among the students, encouraging spontaneous gatherings and peaceful solitude alike. The seating areas in the lap of nature invite both quiet reflection and lively conversations, making the park a cherished retreat.',
-        currentPage: 3,
-        nextPage: const CosCard(), // Cycle back to the first card
-      );
+    title: 'CENTRAL\nPARK',
+    image: 'assets/images/park.png',
+    description:
+    'The Central Park serves as an oasis of tranquillity amidst the academic bustle. Its lush-green abode helps students to relax and unwind. The sparkling fountains add up to the soothing ambience, their gentle murmur creating a calming backdrop. The fresh air and open space foster a sense of community and well-being among the students, encouraging spontaneous gatherings and peaceful solitude alike. The seating areas in the lap of nature invite both quiet reflection and lively conversations, making the park a cherished retreat.',
+    currentPage: 3,
+    nextPage: const CosCard(), // Cycle back to the first card
+    previousPage: LibraryCard(),
+  );
 }
 
 class PageDots extends StatelessWidget {
@@ -189,19 +212,19 @@ class PageDots extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(
-            totalPages,
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: List.generate(
+        totalPages,
             (index) => Container(
-                  width: 8,
-                  height: 8,
-                  margin: const EdgeInsets.symmetric(horizontal: 4),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: index == currentPage
-                        ? Colors.white
-                        : Colors.white.withOpacity(0.5),
-                  ),
-                )),
-      );
+          width: 8,
+          height: 8,
+          margin: const EdgeInsets.symmetric(horizontal: 4),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: index == currentPage
+                ? Colors.white
+                : Colors.white.withOpacity(0.5),
+          ),
+        )),
+  );
 }
