@@ -332,12 +332,12 @@ class _HomepageState extends State<Homepage>
                                             : screenHeight * 0.019,
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
-                                        shadows: const <Shadow>[
+                                        shadows:  <Shadow>[
                                           Shadow(
-                                            offset: Offset(2, 4.0),
-                                            blurRadius: 5.0,
+                                            offset: Offset(1, 1),
+                                            blurRadius: 1.5,
                                             color:
-                                            Color.fromRGBO(29, 29, 29, 0.3),
+                                            Colors.white,
                                           ),
                                         ],
                                         fontFamily: 'MainFont',
