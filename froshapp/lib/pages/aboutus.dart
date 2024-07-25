@@ -39,10 +39,20 @@ class _AboutUsState extends State<AboutUsPage> {
           Column(
             children: [
               // Logo
-              Padding(
-                padding: const EdgeInsets.all(40),
-                child: Image.asset('assets/images/FROSHlogo.png'),
-              ),
+              Center(
+                  child: SafeArea(
+                    child: Container(
+                      height: screenHeight * 0.165,
+                      width: screenHeight * 0.36,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/logo.png"),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               // Buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -61,8 +71,8 @@ class _AboutUsState extends State<AboutUsPage> {
           ),
           // Back button
           Positioned(
-            top: screenHeight * 0.09,
-            left: screenWidth * 0.04,
+            top: screenHeight * 0.147,
+            left: screenHeight * 0.012,
             child: GestureDetector(
               onTap: () {
                 Navigator.pop(context);

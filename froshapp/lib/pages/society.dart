@@ -36,19 +36,19 @@ class _SocietyPageState extends State<SocietyPage> {
           Column(
             children: [
               Center(
-                child: SafeArea(
-                  child: Container(
-                    height: screenHeight * 0.165,
-                    width: screenHeight * 0.36,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/logo.png"),
-                        fit: BoxFit.fill,
+                  child: SafeArea(
+                    child: Container(
+                      height: screenHeight * 0.165,
+                      width: screenHeight * 0.36,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/logo.png"),
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
               SizedBox(
                 height: screenHeight * 0.035,
               ),
@@ -129,8 +129,8 @@ class _SocietyPageState extends State<SocietyPage> {
             ],
           ),
           Positioned(
-            top: screenHeight * 0.09,
-            left: screenWidth * 0.03,
+            top: screenHeight * 0.147,
+            left: screenHeight * 0.012,
             child: GestureDetector(
               onTap: () {
                 Navigator.pop(context);
