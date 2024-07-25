@@ -126,9 +126,9 @@ class _HomepageState extends State<Homepage>
                         color: Colors.white,
                         size: screenHeight * 0.04,
                       ).animate().fadeIn() // uses `Animate.defaultDuration`
-                        .scale() // inherits duration from fadeIn
-                        .moveX(delay: 100.ms, duration: 200.ms) // runs after the above w/new duration
-                         ,
+                          .scale() // inherits duration from fadeIn
+                          .moveX(delay: 100.ms, duration: 200.ms) // runs after the above w/new duration
+                      ,
 
                       onTap: () {
                         Navigator.pop(context);
