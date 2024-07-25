@@ -12,7 +12,7 @@ class ContactUs extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/bg.png'),
+                  image: AssetImage('assets/images/bgr.jpg'),
                   fit: BoxFit.fill,
                 ),
               ),

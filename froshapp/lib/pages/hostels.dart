@@ -83,7 +83,7 @@ class _HostelPageState extends State<HostelPage> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/bgr.png'),
+                image: AssetImage('assets/images/bgr.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -111,7 +111,7 @@ class _HostelPageState extends State<HostelPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.04),
+                SizedBox(height: screenHeight * 0.1),
                 Text(
                   'Boys hostel',
                   style: TextStyle(

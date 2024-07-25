@@ -21,14 +21,13 @@ class _SocietyPageState extends State<SocietyPage> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
         children: [
           // Background image
           Positioned.fill(
             child: Image.asset(
-              'assets/images/bgr.png',
+              'assets/images/bgr.jpg',
               fit: BoxFit.cover,
             ),
           ),
@@ -36,19 +35,19 @@ class _SocietyPageState extends State<SocietyPage> {
           Column(
             children: [
               Center(
-                  child: SafeArea(
-                    child: Container(
-                      height: screenHeight * 0.165,
-                      width: screenHeight * 0.36,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/logo.png"),
-                          fit: BoxFit.fill,
-                        ),
+                child: SafeArea(
+                  child: Container(
+                    height: screenHeight * 0.165,
+                    width: screenHeight * 0.36,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/logo.png"),
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),
                 ),
+              ),
               SizedBox(
                 height: screenHeight * 0.035,
               ),
@@ -63,26 +62,26 @@ class _SocietyPageState extends State<SocietyPage> {
                       width: MediaQuery.of(context).size.height * 0.19,
                       decoration: BoxDecoration(
                         color: isTechSelected
-                            ? const Color(0xff006c48)
+                            ? Color.fromRGBO(63, 193, 192, 1)
                             : const Color(0xff5b615f),
                         border: Border.all(
                             color: isTechSelected
-                                ? Color(0xff006c48)
+                                ? Color.fromRGBO(126, 181, 208, 1)
                                 : Color(0xff5b615f),
                             width: MediaQuery.of(context).size.height * 0.001),
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(6)),
+                            const BorderRadius.all(Radius.circular(6)),
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(
-                            top: MediaQuery.of(context).size.width * 0.009),
+                            top: MediaQuery.of(context).size.width * 0.01),
                         child: Text(
                           'T E C H',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize:
-                              MediaQuery.of(context).size.width * 0.042,
+                                  MediaQuery.of(context).size.width * 0.042,
                               fontFamily: 'Audiowide'),
                         ),
                       ),
@@ -96,25 +95,25 @@ class _SocietyPageState extends State<SocietyPage> {
                       decoration: BoxDecoration(
                         color: isTechSelected
                             ? const Color(0xff5b615f)
-                            : const Color(0xff006c48),
+                            : Color.fromRGBO(126, 181, 208, 1),
                         border: Border.all(
                             color: isTechSelected
                                 ? Color(0xff5b615f)
-                                : Color(0xff006c48),
+                                : Color.fromRGBO(126, 181, 208, 1),
                             width: MediaQuery.of(context).size.height * 0.001),
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(6)),
+                            const BorderRadius.all(Radius.circular(6)),
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(
-                            top: MediaQuery.of(context).size.width * 0.009),
+                            top: MediaQuery.of(context).size.width * 0.01),
                         child: Text(
                           'N O N  T E C H',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize:
-                              MediaQuery.of(context).size.width * 0.042,
+                                  MediaQuery.of(context).size.width * 0.042,
                               fontFamily: 'Audiowide'),
                         ),
                       ),

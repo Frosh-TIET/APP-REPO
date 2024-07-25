@@ -46,7 +46,7 @@ class InfoCard extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            Image.asset('assets/images/bgr.png',
+            Image.asset('assets/images/bgr.jpg',
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: double.infinity),

@@ -66,7 +66,7 @@ class _ScheduleState extends State<Schedule> {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/bgr.png"),
+                image: AssetImage("assets/images/bgr.jpg"),
                 fit: BoxFit.fill,
               ),
             ),
@@ -295,7 +295,7 @@ class _ScheduleState extends State<Schedule> {
                     );
                   },
                   options: CarouselOptions(
-                    height: screenHeight * 0.32,
+                    height: screenHeight * 0.3,
                     viewportFraction: 0.58,
                     initialPage: 0,
                     enableInfiniteScroll: true,
@@ -318,14 +318,14 @@ class _ScheduleState extends State<Schedule> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 child: Container(
-                  width: screenWidth * 0.95,
-                  height: screenWidth * 0.28,
+                  width: screenWidth * 0.9,
+                  height: screenHeight * 0.13,
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                       width: screenWidth * 0.0059,
-                      color: const Color.fromRGBO(180, 196, 0, 1),
+                      color: const Color.fromRGBO(126, 181, 208, 1),
                     ),
                   ),
                   child: Padding(
@@ -341,7 +341,7 @@ class _ScheduleState extends State<Schedule> {
                           style: TextStyle(
                             fontFamily: 'MainFont',
                             fontSize: screenHeight * 0.019,
-                            color: const Color.fromRGBO(180, 196, 0, 1),
+                            color: const Color.fromRGBO(126, 181, 208, 1),
                           ),
                         ),
                         Leaderboard(items: leaderboardItems),

@@ -17,12 +17,10 @@ class FirstPage extends StatefulWidget {
 
 class _FirstPageState extends State<FirstPage> {
   int _selectedIndex = 0;
-  // bool _isHomeBlurred = false;
 
   void _navigateBottomBar(int index) {
     setState(() {
       _selectedIndex = index;
-      // _isHomeBlurred = (index == 1);
     });
   }
 

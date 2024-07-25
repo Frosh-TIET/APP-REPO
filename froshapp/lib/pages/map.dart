@@ -43,7 +43,8 @@ class CampusMap extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Padding(
-                padding:  EdgeInsets.only(bottom: screenHeight * 0.01,right: screenWidth * 0.05),
+                padding: EdgeInsets.only(
+                    bottom: screenHeight * 0.01, right: screenWidth * 0.05),
                 child: SizedBox(
                   height: screenHeight * 0.063,
                   width: screenHeight * 0.23,

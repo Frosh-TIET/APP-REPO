@@ -29,9 +29,9 @@ class _VideoLoadingScreenState extends State<VideoLoadingScreen> {
   Widget build(BuildContext context) {
     return _controller.value.isInitialized
         ? AspectRatio(
-      aspectRatio: _controller.value.aspectRatio,
-      child: VideoPlayer(_controller),
-    )
+            aspectRatio: _controller.value.aspectRatio,
+            child: VideoPlayer(_controller),
+          )
         : Container();
   }
 
@@ -53,29 +53,28 @@ class VideoPageRoute extends PageRouteBuilder {
   VideoPageRoute({
     required this.page,
     required this.videoAsset,
-    this.forwardDuration = const Duration(milliseconds: 1500),
+    this.forwardDuration = const Duration(seconds: 3),
     this.width,
     this.height,
     this.fit = BoxFit.contain,
   }) : super(
-    pageBuilder: (context, animation, secondaryAnimation) => page,
-    transitionDuration: forwardDuration,
-    reverseTransitionDuration:
-    Duration.zero, // Immediate reverse transition
-    opaque: false,
-    barrierDismissible: false,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      return VideoTransition(
-        videoAsset: videoAsset,
-        duration: forwardDuration,
-        width: width,
-        height: height,
-        fit: fit,
-        child: child,
-        animation: animation,
-      );
-    },
-  );
+          pageBuilder: (context, animation, secondaryAnimation) => page,
+          transitionDuration: forwardDuration,
+          reverseTransitionDuration: Duration.zero,
+          opaque: false,
+          barrierDismissible: false,
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return VideoTransition(
+              child: child,
+              videoAsset: videoAsset,
+              duration: forwardDuration,
+              width: width,
+              height: height,
+              fit: fit,
+              animation: animation,
+            );
+          },
+        );
 }
 
 class VideoTransition extends StatefulWidget {
@@ -102,20 +101,29 @@ class VideoTransition extends StatefulWidget {
   _VideoTransitionState createState() => _VideoTransitionState();
 }
 
-class _VideoTransitionState extends State<VideoTransition> {
+class _VideoTransitionState extends State<VideoTransition>
+    with SingleTickerProviderStateMixin {
   late VideoPlayerController _controller;
+  late AnimationController _fadeController;
   bool _isVideoFinished = false;
 
   @override
   void initState() {
     super.initState();
+    _fadeController = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    );
     _controller = VideoPlayerController.asset(widget.videoAsset)
       ..initialize().then((_) {
         setState(() {});
         _controller.play();
-        Future.delayed(widget.duration, () {
-          setState(() {
-            _isVideoFinished = true;
+        Future.delayed(widget.duration - Duration(milliseconds: 500), () {
+          _fadeController.forward();
+          Future.delayed(Duration(milliseconds: 500), () {
+            setState(() {
+              _isVideoFinished = true;
+            });
           });
         });
       });
@@ -131,33 +139,42 @@ class _VideoTransitionState extends State<VideoTransition> {
 
   @override
   Widget build(BuildContext context) {
-    if (_isVideoFinished) {
-      return widget.child;
-    }
-    return Container(
-      color: Colors.black,
-      child: _controller.value.isInitialized
-          ? Center(
-        child: SizedBox(
-          width: widget.width,
-          height: widget.height,
-          child: FittedBox(
-            fit: widget.fit,
-            child: SizedBox(
-              width: _controller.value.size.width,
-              height: _controller.value.size.height,
-              child: VideoPlayer(_controller),
-            ),
-          ),
+    return Stack(
+      children: [
+        // The next page, initially invisible
+        Opacity(
+          opacity: _fadeController.value,
+          child: widget.child,
         ),
-      )
-          : const SizedBox.shrink(),
+        // The video layer
+        if (!_isVideoFinished)
+          Container(
+            color: Colors.black,
+            child: _controller.value.isInitialized
+                ? Center(
+                    child: SizedBox(
+                      width: widget.width,
+                      height: widget.height,
+                      child: FittedBox(
+                        fit: widget.fit,
+                        child: SizedBox(
+                          width: _controller.value.size.width,
+                          height: _controller.value.size.height,
+                          child: VideoPlayer(_controller),
+                        ),
+                      ),
+                    ),
+                  )
+                : const SizedBox.shrink(),
+          ),
+      ],
     );
   }
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    _fadeController.dispose();
+    super.dispose();
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:froshapp/pages/homepage.dart';
 import 'package:froshapp/pages/map.dart';
-import 'package:froshapp/nav/refer_nav.dart';
 import 'package:froshapp/pages/schedule.dart';
 import 'package:froshapp/pages/contactus.dart';
 import 'package:froshapp/pages/society.dart';
@@ -14,7 +13,6 @@ import 'package:froshapp/froshpages/mentors.dart';
 import 'package:froshapp/froshpages/osc.dart';
 import 'package:froshapp/splash/splash_screen.dart';
 import 'package:flutter/services.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 
 void main() {
   runApp(const MyApp());

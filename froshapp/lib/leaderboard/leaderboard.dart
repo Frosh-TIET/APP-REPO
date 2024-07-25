@@ -22,7 +22,7 @@ class Leaderboard extends StatelessWidget {
               Text(
                 item.name,
                 style: TextStyle(
-                    color: const Color.fromRGBO(180, 196, 0, 1),
+                    color: const Color.fromRGBO(126, 181, 208, 1),
                     fontFamily: 'Arial',
                     fontSize: screenHeight * 0.014),
               ),
@@ -35,7 +35,7 @@ class Leaderboard extends StatelessWidget {
                     child: Container(
                       height: screenHeight * 0.011,
                       decoration: BoxDecoration(
-                        color: const Color.fromRGBO(180, 196, 0, 1),
+                        color: const Color.fromRGBO(126, 181, 208, 1),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),

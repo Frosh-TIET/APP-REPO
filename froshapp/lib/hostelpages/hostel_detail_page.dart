@@ -36,7 +36,7 @@ class _HostelDetailPageState extends State<HostelDetailPage> {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/bg.png'),
+                image: AssetImage('assets/images/bgr.jpg'),
                 fit: BoxFit.cover,
               ),
             ),

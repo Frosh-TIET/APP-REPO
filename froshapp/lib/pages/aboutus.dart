@@ -30,7 +30,7 @@ class _AboutUsState extends State<AboutUsPage> {
           // Background image
           Positioned.fill(
             child: Image.asset(
-              'assets/images/bg.png',
+              'assets/images/bgr.jpg',
               fit: BoxFit.cover,
             ),
           ),
@@ -39,21 +39,21 @@ class _AboutUsState extends State<AboutUsPage> {
             children: [
               // Logo
               Center(
-                  child: SafeArea(
-                    child: Container(
-                      height: screenHeight * 0.165,
-                      width: screenHeight * 0.36,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/logo.png"),
-                          fit: BoxFit.fill,
-                        ),
+                child: SafeArea(
+                  child: Container(
+                    height: screenHeight * 0.165,
+                    width: screenHeight * 0.36,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/logo.png"),
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),
                 ),
+              ),
               // Buttons
-              SizedBox(height: screenHeight*0.043),
+              SizedBox(height: screenHeight * 0.043),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -92,15 +92,15 @@ class _AboutUsState extends State<AboutUsPage> {
         width: title == 'OSC'
             ? 60
             : title == 'CORE'
-            ? 80
-            : 90,
+                ? 80
+                : 90,
         decoration: BoxDecoration(
           color: selectedPage == title
-              ? const Color(0xff006c48)
+              ? const Color.fromRGBO(23, 87, 151, 1)
               : const Color(0xff5b615f),
           border: Border.all(
               color: selectedPage == title
-                  ? Color(0xff006c48)
+                  ? Color.fromRGBO(23, 87, 151, 1)
                   : Color(0xff5b615f),
               width: MediaQuery.of(context).size.width * 0.017),
           borderRadius: const BorderRadius.all(Radius.circular(6)),
