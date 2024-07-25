@@ -41,7 +41,7 @@ dependencies:
   flutter_bloc: ^7.3.3
   connectivity_widget: ^3.0.0
   video_player: ^2.9.1
-
+  flutter_animate: ^4.5.0
 
 dev_dependencies:
   flutter_test:
@@ -91,7 +91,7 @@ flutter:
         - asset: assets/fonts/Rasputin.otf
     - family: ButtonFont
       fonts:
-        - asset: assets/fonts/carme-regular.otf        
+        - asset: assets/fonts/carme-regular.otf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
     # - family: SubFont

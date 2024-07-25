@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:froshapp/leaderboard/leaderboard.dart';
 import 'package:froshapp/leaderboard/leaderboard_item.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -9,6 +10,7 @@ import 'package:froshapp/pages/society.dart';
 import 'package:url_launcher/link.dart';
 import 'package:froshapp/video_loader/VideoLoadingScreen.dart';
 import 'dart:ui';
+import 'package:flutter/animation.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -123,7 +125,10 @@ class _HomepageState extends State<Homepage>
                         Icons.close,
                         color: Colors.white,
                         size: screenHeight * 0.04,
-                      ),
+                      ).animate().fadeIn() // uses `Animate.defaultDuration`
+                        .scale() // inherits duration from fadeIn
+                        .moveX(delay: 100.ms, duration: 200.ms) // runs after the above w/new duration
+                         ,
 
                       onTap: () {
                         Navigator.pop(context);
@@ -161,7 +166,7 @@ class _HomepageState extends State<Homepage>
                       );
                     },
                   ),
-                ),
+                ).animate().fadeIn().moveX(delay: 20.ms, duration: 400.ms),
                 SizedBox(height: screenHeight * 0.04),
                 Container(
                   decoration: BoxDecoration(
@@ -191,7 +196,7 @@ class _HomepageState extends State<Homepage>
                       );
                     },
                   ),
-                ),
+                ).animate().fadeIn().moveX(delay: 20.ms, duration: 400.ms),
                 SizedBox(height: screenHeight * 0.04),
                 Container(
                   decoration: BoxDecoration(
@@ -221,7 +226,7 @@ class _HomepageState extends State<Homepage>
                       );
                     },
                   ),
-                ),
+                ).animate().fadeIn().moveX(delay: 20.ms, duration: 400.ms),
                 SizedBox(height: screenHeight * 0.04),
                 Container(
                   decoration: BoxDecoration(
@@ -251,12 +256,12 @@ class _HomepageState extends State<Homepage>
                       );
                     },
                   ),
-                ),
+                ).animate().fadeIn().moveX(delay: 20.ms, duration: 400.ms),
               ],
             ),
           ),
         ),
-      ),
+      ).animate().fadeIn().moveX(delay: 20.ms, duration: 500.ms),
       body: Stack(
         children: [
           Container(
@@ -474,8 +479,7 @@ class _HomepageState extends State<Homepage>
                                         width: screenHeight * 0.22,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(10),
-                                          color: const Color.fromRGBO(
-                                              213, 224, 202, 1),
+                                          color: Colors.black,
                                           boxShadow: [
                                             BoxShadow(
                                               color: Colors.black.withOpacity(0.5),
@@ -494,7 +498,7 @@ class _HomepageState extends State<Homepage>
                                                   ? screenHeight * 0.022
                                                   : screenHeight * 0.02,
                                               fontWeight: FontWeight.w800,
-                                              color: Colors.black,
+                                              color: Colors.white,
                                             ),
                                           ),
                                         ),
