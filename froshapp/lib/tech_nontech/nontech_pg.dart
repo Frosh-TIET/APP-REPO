@@ -214,7 +214,7 @@ class _NonTechState extends State<NonTech> {
         'text':
             'To organise various events and student activities as desired by the Election Commissioner of Punjab/ Deputy Commissioner of Punjab/ Tehsildar Election of Patiala. To encourage young voters about their voting rights through various student activities in campus.'
       },
-      {'image': 'assets/images/tmc.png', 'name': 'TMC', 'text': 'txt'},
+
     ];
 
     return Padding(
