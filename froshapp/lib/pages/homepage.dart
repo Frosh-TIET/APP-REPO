@@ -536,7 +536,7 @@ class _HomepageState extends State<Homepage>
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
                 child: Container(
                   width: screenWidth * 0.9,
-                  height: screenHeight * 0.13,
+                  height: screenHeight * 0.145,
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(20),

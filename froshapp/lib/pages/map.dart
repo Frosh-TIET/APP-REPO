@@ -44,12 +44,12 @@ class CampusMap extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(
                     bottom: screenHeight * 0.01, right: screenWidth * 0.05),
-                child: SizedBox(
+                child: Container(
                   height: screenHeight * 0.06,
-                  width: screenHeight * 0.234,
+                  width: screenHeight * 0.215,
                   child: Link(
                     target: LinkTarget.blank,
-                    uri: Uri.parse('https://www.froshtiet.com/'),
+                    uri: Uri.parse('https://www.froshtiet.com/templates/final.html'),
                     builder: (context, followlink) => ElevatedButton(
                       onPressed: followlink,
                       style: ElevatedButton.styleFrom(
@@ -70,10 +70,13 @@ class CampusMap extends StatelessWidget {
                               fontSize: screenHeight * 0.019,
                             ),
                           ),
-                          Icon(
-                            Icons.directions,
-                            color: Color.fromARGB(255, 87, 166, 231),
-                            size: screenHeight * 0.03,
+                          Padding(
+                            padding: EdgeInsets.only(left: screenWidth * 0.006),
+                            child: Icon(
+                              Icons.directions,
+                              color: Color.fromARGB(255, 87, 166, 231),
+                              size: screenHeight * 0.03,
+                            ),
                           ),
                         ],
                       ),
