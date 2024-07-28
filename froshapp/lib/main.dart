@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:froshapp/nav/refer_nav.dart';
 import 'package:froshapp/pages/homepage.dart';
 import 'package:froshapp/pages/map.dart';
 import 'package:froshapp/pages/schedule.dart';
@@ -13,8 +15,12 @@ import 'package:froshapp/froshpages/mentors.dart';
 import 'package:froshapp/froshpages/osc.dart';
 import 'package:froshapp/splash/splash_screen.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -26,32 +32,21 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final List<String> imageAssets = [
-    'assets/images/bgr.jpg',
-    'assets/images/logo.png',
-    'assets/images/githubicon2.png',
-    'assets/images/meta.png',
-    'assets/images/instagram.png',
-    'assets/images/youtube.png',
-    'assets/images/Gmail.png',
-    'assets/images/web.png',
-    'assets/images/hostelC.jpg'
-    'assets/images/hostelD.jpg'
-    'assets/images/hostelE.jpg'
-    'assets/images/hostelL.jpeg'
-    'assets/images/map.png'
-  ];
+  late Future<bool> _checkSeenFuture;
 
   @override
   void initState() {
     super.initState();
-    _precacheImages();
+    _checkSeenFuture = checkFirstScreen();
   }
 
-  Future<void> _precacheImages() async {
-    for (final asset in imageAssets) {
-      await precacheImage(AssetImage(asset), context);
+  Future<bool> checkFirstScreen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool seen = (prefs.getBool('seen') ?? false);
+    if (!seen) {
+      await prefs.setBool('seen', true);
     }
+    return seen;
   }
 
   @override
@@ -61,31 +56,44 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitDown,
     ]);
 
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: MaterialApp(
-        theme: ThemeData(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          hoverColor: Colors.transparent,
-        ),
-        debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
-        routes: {
-          '/homepage': (context) => Homepage(),
-          '/map': (context) => CampusMap(),
-          '/schedule': (context) => Schedule(),
-          '/contactus': (context) => ContactUs(),
-          '/society': (context) => SocietyPage(),
-          '/aboutus': (context) => AboutUsPage(),
-          '/hostels': (context) => HostelPage(),
-          '/lifetiet': (context) => LifeThaparPage(),
-          '/faculty': (context) => Faculty(),
-          '/core': (context) => Core(),
-          '/osc': (context) => Osc(),
-          '/mentors': (context) => Mentors(),
+    return MaterialApp(
+      theme: ThemeData(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: FutureBuilder<bool>(
+        future: _checkSeenFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return SplashScreen();
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            bool seen = snapshot.data ?? false;
+            if (seen) {
+              return FirstPage();
+            } else {
+              return SplashScreen();
+            }
+          }
         },
       ),
+      routes: {
+        '/homepage': (context) => Homepage(),
+        '/map': (context) => CampusMap(),
+        '/schedule': (context) => Schedule(),
+        '/contactus': (context) => ContactUs(),
+        '/society': (context) => SocietyPage(),
+        '/aboutus': (context) => AboutUsPage(),
+        '/hostels': (context) => HostelPage(),
+        '/lifetiet': (context) => LifeThaparPage(),
+        '/faculty': (context) => Faculty(),
+        '/core': (context) => Core(),
+        '/osc': (context) => Osc(),
+        '/mentors': (context) => Mentors(),
+      },
     );
   }
 }

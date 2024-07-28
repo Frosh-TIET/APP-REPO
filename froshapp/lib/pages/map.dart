@@ -62,6 +62,7 @@ class CampusMap extends StatelessWidget {
                         //     horizontal: screenWidth * 0.073, vertical: 6),
                       ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
                             'Get Directions',

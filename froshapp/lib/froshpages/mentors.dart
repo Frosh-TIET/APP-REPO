@@ -7,7 +7,7 @@ class Mentors extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-         SizedBox(height: MediaQuery.of(context).size.height * 0.001),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.001),
         Expanded(
           child: SingleChildScrollView(
             child: Padding(
@@ -21,7 +21,7 @@ class Mentors extends StatelessWidget {
                   mainAxisSpacing: MediaQuery.of(context).size.height * 0.01,
                   childAspectRatio: 100 / 172,
                 ),
-                itemCount: 68,
+                itemCount: 66,
                 itemBuilder: (context, index) {
                   String imagePath = 'assets/images/img$index.webp';
                   return Container(
