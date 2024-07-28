@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -100,8 +101,25 @@ class TeamMemberRow extends StatelessWidget {
   }) : super(key: key);
 
   Future<String> _getImageUrl(String imageName) async {
-    final ref = FirebaseStorage.instance.ref().child('images/$imageName');
-    return await ref.getDownloadURL();
+    final prefs = await SharedPreferences.getInstance();
+    final cachedUrl = prefs.getString(imageName);
+
+    if (cachedUrl != null) {
+      return cachedUrl;
+    }
+
+    try {
+      final ref = FirebaseStorage.instance.ref().child('images/$imageName');
+      final url = await ref.getDownloadURL();
+
+      // Cache the URL
+      await prefs.setString(imageName, url);
+
+      return url;
+    } catch (e) {
+      print('Error fetching image URL: $e');
+      return '';
+    }
   }
 
   @override
@@ -137,7 +155,7 @@ class TeamMemberRow extends StatelessWidget {
               return const CircularProgressIndicator(color: Colors.transparent,);
             } else if (snapshot.hasError) {
               return const Icon(Icons.error);
-            } else if (snapshot.hasData) {
+            } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
               return CachedNetworkImage(
                 imageUrl: snapshot.data!,
                 fit: BoxFit.cover,
@@ -188,3 +206,7 @@ class TeamMemberRow extends StatelessWidget {
     );
   }
 }
+
+
+
+

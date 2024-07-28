@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Faculty extends StatefulWidget {
   const Faculty({Key? key}) : super(key: key);
@@ -28,8 +29,20 @@ class _FacultyState extends State<Faculty> {
   }
 
   Future<String> getImageUrl(String path) async {
+    final prefs = await SharedPreferences.getInstance();
+    final cachedUrl = prefs.getString(path);
+
+    if (cachedUrl != null) {
+      return cachedUrl;
+    }
+
     try {
-      return await FirebaseStorage.instance.ref(path).getDownloadURL();
+      final url = await FirebaseStorage.instance.ref(path).getDownloadURL();
+
+      // Cache the URL
+      await prefs.setString(path, url);
+
+      return url;
     } catch (e) {
       print('Error fetching image URL: $e');
       return '';
