@@ -50,7 +50,7 @@ class _HomepageState extends State<Homepage>
   Future<String> getImageUrl() async {
     FirebaseStorage storage = FirebaseStorage.instance;
     String imageUrl =
-        await storage.ref('images/logo/logo.png').getDownloadURL();
+    await storage.ref('images/logo/logo.png').getDownloadURL();
     return imageUrl;
   }
 
@@ -365,7 +365,7 @@ class _HomepageState extends State<Homepage>
                                         : Alignment.center,
                                     child: AnimatedDefaultTextStyle(
                                       duration:
-                                          const Duration(milliseconds: 800),
+                                      const Duration(milliseconds: 800),
                                       style: TextStyle(
                                         fontSize: isCenter
                                             ? screenHeight * 0.025
@@ -418,7 +418,7 @@ class _HomepageState extends State<Homepage>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsets.only(left: 10),
+                                            const EdgeInsets.only(left: 10),
                                             child: Text(
                                               eventDates[index],
                                               style: TextStyle(
@@ -453,7 +453,7 @@ class _HomepageState extends State<Homepage>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(left: 10),
+                                          const EdgeInsets.only(left: 10),
                                           child: Text(
                                             time[index],
                                             style: TextStyle(
@@ -479,7 +479,7 @@ class _HomepageState extends State<Homepage>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(left: 10),
+                                          const EdgeInsets.only(left: 10),
                                           child: Text(
                                             location[index],
                                             style: TextStyle(
@@ -502,47 +502,47 @@ class _HomepageState extends State<Homepage>
                                 uri: Uri.parse('https://www.froshtiet.com/'),
                                 builder: (context, followlink) =>
                                     GestureDetector(
-                                  onTap: followlink,
-                                  child: AnimatedContainer(
-                                    duration: const Duration(milliseconds: 800),
-                                    curve: Curves.easeInOut,
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: isCenter
-                                          ? screenHeight * 0.009
-                                          : screenHeight * 0.005,
-                                      horizontal: isCenter
-                                          ? screenHeight * 0.0008
-                                          : screenHeight * 0.0005,
-                                    ),
-                                    height: screenHeight * 0.05,
-                                    width: screenHeight * 0.22,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.black,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black.withOpacity(0.5),
-                                          spreadRadius: 1,
-                                          blurRadius: 5,
-                                          offset: Offset(0, 5),
+                                      onTap: followlink,
+                                      child: AnimatedContainer(
+                                        duration: const Duration(milliseconds: 800),
+                                        curve: Curves.easeInOut,
+                                        padding: EdgeInsets.symmetric(
+                                          vertical: isCenter
+                                              ? screenHeight * 0.009
+                                              : screenHeight * 0.005,
+                                          horizontal: isCenter
+                                              ? screenHeight * 0.0008
+                                              : screenHeight * 0.0005,
                                         ),
-                                      ],
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        'BOOK NOW',
-                                        style: TextStyle(
-                                          fontFamily: 'ButtonFont',
-                                          fontSize: isCenter
-                                              ? screenHeight * 0.022
-                                              : screenHeight * 0.02,
-                                          fontWeight: FontWeight.w800,
-                                          color: Colors.white,
+                                        height: screenHeight * 0.05,
+                                        width: screenHeight * 0.22,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: Colors.black,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black.withOpacity(0.5),
+                                              spreadRadius: 1,
+                                              blurRadius: 5,
+                                              offset: Offset(0, 5),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            'BOOK NOW',
+                                            style: TextStyle(
+                                              fontFamily: 'ButtonFont',
+                                              fontSize: isCenter
+                                                  ? screenHeight * 0.022
+                                                  : screenHeight * 0.02,
+                                              fontWeight: FontWeight.w800,
+                                              color: Colors.white,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
                               ),
                             ],
                           ),
@@ -558,7 +558,7 @@ class _HomepageState extends State<Homepage>
                     reverse: false,
                     autoPlayInterval: const Duration(seconds: 10),
                     autoPlayAnimationDuration:
-                        const Duration(milliseconds: 1800),
+                    const Duration(milliseconds: 1800),
                     autoPlayCurve: Curves.linearToEaseOut,
                     enlargeCenterPage: true,
                     enlargeFactor: 0.3,

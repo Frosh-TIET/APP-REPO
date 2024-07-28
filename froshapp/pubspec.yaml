@@ -46,6 +46,8 @@ dependencies:
   shared_preferences: ^2.2.3
   cached_network_image: ^3.2.3
   flutter_blurhash: ^0.8.2
+  cloud_firestore: ^5.1.0
+  firebase_messaging: ^15.0.3
 
 dev_dependencies:
   flutter_test:
