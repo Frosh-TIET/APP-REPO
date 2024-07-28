@@ -15,7 +15,7 @@ class HostelDetailPage extends StatefulWidget {
 }
 
 class _HostelDetailPageState extends State<HostelDetailPage> {
-  double _textOpacity=1.0;
+  double _textOpacity = 1.0;
   late int currentIndex;
   final FirebaseStorage _storage = FirebaseStorage.instance;
   late SharedPreferences _prefs;
