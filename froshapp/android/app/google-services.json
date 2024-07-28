@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "257756705217",
+    "project_id": "frosh-app24",
+    "storage_bucket": "frosh-app24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257756705217:android:faa396ba88682081de7f40",
+        "android_client_info": {
+          "package_name": "com.example.froshapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWMnruxgQTRDHvqA398c-pjiy4JOUPIdw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
