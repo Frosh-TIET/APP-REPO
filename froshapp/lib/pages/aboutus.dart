@@ -128,7 +128,7 @@ class _AboutUsState extends State<AboutUsPage> {
       case 'MENTORS':
         return const Mentors();
       default:
-        return Faculty(); // Default to Faculty
+        return Faculty();
     }
   }
 }

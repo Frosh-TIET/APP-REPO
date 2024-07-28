@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:froshapp/leaderboard/leaderboard.dart';
@@ -10,7 +11,7 @@ import 'package:froshapp/pages/society.dart';
 import 'package:url_launcher/link.dart';
 import 'package:froshapp/video_loader/VideoLoadingScreen.dart';
 import 'dart:ui';
-import 'package:flutter/animation.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -24,6 +25,7 @@ class _HomepageState extends State<Homepage>
   int _current = 0;
   late AnimationController _controller;
   late Animation<double> _animation;
+  late Future<String> _imageUrlFuture;
 
   @override
   void initState() {
@@ -36,12 +38,20 @@ class _HomepageState extends State<Homepage>
       parent: _controller,
       curve: Curves.fastEaseInToSlowEaseOut,
     ));
+    _imageUrlFuture = getImageUrl();
   }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  Future<String> getImageUrl() async {
+    FirebaseStorage storage = FirebaseStorage.instance;
+    String imageUrl =
+        await storage.ref('images/logo/logo.png').getDownloadURL();
+    return imageUrl;
   }
 
   @override
@@ -109,27 +119,28 @@ class _HomepageState extends State<Homepage>
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
-
                 SizedBox(height: screenHeight * 0.08),
                 Padding(
-                  padding: EdgeInsets.only(top: screenHeight*0.017,left: screenWidth*0.001),
+                  padding: EdgeInsets.only(
+                      top: screenHeight * 0.017, left: screenWidth * 0.001),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0),
                       borderRadius: BorderRadius.circular(screenHeight * 0.025),
                     ),
                     width: screenWidth * 0.0048,
-
                     child: ListTile(
                       leading: Icon(
                         Icons.close,
                         color: Colors.white,
                         size: screenHeight * 0.04,
-                      ).animate().fadeIn() // uses Animate.defaultDuration
+                      )
+                          .animate()
+                          .fadeIn() // uses Animate.defaultDuration
                           .scale() // inherits duration from fadeIn
-                          .moveX(delay: 100.ms, duration: 200.ms) // runs after the above w/new duration
+                          .moveX(delay: 100.ms, duration: 200.ms)
+                      // runs after the above w/new duration
                       ,
-
                       onTap: () {
                         Navigator.pop(context);
                       },
@@ -260,8 +271,8 @@ class _HomepageState extends State<Homepage>
               ],
             ),
           ),
-        ),
-      ).animate().fadeIn().moveX(delay: 20.ms, duration: 500.ms),
+        ).animate().fadeIn().moveX(delay: 20.ms, duration: 500.ms),
+      ),
       body: Stack(
         children: [
           Container(
@@ -276,15 +287,44 @@ class _HomepageState extends State<Homepage>
             children: [
               SafeArea(
                 child: Center(
-                  child: Container(
-                    height: screenHeight * 0.165,
-                    width: screenHeight * 0.36,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/logo.png"),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
+                  child: FutureBuilder<String>(
+                    future: _imageUrlFuture,
+                    builder: (context, snapshot) {
+                      return Container(
+                        height: screenHeight * 0.165,
+                        width: screenHeight * 0.36,
+                        clipBehavior: Clip.hardEdge,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                        ),
+                        child: snapshot.connectionState == ConnectionState.waiting
+                            ? Container(
+                          color: Colors.transparent,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.transparent,
+                            ),
+                          ),
+                        )
+                            : snapshot.hasError
+                            ? Center(child: Text('Error: ${snapshot.error}'))
+                            : (!snapshot.hasData || snapshot.data!.isEmpty)
+                            ? Center(child: Text('No image available'))
+                            : CachedNetworkImage(
+                          imageUrl: snapshot.data!,
+                          fit: BoxFit.contain,
+                          placeholder: (context, url) => Container(
+                            color: Colors.transparent,
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.transparent,
+                              ),
+                            ),
+                          ),
+                          errorWidget: (context, url, error) => Icon(Icons.error),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
@@ -325,19 +365,18 @@ class _HomepageState extends State<Homepage>
                                         : Alignment.center,
                                     child: AnimatedDefaultTextStyle(
                                       duration:
-                                      const Duration(milliseconds: 800),
+                                          const Duration(milliseconds: 800),
                                       style: TextStyle(
                                         fontSize: isCenter
                                             ? screenHeight * 0.025
                                             : screenHeight * 0.019,
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
-                                        shadows:  <Shadow>[
+                                        shadows: <Shadow>[
                                           Shadow(
                                             offset: Offset(1, 1),
                                             blurRadius: 1.5,
-                                            color:
-                                            Colors.white,
+                                            color: Colors.white,
                                           ),
                                         ],
                                         fontFamily: 'MainFont',
@@ -379,7 +418,7 @@ class _HomepageState extends State<Homepage>
                                           ),
                                           Padding(
                                             padding:
-                                            const EdgeInsets.only(left: 10),
+                                                const EdgeInsets.only(left: 10),
                                             child: Text(
                                               eventDates[index],
                                               style: TextStyle(
@@ -414,7 +453,7 @@ class _HomepageState extends State<Homepage>
                                         ),
                                         Padding(
                                           padding:
-                                          const EdgeInsets.only(left: 10),
+                                              const EdgeInsets.only(left: 10),
                                           child: Text(
                                             time[index],
                                             style: TextStyle(
@@ -440,7 +479,7 @@ class _HomepageState extends State<Homepage>
                                         ),
                                         Padding(
                                           padding:
-                                          const EdgeInsets.only(left: 10),
+                                              const EdgeInsets.only(left: 10),
                                           child: Text(
                                             location[index],
                                             style: TextStyle(
@@ -463,47 +502,47 @@ class _HomepageState extends State<Homepage>
                                 uri: Uri.parse('https://www.froshtiet.com/'),
                                 builder: (context, followlink) =>
                                     GestureDetector(
-                                      onTap: followlink,
-                                      child: AnimatedContainer(
-                                        duration: const Duration(milliseconds: 800),
-                                        curve: Curves.easeInOut,
-                                        padding: EdgeInsets.symmetric(
-                                          vertical: isCenter
-                                              ? screenHeight * 0.009
-                                              : screenHeight * 0.005,
-                                          horizontal: isCenter
-                                              ? screenHeight * 0.0008
-                                              : screenHeight * 0.0005,
+                                  onTap: followlink,
+                                  child: AnimatedContainer(
+                                    duration: const Duration(milliseconds: 800),
+                                    curve: Curves.easeInOut,
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: isCenter
+                                          ? screenHeight * 0.009
+                                          : screenHeight * 0.005,
+                                      horizontal: isCenter
+                                          ? screenHeight * 0.0008
+                                          : screenHeight * 0.0005,
+                                    ),
+                                    height: screenHeight * 0.05,
+                                    width: screenHeight * 0.22,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.black,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.5),
+                                          spreadRadius: 1,
+                                          blurRadius: 5,
+                                          offset: Offset(0, 5),
                                         ),
-                                        height: screenHeight * 0.05,
-                                        width: screenHeight * 0.22,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Colors.black,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black.withOpacity(0.5),
-                                              spreadRadius: 1,
-                                              blurRadius: 5,
-                                              offset: Offset(0, 5),
-                                            ),
-                                          ],
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            'BOOK NOW',
-                                            style: TextStyle(
-                                              fontFamily: 'ButtonFont',
-                                              fontSize: isCenter
-                                                  ? screenHeight * 0.022
-                                                  : screenHeight * 0.02,
-                                              fontWeight: FontWeight.w800,
-                                              color: Colors.white,
-                                            ),
-                                          ),
+                                      ],
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'BOOK NOW',
+                                        style: TextStyle(
+                                          fontFamily: 'ButtonFont',
+                                          fontSize: isCenter
+                                              ? screenHeight * 0.022
+                                              : screenHeight * 0.02,
+                                          fontWeight: FontWeight.w800,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -519,7 +558,7 @@ class _HomepageState extends State<Homepage>
                     reverse: false,
                     autoPlayInterval: const Duration(seconds: 10),
                     autoPlayAnimationDuration:
-                    const Duration(milliseconds: 1800),
+                        const Duration(milliseconds: 1800),
                     autoPlayCurve: Curves.linearToEaseOut,
                     enlargeCenterPage: true,
                     enlargeFactor: 0.3,

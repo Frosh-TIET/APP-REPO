@@ -114,10 +114,12 @@ class InfoCard extends StatelessWidget {
                   SizedBox(height: size.height * 0.022),
                   SizedBox(
                     width: size.width * 0.8,
-                    child: Text(description,
-                        style: TextStyle(
-                            fontSize: size.height * 0.0165,
-                            color: Colors.white)),
+                    child: SingleChildScrollView(
+                      child: Text(description,
+                          style: TextStyle(
+                              fontSize: MediaQuery.of(context).size.height * 0.016,
+                              color: Colors.white)),
+                    ),
                   ),
                 ],
               ),
