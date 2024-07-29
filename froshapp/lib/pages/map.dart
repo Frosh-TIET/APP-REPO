@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
+import 'package:widget_zoom/widget_zoom.dart';
 
 class CampusMap extends StatelessWidget {
   @override
@@ -28,10 +29,9 @@ class CampusMap extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: InteractiveViewer(
-                    minScale: 0.1,
-                    maxScale: 4.0,
-                    child: Image.asset(
+                  child: WidgetZoom(
+                    heroAnimationTag: 'map',
+                    zoomWidget: Image.asset(
                       'assets/images/map.png',
                       fit: BoxFit.fill,
                     ),
@@ -58,8 +58,6 @@ class CampusMap extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        // padding: EdgeInsets.symmetric(
-                        //     horizontal: screenWidth * 0.073, vertical: 6),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
