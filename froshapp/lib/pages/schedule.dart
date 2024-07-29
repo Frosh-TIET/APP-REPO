@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:froshapp/leaderboard/leaderboard.dart';
-import 'package:froshapp/leaderboard/leaderboard_item.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'dart:ui';
 
 class Schedule extends StatefulWidget {
@@ -12,7 +9,6 @@ class Schedule extends StatefulWidget {
 }
 
 class _ScheduleState extends State<Schedule> {
-
   final List<String> imagePaths1 = [
     'assets/images/b1.webp',
     'assets/images/b2.webp',
@@ -41,11 +37,6 @@ class _ScheduleState extends State<Schedule> {
               ),
             ),
           ),
-
-
-
-
-
           BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
             child: Container(
@@ -58,7 +49,7 @@ class _ScheduleState extends State<Schedule> {
               bool isEven = index % 2 == 1;
               return Align(
                 alignment:
-                isEven ? Alignment.centerLeft : Alignment.centerRight,
+                    isEven ? Alignment.centerLeft : Alignment.centerRight,
                 child: Padding(
                   padding: EdgeInsets.only(
                     left: screenWidth * 0.05,
