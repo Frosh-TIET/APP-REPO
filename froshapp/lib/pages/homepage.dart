@@ -145,12 +145,13 @@ class _HomepageState extends State<Homepage>
     super.dispose();
   }
 
-  Future<void> _launchURL(String urlString) async {
+    Future<void> _launchURL(String urlString) async {
     final Uri url = Uri.parse(urlString);
-    if (!await canLaunchUrl(url)) {
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
       throw Exception('Could not launch $url');
     }
-    await launchUrl(url);
   }
 
   Future<String> getImageUrl() async {
@@ -608,8 +609,18 @@ class _HomepageState extends State<Homepage>
                                     ),
                                     SizedBox(height: screenHeight * 0.015),
                                     GestureDetector(
-                                      onTap: () =>
-                                          _launchURL(buttonLinks[index]),
+                                      onTap: () async {
+                                        try {
+                                          await _launchURL(buttonLinks[index]);
+                                        } catch (e) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                                content: Text(
+                                                    'Could not launch URL: $e')),
+                                          );
+                                        }
+                                      },
                                       child: AnimatedContainer(
                                         duration:
                                             const Duration(milliseconds: 800),
