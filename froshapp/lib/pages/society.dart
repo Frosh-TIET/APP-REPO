@@ -18,8 +18,6 @@ class SocietyPage extends StatelessWidget {
 
 class _SocietyPageContent extends StatelessWidget {
   const _SocietyPageContent({Key? key}) : super(key: key);
-  
-  BuildContext? get context => null;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +35,7 @@ class _SocietyPageContent extends StatelessWidget {
           ),
           Column(
             children: [
-              _buildLogo(screenHeight),
+              _buildLogo(context, screenHeight),
               SizedBox(height: screenHeight * 0.035),
               _buildToggleButtons(context, screenHeight, screenWidth),
               _buildContent(),
@@ -49,16 +47,12 @@ class _SocietyPageContent extends StatelessWidget {
     );
   }
 
-  Widget _buildLogo(double screenHeight) {
+  Widget _buildLogo(BuildContext context, double screenHeight) {
     return Center(
       child: SafeArea(
         child: GestureDetector(
-          onTap: (){
-            Navigator.pushAndRemoveUntil(
-              context!,
-              MaterialPageRoute(builder: (context) => FirstPage()),
-              (Route<dynamic> route) => false,
-            );
+          onTap: () {
+            Navigator.pop(context);
           },
           child: Image.asset(
             "assets/images/logo.png",

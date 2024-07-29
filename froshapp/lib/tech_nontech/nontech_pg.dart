@@ -66,7 +66,7 @@ final List<Map<String, dynamic>> nonTechItems = [
     "text": "This society promotes chemical research and education for societal benefit, encouraging students to pursue careers in the science stream. It serves as a platform for students and researchers, fostering scientific and methodological growth while providing valuable resources and opportunities for collaboration in the field of chemistry."
   },
   {
-    "image": "assets/images/econ.png",
+    "image": "assets/images/econ1.png",
     "name": "ECON",
     "text": "Econ Club provides a forum to identify and discuss economic, social and political issue. The Econ Club organises Economics Quizzes; Debating competitions; World Economic Forum to help find solutions to emerging issues."
   },
@@ -91,7 +91,7 @@ final List<Map<String, dynamic>> nonTechItems = [
     "text": "ENACTUS is a community of students, academics, and business leaders dedicated to leveraging entrepreneurial action to improve lives and create a better world. The society focuses on innovative solutions and social impact, empowering members to make a positive difference through collaboration and entrepreneurship."
   },
   {
-    "image": "assets/images/eureka.png",
+    "image": "assets/images/eureka.jpg",
     "name": "EUREKA",
     "text": "The objective behind developing this society was to promote research ambience amongst our UG students through organizing competitions, expert talks, seminars, webinars,some technical sessions and encouraging them to write research articles."
   },
@@ -106,7 +106,7 @@ final List<Map<String, dynamic>> nonTechItems = [
     "text": "GENE Society aims at providing professional excellence to students in organizing technical events like seminars, workshops, guest lectures, panel discussions. The society promotes industry-academia interactions and empowers students to work collectively in a team as well as to work independently honing their leadership skills."
   },
   {
-    "image": "assets/images/gut.png",
+    "image": "assets/images/gut.jpg",
     "name": "GUT",
     "text": "Girl Up is a United Nations Foundation’s adolescent girl campaign. This society envisions a world where every girl can reach her full potential and lead the way to bigger dreams, healthier communities and stronger nations. The Girl Up platform exposes girls to issues at the intersection of gender equality, sports and storytelling."
   },
@@ -152,12 +152,12 @@ final List<Map<String, dynamic>> nonTechItems = [
     "text": "PRATIGYA, a society, is working, consistently for social welfare. This society develops teams of student volunteers from the undergraduate, post-graduate and Management programs, who teach the underprivileged kids from classes I to XII including children of class four employees of Thapar Institute as well as kids residing outside Thapar."
   },
   {
-    "image": "assets/images/spicmacay.png",
+    "image": "assets/images/sm1.jfif",
     "name": "SPICMACAY",
     "text": "SPIC MACAY is a non-political nationwide voluntary movement that organises programmes of classical music and dance, folk arts, crafts, yog, classic cinema screenings, heritage walks, etc. inside school and college campuses throughout the world to make students more aware about Indian and world heritage."
   },
   {
-    "image": "assets/images/somie.png",
+    "image": "assets/images/somie1.png",
     "name": "SOMIE",
     "text": "SOMIE (Society of Mechanical and Industrial Engineering) is the society which helps students gain technical and practical knowledge in the field of mechanical engineering. SOMIE also acts as a bridge between students and faculty. SOMIE organizes various events like industrial tours, engine assembly workshops, technical quiz contests, guest lectures etc."
   },
@@ -207,7 +207,7 @@ final List<Map<String, dynamic>> nonTechItems = [
     "text": "Thapar Nautanki Team (TNT) aims to bring the students together who believe in change. Using the love for performing arts and showing the problems faced in the society with the help of nukkad nataks or Nautanki. Aiming towards creating awareness around topics of modern relevance that affect the society in a negative or positive way."
   },
   {
-    "image": "assets/images/oorja.png",
+    "image": "assets/images/oorja1.png",
     "name": "URJA",
     "text": "Team Urja, a supercharged automotive crew bursting with energy, creativity, and an unquenchable thirst for greatness. We hail from the prestigious Thapar Institute of Engineering and Technology (TIET), where our passion and talent unite.Our team\"s adventure has been marked by constant expansion and impressive accomplishments."
   },
