@@ -7,68 +7,88 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
   late VideoPlayerController _controller;
   late Future<void> _initializeVideoPlayerFuture;
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+  bool _videoFinished = false;
 
   @override
   void initState() {
     super.initState();
     _controller = VideoPlayerController.asset('assets/videos/splash_video.mp4');
     _initializeVideoPlayerFuture = _controller.initialize();
-    _controller.setLooping(true);
+    _controller.setLooping(false);
+
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 800),
+      vsync: this,
+    );
+
+    _animation = Tween<double>(begin: 1.0, end: 0.0).animate(_animationController);
 
     _initializeVideoPlayerFuture.then((_) {
       setState(() {});
       _controller.play();
     });
 
-    Future.delayed(Duration(milliseconds: 3500), () {
-      Navigator.of(context).pushReplacement(
-        PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => FirstPage(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return FadeTransition(
-              opacity: animation,
-              child: child,
-            );
-          },
-          transitionDuration: Duration(milliseconds: 900),
-        ),
-      );
+    _controller.addListener(() {
+      if (_controller.value.position >= _controller.value.duration) {
+        _startFadeOut();
+      }
+    });
+  }
+
+  void _startFadeOut() {
+    _animationController.forward().then((_) {
+      setState(() {
+        _videoFinished = true;
+      });
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery
-            .of(context)
-            .size
-            .width,
-        height: MediaQuery
-            .of(context)
-            .size
-            .height,
-        color: Colors.black, // Add a background color
-        child: FutureBuilder(
-          future: _initializeVideoPlayerFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return FittedBox(
-                fit: BoxFit.cover,
-                child: SizedBox(
-                  width: _controller.value.size.width,
-                  height: _controller.value.size.height,
-                  child: VideoPlayer(_controller),
-                ),
-              );
-            } else {
-              return Container(); // Return an empty container instead of CircularProgressIndicator
-            }
-          },
-        ),
+      body: Stack(
+        children: [
+          // FirstPage is always present underneath
+          Positioned.fill(
+            child: FirstPage(),
+          ),
+          // Video overlay with fade-out effect
+          if (!_videoFinished)
+            AnimatedBuilder(
+              animation: _animation,
+              builder: (context, child) {
+                return Opacity(
+                  opacity: _animation.value,
+                  child: child,
+                );
+              },
+              child: FutureBuilder(
+                future: _initializeVideoPlayerFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return Container(
+                      color: Colors.black,
+                      child: FittedBox(
+                        fit: BoxFit.cover,
+                        child: SizedBox(
+                          width: _controller.value.size.width,
+                          height: _controller.value.size.height,
+                          child: VideoPlayer(_controller),
+                        ),
+                      ),
+                    );
+                  } else {
+                    return Container(color: Colors.black);
+                  }
+                },
+              ),
+            ),
+        ],
       ),
     );
   }
@@ -76,6 +96,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void dispose() {
     _controller.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 }

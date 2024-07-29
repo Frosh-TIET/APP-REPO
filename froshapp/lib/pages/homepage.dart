@@ -16,7 +16,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
 
@@ -127,7 +126,7 @@ class _HomepageState extends State<Homepage>
     }
   }
 
-    Future<void> cacheEventData() async {
+  Future<void> cacheEventData() async {
     final prefs = await SharedPreferences.getInstance();
     final eventData = {
       'eventNames': eventNames,
@@ -139,7 +138,6 @@ class _HomepageState extends State<Homepage>
     };
     await prefs.setString('eventData', json.encode(eventData));
   }
-
 
   @override
   void dispose() {
@@ -156,10 +154,26 @@ class _HomepageState extends State<Homepage>
   }
 
   Future<String> getImageUrl() async {
-    FirebaseStorage storage = FirebaseStorage.instance;
-    String imageUrl =
-        await storage.ref('images/logo/logo.png').getDownloadURL();
-    return imageUrl;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? cachedUrl = prefs.getString('logoUrl');
+
+    if (cachedUrl != null) {
+      return cachedUrl;
+    }
+
+    try {
+      FirebaseStorage storage = FirebaseStorage.instance;
+      String imageUrl =
+          await storage.ref('images/logo/logo.png').getDownloadURL();
+
+      // Cache the URL
+      await prefs.setString('logoUrl', imageUrl);
+
+      return imageUrl;
+    } catch (e) {
+      print('Error fetching logo URL: $e');
+      return ''; // Return an empty string or a default URL in case of error
+    }
   }
 
   @override
@@ -355,51 +369,66 @@ class _HomepageState extends State<Homepage>
                   child: FutureBuilder<String>(
                     future: _imageUrlFuture,
                     builder: (context, snapshot) {
-                      return Container(
-                        height: screenHeight * 0.165,
-                        width: screenHeight * 0.36,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Container(
+                          height: screenHeight * 0.165,
+                          width: screenHeight * 0.36,
                           color: Colors.transparent,
-                        ),
-                        child: snapshot.connectionState ==
-                                ConnectionState.waiting
-                            ? Container(
-                                color: Colors.transparent,
-                                child: Center(
-                                  child: CircularProgressIndicator(
-                                    color: Colors.transparent,
-                                  ),
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.transparent,
+                            ),
+                          ),
+                        );
+                      } else if (snapshot.hasError ||
+                          !snapshot.hasData ||
+                          snapshot.data!.isEmpty) {
+                        return Container(
+                          height: screenHeight * 0.165,
+                          width: screenHeight * 0.36,
+                          color: Colors.transparent,
+                          child: Center(
+                            child: Text('No image available'),
+                          ),
+                        );
+                      } else {
+                        return Container(
+                          height: screenHeight * 0.165,
+                          width: screenHeight * 0.36,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                          ),
+                          child: CachedNetworkImage(
+                            imageUrl: snapshot.data!,
+                            fit: BoxFit.contain,
+                            placeholder: (context, url) => Container(
+                              color: Colors.transparent,
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: Colors.transparent,
                                 ),
-                              )
-                            : snapshot.hasError
-                                ? Center(
-                                    child: Text('Error: ${snapshot.error}'))
-                                : (!snapshot.hasData || snapshot.data!.isEmpty)
-                                    ? Center(child: Text('No image available'))
-                                    : CachedNetworkImage(
-                                        imageUrl: snapshot.data!,
-                                        fit: BoxFit.contain,
-                                        placeholder: (context, url) =>
-                                            Container(
-                                          color: Colors.transparent,
-                                          child: Center(
-                                            child: CircularProgressIndicator(
-                                              color: Colors.transparent,
-                                            ),
-                                          ),
-                                        ),
-                                        errorWidget: (context, url, error) =>
-                                            Icon(Icons.error),
-                                      ),
-                      );
+                              ),
+                            ),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
+                          ),
+                        );
+                      }
                     },
                   ),
                 ),
               ),
               Expanded(
                 flex: 3,
-                child: CarouselSlider.builder(
+                child: isLoading
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                        ),
+                      )
+
+                : CarouselSlider.builder(
                   itemCount: eventNames.length,
                   itemBuilder: (BuildContext context, int index, int realIdx) {
                     bool isCenter = index == _current;

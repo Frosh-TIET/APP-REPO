@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:froshapp/nav/refer_nav.dart';
 import 'package:provider/provider.dart';
 import 'package:froshapp/tech_nontech/nontech_pg.dart';
 import 'society_state.dart';
