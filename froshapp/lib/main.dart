@@ -77,7 +77,7 @@ class _MyAppState extends State<MyApp> {
           } else {
             bool seen = snapshot.data ?? false;
             if (seen) {
-              return FirstPage();
+              return SplashScreen();
             } else {
               return SplashScreen();
             }

@@ -48,6 +48,7 @@ dependencies:
   flutter_blurhash: ^0.8.2
   cloud_firestore: ^5.1.0
   firebase_messaging: ^15.0.3
+  flutter_native_splash: ^2.4.1
 
 dev_dependencies:
   flutter_test:
@@ -108,3 +109,15 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_native_splash:
+  color: "#000000"
+  image: assets/images/applogotransparent.png
+  android: true
+  ios: true
+
+  android_12:
+    image: assets/images/applogotransparent.png
+    icon_background_color: "#000000"
+
+  fullscreen: true
