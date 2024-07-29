@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:froshapp/nav/refer_nav.dart';
 import 'package:provider/provider.dart';
 import 'package:froshapp/tech_nontech/nontech_pg.dart';
 import 'society_state.dart';
@@ -17,6 +18,8 @@ class SocietyPage extends StatelessWidget {
 
 class _SocietyPageContent extends StatelessWidget {
   const _SocietyPageContent({Key? key}) : super(key: key);
+  
+  BuildContext? get context => null;
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +52,20 @@ class _SocietyPageContent extends StatelessWidget {
   Widget _buildLogo(double screenHeight) {
     return Center(
       child: SafeArea(
-        child: Image.asset(
-          "assets/images/logo.png",
-          height: screenHeight * 0.165,
-          width: screenHeight * 0.36,
-          fit: BoxFit.contain,
+        child: GestureDetector(
+          onTap: (){
+            Navigator.pushAndRemoveUntil(
+              context!,
+              MaterialPageRoute(builder: (context) => FirstPage()),
+              (Route<dynamic> route) => false,
+            );
+          },
+          child: Image.asset(
+            "assets/images/logo.png",
+            height: screenHeight * 0.165,
+            width: screenHeight * 0.36,
+            fit: BoxFit.contain,
+          ),
         ),
       ),
     );

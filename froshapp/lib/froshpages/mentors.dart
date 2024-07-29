@@ -21,7 +21,7 @@ class Mentors extends StatelessWidget {
                   mainAxisSpacing: MediaQuery.of(context).size.height * 0.01,
                   childAspectRatio: 100 / 172,
                 ),
-                itemCount: 66,
+                itemCount: 67,
                 itemBuilder: (context, index) {
                   String imagePath = 'assets/images/img$index.webp';
                   return Container(
