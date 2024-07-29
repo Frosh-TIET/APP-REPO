@@ -3,6 +3,7 @@ import 'package:froshapp/froshpages/core.dart';
 import 'package:froshapp/froshpages/faculty.dart';
 import 'package:froshapp/froshpages/mentors.dart';
 import 'package:froshapp/froshpages/osc.dart';
+import 'package:froshapp/nav/refer_nav.dart';
 
 class AboutUsPage extends StatefulWidget {
   const AboutUsPage({Key? key}) : super(key: key);
@@ -40,13 +41,22 @@ class _AboutUsState extends State<AboutUsPage> {
               // Logo
               Center(
                 child: SafeArea(
-                  child: Container(
-                    height: screenHeight * 0.165,
-                    width: screenHeight * 0.36,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/logo.png"),
-                        fit: BoxFit.fill,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => FirstPage()),
+                        (Route<dynamic> route) => false,
+                      );
+                    },
+                    child: Container(
+                      height: screenHeight * 0.165,
+                      width: screenHeight * 0.36,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/logo.png"),
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
                   ),
