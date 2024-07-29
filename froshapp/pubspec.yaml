@@ -49,6 +49,8 @@ dependencies:
   cloud_firestore: ^5.1.0
   firebase_messaging: ^15.0.3
   flutter_native_splash: ^2.4.1
+  flutter_local_notifications: ^17.2.1+2
+  http: ^1.2.2
 
 dev_dependencies:
   flutter_test:
