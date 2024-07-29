@@ -74,6 +74,7 @@ class _ScheduleState extends State<Schedule> {
                         image: AssetImage(imagePaths1[index]),
                         fit: BoxFit.contain,
                       ),
+
                     ),
                   ),
                 ),
