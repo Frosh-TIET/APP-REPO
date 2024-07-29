@@ -52,6 +52,7 @@ dependencies:
   flutter_local_notifications: ^17.2.1+2
   http: ^1.2.2
   widget_zoom: ^0.0.4
+  double_back_to_exit: ^1.0.3
 
 dev_dependencies:
   flutter_test:

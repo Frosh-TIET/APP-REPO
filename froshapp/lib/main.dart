@@ -16,6 +16,7 @@ import 'package:froshapp/froshpages/osc.dart';
 import 'package:froshapp/splash/splash_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:double_back_to_exit/double_back_to_exit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +33,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
@@ -63,9 +63,16 @@ class _MyAppState extends State<MyApp> {
           hoverColor: Colors.transparent,
         ),
         debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
+        home: DoubleBackToExit(
+
+          snackBarMessage: 'Tap back again to exit',
+          child: SplashScreen(),
+        ),
         routes: {
-          '/homepage': (context) => Homepage(),
+          '/homepage': (context) => DoubleBackToExit(
+            snackBarMessage: 'Tap back again to exit',
+            child: Homepage(),
+          ),
           '/map': (context) => CampusMap(),
           '/schedule': (context) => Schedule(),
           '/contactus': (context) => ContactUs(),
