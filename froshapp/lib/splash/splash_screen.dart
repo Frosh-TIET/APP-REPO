@@ -71,13 +71,11 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 future: _initializeVideoPlayerFuture,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
-                    return Container(
+                    return ColoredBox(
                       color: Colors.black,
-                      child: FittedBox(
-                        fit: BoxFit.cover,
-                        child: SizedBox(
-                          width: _controller.value.size.width,
-                          height: _controller.value.size.height,
+                      child: Center(
+                        child: AspectRatio(
+                          aspectRatio: _controller.value.aspectRatio,
                           child: VideoPlayer(_controller),
                         ),
                       ),
@@ -86,8 +84,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                     return Container(color: Colors.black);
                   }
                 },
+                ),
               ),
-            ),
         ],
       ),
     );

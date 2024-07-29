@@ -444,6 +444,7 @@ class _HomepageState extends State<Homepage>
                           ),
                           child: Column(
                             children: [
+                              
                               Center(
                                 //Event text and animation
                                 child: AnimatedPadding(
