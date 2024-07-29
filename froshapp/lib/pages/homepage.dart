@@ -8,10 +8,14 @@ import 'package:froshapp/pages/aboutus.dart';
 import 'package:froshapp/pages/hostels.dart';
 import 'package:froshapp/pages/lifetiet.dart';
 import 'package:froshapp/pages/society.dart';
-import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:froshapp/video_loader/VideoLoadingScreen.dart';
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -27,6 +31,23 @@ class _HomepageState extends State<Homepage>
   late Animation<double> _animation;
   late Future<String> _imageUrlFuture;
 
+  final List<String> imagePaths = [
+    'assets/images/event.png',
+    'assets/images/event.png',
+    'assets/images/event.png',
+    'assets/images/event.png',
+    'assets/images/event.png',
+    'assets/images/event.png',
+  ];
+
+  List<String> eventNames = [];
+  List<String> eventDates = [];
+  List<String> time = [];
+  List<String> location = [];
+  List<String> buttonTexts = [];
+  List<String> buttonLinks = [];
+  bool isLoading = true;
+
   @override
   void initState() {
     super.initState();
@@ -39,7 +60,86 @@ class _HomepageState extends State<Homepage>
       curve: Curves.fastEaseInToSlowEaseOut,
     ));
     _imageUrlFuture = getImageUrl();
+    fetchEventData();
   }
+
+  Future<void> fetchEventData() async {
+    try {
+      // First, try to load data from SharedPreferences
+      final prefs = await SharedPreferences.getInstance();
+      final cachedData = prefs.getString('eventData');
+
+      if (cachedData != null) {
+        // If cached data exists, use it
+        final decodedData = json.decode(cachedData);
+        setState(() {
+          eventNames = List<String>.from(decodedData['eventNames']);
+          eventDates = List<String>.from(decodedData['eventDates']);
+          time = List<String>.from(decodedData['time']);
+          location = List<String>.from(decodedData['location']);
+          buttonTexts = List<String>.from(decodedData['buttonTexts']);
+          buttonLinks = List<String>.from(decodedData['buttonLinks']);
+          isLoading = false;
+        });
+      }
+
+      // Fetch fresh data from Firestore
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('events')
+          .orderBy('date')
+          .get();
+
+      List<String> newEventNames = [];
+      List<String> newEventDates = [];
+      List<String> newTime = [];
+      List<String> newLocation = [];
+      List<String> newButtonTexts = [];
+      List<String> newButtonLinks = [];
+
+      for (var doc in querySnapshot.docs) {
+        String name = (doc['name'] as String).replaceAll('\\n', '\n');
+        newEventNames.add(name);
+        newEventDates.add(doc['date'] as String);
+        newTime.add(doc['time'] as String);
+        newLocation.add(doc['location'] as String);
+        newButtonTexts.add(doc['buttonText'] as String);
+        newButtonLinks.add(doc['buttonLink'] as String);
+      }
+
+      // Update the state with fresh data
+      setState(() {
+        eventNames = newEventNames;
+        eventDates = newEventDates;
+        time = newTime;
+        location = newLocation;
+        buttonTexts = newButtonTexts;
+        buttonLinks = newButtonLinks;
+        isLoading = false;
+      });
+
+      // Cache the fresh data
+      await cacheEventData();
+    } catch (e) {
+      print('Error fetching event data: $e');
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+    Future<void> cacheEventData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final eventData = {
+      'eventNames': eventNames,
+      'eventDates': eventDates,
+      'time': time,
+      'location': location,
+      'buttonTexts': buttonTexts,
+      'buttonLinks': buttonLinks,
+    };
+    await prefs.setString('eventData', json.encode(eventData));
+  }
+
 
   @override
   void dispose() {
@@ -47,10 +147,18 @@ class _HomepageState extends State<Homepage>
     super.dispose();
   }
 
+  Future<void> _launchURL(String urlString) async {
+    final Uri url = Uri.parse(urlString);
+    if (!await canLaunchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+    await launchUrl(url);
+  }
+
   Future<String> getImageUrl() async {
     FirebaseStorage storage = FirebaseStorage.instance;
     String imageUrl =
-    await storage.ref('images/logo/logo.png').getDownloadURL();
+        await storage.ref('images/logo/logo.png').getDownloadURL();
     return imageUrl;
   }
 
@@ -58,46 +166,6 @@ class _HomepageState extends State<Homepage>
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    final List<String> eventNames = [
-      'ORIENTATION\n',
-      'WHODUNIT\n',
-      'WITTY\nVENDATTA',
-      'ELYSERRA\n',
-      'E-SPORTS\nMANIA',
-      'BEG BORROW\nSTEAL'
-    ];
-    final List<String> imagePaths = [
-      'assets/images/event.png',
-      'assets/images/event.png',
-      'assets/images/event.png',
-      'assets/images/event.png',
-      'assets/images/event.png',
-      'assets/images/event.png',
-    ];
-    final List<String> eventDates = [
-      '5 AUGUST ',
-      '8 AUGUST ',
-      '10 AUGUST ',
-      '12 AUGUST ',
-      '14 AUGUST ',
-      '16 AUGUST ',
-    ];
-    List<String> time = [
-      '10:00 AM',
-      '10:00 AM',
-      '10:00 AM',
-      '10:00 AM',
-      '10:00 AM',
-      '10:00 AM',
-    ];
-    List<String> location = [
-      'TAN AUDI',
-      'SB/OP LAWNS',
-      'MAIN AUDI',
-      'MAIN AUDI',
-      'FETE AREA',
-      'OAT'
-    ];
 
     final List<LeaderboardItem> leaderboardItems = [
       LeaderboardItem(name: 'Hood 1 ', score: 0.3),
@@ -110,12 +178,9 @@ class _HomepageState extends State<Homepage>
       drawer: Container(
         width: screenWidth * 0.53,
         child: BackdropFilter(
-          filter: ImageFilter.blur(
-              sigmaX: 5,
-              sigmaY: 5), // Adjust sigmaX and sigmaY for desired blur effect
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
           child: Drawer(
-            backgroundColor: Colors.black.withOpacity(
-                0), // Transparent background to see through the blur
+            backgroundColor: Colors.black.withOpacity(0),
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
@@ -297,32 +362,36 @@ class _HomepageState extends State<Homepage>
                         decoration: BoxDecoration(
                           color: Colors.transparent,
                         ),
-                        child: snapshot.connectionState == ConnectionState.waiting
+                        child: snapshot.connectionState ==
+                                ConnectionState.waiting
                             ? Container(
-                          color: Colors.transparent,
-                          child: Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.transparent,
-                            ),
-                          ),
-                        )
-                            : snapshot.hasError
-                            ? Center(child: Text('Error: ${snapshot.error}'))
-                            : (!snapshot.hasData || snapshot.data!.isEmpty)
-                            ? Center(child: Text('No image available'))
-                            : CachedNetworkImage(
-                          imageUrl: snapshot.data!,
-                          fit: BoxFit.contain,
-                          placeholder: (context, url) => Container(
-                            color: Colors.transparent,
-                            child: Center(
-                              child: CircularProgressIndicator(
                                 color: Colors.transparent,
-                              ),
-                            ),
-                          ),
-                          errorWidget: (context, url, error) => Icon(Icons.error),
-                        ),
+                                child: Center(
+                                  child: CircularProgressIndicator(
+                                    color: Colors.transparent,
+                                  ),
+                                ),
+                              )
+                            : snapshot.hasError
+                                ? Center(
+                                    child: Text('Error: ${snapshot.error}'))
+                                : (!snapshot.hasData || snapshot.data!.isEmpty)
+                                    ? Center(child: Text('No image available'))
+                                    : CachedNetworkImage(
+                                        imageUrl: snapshot.data!,
+                                        fit: BoxFit.contain,
+                                        placeholder: (context, url) =>
+                                            Container(
+                                          color: Colors.transparent,
+                                          child: Center(
+                                            child: CircularProgressIndicator(
+                                              color: Colors.transparent,
+                                            ),
+                                          ),
+                                        ),
+                                        errorWidget: (context, url, error) =>
+                                            Icon(Icons.error),
+                                      ),
                       );
                     },
                   ),
@@ -339,7 +408,8 @@ class _HomepageState extends State<Homepage>
                         return Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage(imagePaths[index]),
+                              image: AssetImage(
+                                  imagePaths[index % imagePaths.length]),
                               fit: BoxFit.fill,
                             ),
                           ),
@@ -352,7 +422,7 @@ class _HomepageState extends State<Homepage>
                                   curve: Curves.easeInOut,
                                   padding: EdgeInsets.only(
                                     left: isCenter
-                                        ? screenHeight * 0.028
+                                        ? screenHeight * 0.02
                                         : screenHeight * 0.045,
                                     top: isCenter
                                         ? screenHeight * 0.045
@@ -365,7 +435,7 @@ class _HomepageState extends State<Homepage>
                                         : Alignment.center,
                                     child: AnimatedDefaultTextStyle(
                                       duration:
-                                      const Duration(milliseconds: 800),
+                                          const Duration(milliseconds: 800),
                                       style: TextStyle(
                                         fontSize: isCenter
                                             ? screenHeight * 0.025
@@ -418,12 +488,12 @@ class _HomepageState extends State<Homepage>
                                           ),
                                           Padding(
                                             padding:
-                                            const EdgeInsets.only(left: 10),
+                                                const EdgeInsets.only(left: 10),
                                             child: Text(
                                               eventDates[index],
                                               style: TextStyle(
                                                 fontSize: isCenter
-                                                    ? screenHeight * 0.021
+                                                    ? screenHeight * 0.0198
                                                     : screenHeight * 0.014,
                                                 fontFamily: 'SubFont',
                                                 fontWeight: FontWeight.w600,
@@ -453,12 +523,12 @@ class _HomepageState extends State<Homepage>
                                         ),
                                         Padding(
                                           padding:
-                                          const EdgeInsets.only(left: 10),
+                                              const EdgeInsets.only(left: 10),
                                           child: Text(
                                             time[index],
                                             style: TextStyle(
                                               fontSize: isCenter
-                                                  ? screenHeight * 0.021
+                                                  ? screenHeight * 0.0198
                                                   : screenHeight * 0.014,
                                               fontFamily: 'SubFont',
                                               fontWeight: FontWeight.w600,
@@ -479,12 +549,12 @@ class _HomepageState extends State<Homepage>
                                         ),
                                         Padding(
                                           padding:
-                                          const EdgeInsets.only(left: 10),
+                                              const EdgeInsets.only(left: 10),
                                           child: Text(
                                             location[index],
                                             style: TextStyle(
                                               fontSize: isCenter
-                                                  ? screenHeight * 0.021
+                                                  ? screenHeight * 0.0198
                                                   : screenHeight * 0.014,
                                               fontFamily: 'SubFont',
                                               fontWeight: FontWeight.w600,
@@ -497,52 +567,47 @@ class _HomepageState extends State<Homepage>
                                 ),
                               ),
                               SizedBox(height: screenHeight * 0.015),
-                              Link(
-                                target: LinkTarget.blank,
-                                uri: Uri.parse('https://www.froshtiet.com/'),
-                                builder: (context, followlink) =>
-                                    GestureDetector(
-                                      onTap: followlink,
-                                      child: AnimatedContainer(
-                                        duration: const Duration(milliseconds: 800),
-                                        curve: Curves.easeInOut,
-                                        padding: EdgeInsets.symmetric(
-                                          vertical: isCenter
-                                              ? screenHeight * 0.009
-                                              : screenHeight * 0.005,
-                                          horizontal: isCenter
-                                              ? screenHeight * 0.0008
-                                              : screenHeight * 0.0005,
-                                        ),
-                                        height: screenHeight * 0.05,
-                                        width: screenHeight * 0.22,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Colors.black,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black.withOpacity(0.5),
-                                              spreadRadius: 1,
-                                              blurRadius: 5,
-                                              offset: Offset(0, 5),
-                                            ),
-                                          ],
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            'BOOK NOW',
-                                            style: TextStyle(
-                                              fontFamily: 'ButtonFont',
-                                              fontSize: isCenter
-                                                  ? screenHeight * 0.022
-                                                  : screenHeight * 0.02,
-                                              fontWeight: FontWeight.w800,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
+                              GestureDetector(
+                                onTap: () => _launchURL(buttonLinks[index]),
+                                child: AnimatedContainer(
+                                  duration: const Duration(milliseconds: 800),
+                                  curve: Curves.easeInOut,
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: isCenter
+                                        ? screenHeight * 0.009
+                                        : screenHeight * 0.005,
+                                    horizontal: isCenter
+                                        ? screenHeight * 0.0008
+                                        : screenHeight * 0.0005,
+                                  ),
+                                  height: screenHeight * 0.05,
+                                  width: screenHeight * 0.22,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.black,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.5),
+                                        spreadRadius: 1,
+                                        blurRadius: 5,
+                                        offset: Offset(0, 5),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      buttonTexts[index],
+                                      style: TextStyle(
+                                        fontFamily: 'ButtonFont',
+                                        fontSize: isCenter
+                                            ? screenHeight * 0.022
+                                            : screenHeight * 0.02,
+                                        fontWeight: FontWeight.w800,
+                                        color: Colors.white,
                                       ),
                                     ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -558,7 +623,7 @@ class _HomepageState extends State<Homepage>
                     reverse: false,
                     autoPlayInterval: const Duration(seconds: 10),
                     autoPlayAnimationDuration:
-                    const Duration(milliseconds: 1800),
+                        const Duration(milliseconds: 1800),
                     autoPlayCurve: Curves.linearToEaseOut,
                     enlargeCenterPage: true,
                     enlargeFactor: 0.3,

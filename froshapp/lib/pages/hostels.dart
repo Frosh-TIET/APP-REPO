@@ -4,7 +4,6 @@ import 'package:froshapp/hostelpages/hostel_detail_page.dart';
 import 'package:froshapp/hostelpages/hostel_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HostelPage extends StatefulWidget {
   HostelPage({Key? key}) : super(key: key);
@@ -120,7 +119,6 @@ class _HostelPageState extends State<HostelPage>
   final FirebaseStorage _storage = FirebaseStorage.instance;
   late AnimationController _controller;
   late Future<String> _imageUrlFuture;
-  late SharedPreferences _prefs;
 
   @override
   void initState() {
@@ -129,12 +127,7 @@ class _HostelPageState extends State<HostelPage>
       vsync: this,
       duration: const Duration(milliseconds: 100),
     )..repeat(reverse: true);
-    _imageUrlFuture = _getLogoUrl();
-    _initSharedPreferences();
-  }
-
-  Future<void> _initSharedPreferences() async {
-    _prefs = await SharedPreferences.getInstance();
+    _imageUrlFuture = getImageUrl();
   }
 
   @override
@@ -143,15 +136,9 @@ class _HostelPageState extends State<HostelPage>
     super.dispose();
   }
 
-  Future<String> _getLogoUrl() async {
+  Future<String> getImageUrl() async {
     try {
-      String? cachedUrl = _prefs.getString('logo_url');
-      if (cachedUrl != null) {
-        return cachedUrl;
-      }
-      String url = await _storage.ref('images/logo/logo.png').getDownloadURL();
-      await _prefs.setString('logo_url', url);
-      return url;
+      return await _storage.ref('images/logo/logo.png').getDownloadURL();
     } catch (e) {
       print('Error fetching logo URL: $e');
       return '';
@@ -160,14 +147,8 @@ class _HostelPageState extends State<HostelPage>
 
   Future<String> _getImageUrl(String imageURL) async {
     try {
-      String cacheKey = 'image_url_$imageURL';
-      String? cachedUrl = _prefs.getString(cacheKey);
-      if (cachedUrl != null) {
-        return cachedUrl;
-      }
       final ref = _storage.ref().child(imageURL);
       final url = await ref.getDownloadURL();
-      await _prefs.setString(cacheKey, url);
       return url;
     } catch (e) {
       print('Error fetching image URL: $e');
@@ -204,8 +185,7 @@ class _HostelPageState extends State<HostelPage>
                   imageUrl: snapshot.data!,
                   width: MediaQuery.of(context).size.height * 0.125,
                   fit: BoxFit.cover,
-                  placeholder: (context, url) =>
-                      CircularProgressIndicator(color: Colors.transparent),
+                  placeholder: (context, url) => CircularProgressIndicator(color: Colors.transparent),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),
@@ -253,8 +233,7 @@ class _HostelPageState extends State<HostelPage>
                     future: _imageUrlFuture,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return CircularProgressIndicator(
-                            color: Colors.transparent);
+                        return CircularProgressIndicator(color: Colors.transparent);
                       } else if (snapshot.hasError) {
                         return Text('Error: ${snapshot.error}');
                       } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -267,8 +246,7 @@ class _HostelPageState extends State<HostelPage>
                             imageUrl: snapshot.data!,
                             fit: BoxFit.fill,
                             placeholder: (context, url) =>
-                                CircularProgressIndicator(
-                                    color: Colors.transparent),
+                                CircularProgressIndicator(color: Colors.transparent),
                             errorWidget: (context, url, error) =>
                                 Icon(Icons.error),
                           ),
@@ -304,8 +282,7 @@ class _HostelPageState extends State<HostelPage>
                   autoPlay: true,
                   autoPlayInterval: Duration(seconds: 2),
                   autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  height: screenHeight * 0.2,
-                  // Increased height to accommodate name
+                  height: screenHeight * 0.2,  // Increased height to accommodate name
                   viewportFraction: 0.33,
                   onPageChanged: (index, reason) {},
                 ),
@@ -345,8 +322,7 @@ class _HostelPageState extends State<HostelPage>
                   autoPlay: true,
                   autoPlayInterval: Duration(seconds: 2),
                   autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  height: screenHeight * 0.2,
-                  // Increased height to accommodate name
+                  height: screenHeight * 0.2,  // Increased height to accommodate name
                   viewportFraction: 0.33,
                   onPageChanged: (index, reason) {},
                 ),

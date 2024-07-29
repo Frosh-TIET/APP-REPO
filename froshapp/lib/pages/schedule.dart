@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:froshapp/leaderboard/leaderboard.dart';
 import 'package:froshapp/leaderboard/leaderboard_item.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'dart:ui';
@@ -14,7 +13,6 @@ class Schedule extends StatefulWidget {
 }
 
 class _ScheduleState extends State<Schedule> {
-  int _current = 0;
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
   late Future<List<String>> _imagePaths1Future;
@@ -128,7 +126,6 @@ class _ScheduleState extends State<Schedule> {
                     return CarouselSlider.builder(
                       itemCount: eventNames.length,
                       itemBuilder: (BuildContext context, int index, int realIdx) {
-                        bool isCenter = index == _current;
                         return LayoutBuilder(
                           builder: (context, constraints) {
                             return Container(

@@ -114,6 +114,27 @@
             </list>
           </value>
         </entry>
+        <entry key="cloud_firestore">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/cloud_firestore-5.1.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="cloud_firestore_platform_interface">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/cloud_firestore_platform_interface-6.2.9/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="cloud_firestore_web">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/cloud_firestore_web-4.0.3/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="collection">
           <value>
             <list>
@@ -209,6 +230,27 @@
           <value>
             <list>
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_core_web-2.17.3/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="firebase_messaging">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_messaging-15.0.3/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="firebase_messaging_platform_interface">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_messaging_platform_interface-4.5.41/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="firebase_messaging_web">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.8.11/lib" />
             </list>
           </value>
         </entry>
@@ -812,6 +854,9 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/circular_menu-4.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cli_util-0.4.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/clock-1.1.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cloud_firestore-5.1.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cloud_firestore_platform_interface-6.2.9/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cloud_firestore_web-4.0.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/collection-1.18.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/connectivity_plus-6.0.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/connectivity_plus_platform_interface-2.0.0/lib" />
@@ -826,6 +871,9 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_core-3.2.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_core_platform_interface-5.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_core_web-2.17.3/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_messaging-15.0.3/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_messaging_platform_interface-4.5.41/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.8.11/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_storage-12.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_storage_platform_interface-5.1.26/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_storage_web-3.9.11/lib" />

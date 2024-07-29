@@ -153,7 +153,7 @@ class CosCard extends StatelessWidget {
     title: 'CULTURAL OAT AND\nSHOPPING COMPLEX',
     image: 'assets/images/cos.png',
     description:
-    'The COS Complex at TIET offers a range of convenient stores and eateries for students. VI Mini Store sells electronic devices, accessories, and sports gear. Shadowz Salon and Spa provides beauty services, while Fashion Point offers skincare essentials. The Stationery Store supplies college essentials, and the Dessert Club offers sweet treats. Kabir Multi-Store stocks everyday essentials, and Pizza Nation serves unique pizzas. Honey Coffee Cafe is a vegetarian snack spot, Iqbal Juice Centre offers fresh juices, and RS Laundry handles garment care. Sips & Bites and Wrapchik offer hearty meals and snacks, while Bombay Munchery serves Indian classics. It is one stop shop for all your needs.',
+    'The COS Complex at TIET offers a range of convenient stores and eateries for students. VI Mini Store sells electronic devices, accessories, and sports gear. Shadowz Salon and Spa provides beauty services, while Fashion Point offers skincare essentials. The Stationery Store supplies college essentials, and the Dessert Club offers sweet treats. Kabir Multi-Store stocks everyday essentials, and Pizza Nation serves unique pizzas. Honey Coffee Cafe is a vegetarian snack spot, Iqbal Juice Centre offers fresh juices, and RS Laundry handles garment care.',
     currentPage: 0,
     nextPage: SportsCard(),
     previousPage: ParkCard(), // The last page in the cycle

@@ -151,8 +151,12 @@ class _HostelDetailPageState extends State<HostelDetailPage> {
                       return FutureBuilder<String>(
                         future: _getImageUrl(hostel.imageUrl),
                         builder: (context, snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
-                            return Center(child: CircularProgressIndicator(color: Colors.transparent,));
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(
+                                child: CircularProgressIndicator(
+                              color: Colors.transparent,
+                            ));
                           }
                           if (snapshot.hasError || !snapshot.hasData) {
                             return Center(child: Icon(Icons.error));
@@ -181,14 +185,17 @@ class _HostelDetailPageState extends State<HostelDetailPage> {
                                       fit: BoxFit.cover,
                                       width: double.infinity,
                                       height: double.infinity,
-                                      placeholder: (context, url) => Container(color: Colors.black),
-                                      errorWidget: (context, url, error) => Icon(Icons.error),
+                                      placeholder: (context, url) =>
+                                          Container(color: Colors.black),
+                                      errorWidget: (context, url, error) =>
+                                          Icon(Icons.error),
                                     ),
                                   ),
                                   Align(
                                     alignment: Alignment.topCenter,
                                     child: Padding(
-                                      padding: EdgeInsets.only(top: screenHeight * 0.053),
+                                      padding: EdgeInsets.only(
+                                          top: screenHeight * 0.053),
                                       child: AnimatedOpacity(
                                         opacity: _textOpacity,
                                         duration: Duration(milliseconds: 300),
@@ -214,25 +221,30 @@ class _HostelDetailPageState extends State<HostelDetailPage> {
                                   Align(
                                     alignment: Alignment.bottomCenter,
                                     child: Padding(
-                                      padding: EdgeInsets.only(bottom: screenHeight * 0.063),
+                                      padding: EdgeInsets.only(
+                                          bottom: screenHeight * 0.063),
                                       child: Container(
                                         height: screenHeight * 0.5,
                                         width: screenHeight * 0.41,
                                         decoration: BoxDecoration(
                                           color: Colors.black.withOpacity(0.3),
-                                          borderRadius: BorderRadius.circular(60),
+                                          borderRadius:
+                                              BorderRadius.circular(60),
                                         ),
                                         child: Center(
                                           child: Padding(
-                                            padding: EdgeInsets.all(screenHeight * 0.0217),
+                                            padding: EdgeInsets.all(
+                                                screenHeight * 0.0217),
                                             child: AnimatedOpacity(
                                               opacity: _textOpacity,
-                                              duration: Duration(milliseconds: 300),
+                                              duration:
+                                                  Duration(milliseconds: 300),
                                               child: Text(
                                                 hostel.detail,
                                                 style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: screenHeight * 0.017,
+                                                  fontSize:
+                                                      screenHeight * 0.017,
                                                 ),
                                                 textAlign: TextAlign.center,
                                               ),
