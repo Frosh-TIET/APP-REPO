@@ -19,13 +19,13 @@ class HostelPage extends StatefulWidget {
       name: 'Prithvi Hall',
       imageUrl: 'images/hostel/boys/hostelC.webp',
       detail:
-          'The Prithvi Hall has air-conditioned two-seater and three-seater rooms with necessary furniture. The hall has high standards of cleanliness, RO-processed water, and hot water availability. The gym, indoor games like chess and carrom, reading room, and laundry services are some of the great additions to this wonderful hostel. With an integrated security system and CCTVs security is given utmost importance. The atmosphere here at Prithvi Hall is full of life and vibrancy and provides an excellent environment to carry out both academic and extra-curricular activities.',
+          'The Prithvi Hall has air-conditioned two-seater and three-seater rooms. The hall has high standards of cleanliness, RO-processed water, and hot water availability. The gym, indoor games like chess and carrom, reading room, and laundry services are some great additions to this wonderful hostel. With an integrated security system and CCTVs security is given utmost importance. The atmosphere here at Prithvi Hall is full of life and vibrancy and provides an excellent environment to carry out both academic and extra-curricular activities.',
     ),
     Hostel(
       name: 'Neeram Hall',
       imageUrl: 'images/hostel/boys/hostelD.webp',
       detail:
-          'Accommodation in Neeram Hall is on a double-seater basis with shared washrooms, and the rooms are furnished with all amenities. This hostel provides several facilities, including round-the-clock Wi-Fi, four elevators, power backup, housekeeping services, a futuristic gym, and a well-maintained mess run by a Sodexo. Water coolers, RO systems, and a dedicated laundry system assure convenience. Security is a top priority, supported by an integrated system and CCTV surveillance.',
+          'Accommodation in Neeram Hall is on a double-seater basis with shared washrooms, and the rooms are furnished with all amenities. This hostel provides several facilities, including round-the-clock Wi-Fi, four elevators, power backup, housekeeping services, a futuristic gym, and a well-maintained mess run by Sodexo. Water coolers, RO systems, and a dedicated laundry system assure convenience. Security is a top priority, supported by an integrated system and CCTV surveillance.',
     ),
     Hostel(
       name: 'Vyan Hall',
@@ -93,13 +93,13 @@ class HostelPage extends StatefulWidget {
       name: 'Ananta Hall',
       imageUrl: 'images/hostel/girls/im03.webp',
       detail:
-          'This architectural marvel serves as the girls hostel and has single and double-seater air-conditioned rooms with all essential amenities. Other facilities that prove to be very functional include water coolers, RO systems, housekeeping services, laundry facilities, and 24-hour Wi-Fi connectivity. Many other facilities enhance comfort, such as a well-equipped gym, air-conditioned reading rooms, and guest rooms. Security is very strict, and there is a mess facility that ensures healthy and nutritious food. With an advanced security system and CCTV coverage, utmost importance is placed on safety.',
+          'This architectural marvel serves as the girls hostel and has single and double-seater air-conditioned rooms with all essential amenities. Other facilities that prove to be very functional include water coolers, RO systems, housekeeping services, laundry facilities, and 24-hour Wi-Fi connectivity. Many other facilities enhance comfort, such as a well-equipped gym, air-conditioned reading rooms, and guest rooms. Security is very strict, and the mess facility that ensures healthy and nutritious food. With an advanced security system and CCTV coverage, utmost importance is placed on safety.',
     ),
     Hostel(
       name: 'Vahni Hall',
       imageUrl: 'images/hostel/girls/im04.webp',
       detail:
-          'This is a girls hostel that provides double-seater, air-conditioned rooms with all the required facilities. The hostel has various amenities like a television room, gymnasium, air-conditioned study area, canteen during nights, and laundry services. With an integrated security system and CCTVs security is given utmost importance. Besides high-speed Wi-Fi, four elevators, and dedicated housekeeping staff ensure ease of life along with cleanliness. The mess is looked after by a company of international repute providing nutritious meals to ensure a comfortable living ambiance.',
+          'This is a girls hostel that provides double-seater, air-conditioned rooms with all the required facilities. The hostel has various amenities like a television room, gymnasium, air-conditioned study area, canteen during nights, and laundry services. With an integrated security system and CCTVs security is given utmost importance. High-speed Wi-Fi, four elevators, and dedicated housekeeping staff ensure ease of life along with cleanliness. The mess is looked after by a company of international repute providing nutritious meals to ensure a comfortable living ambiance.',
     ),
     Hostel(
       name: 'Agira Hall',
