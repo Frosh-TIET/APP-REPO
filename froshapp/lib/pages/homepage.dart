@@ -183,10 +183,10 @@ class _HomepageState extends State<Homepage>
     double screenHeight = MediaQuery.of(context).size.height;
 
     final List<LeaderboardItem> leaderboardItems = [
-      LeaderboardItem(name: 'Hood 1 ', score: 0.3),
-      LeaderboardItem(name: 'Hood 2 ', score: 0.5),
-      LeaderboardItem(name: 'Hood 3 ', score: 0.8),
-      LeaderboardItem(name: 'Hood 4 ', score: 0.2),
+      LeaderboardItem(name: 'Oathkeepers       ', score: 0.4),
+      LeaderboardItem(name: 'Stormbreakers   ', score: 0.5),
+      LeaderboardItem(name: 'Tridents              ', score: 0.8),
+      LeaderboardItem(name: 'Deathstars         ', score: 0.3),
     ];
 
     return Scaffold(
@@ -694,14 +694,15 @@ class _HomepageState extends State<Homepage>
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
                 child: Container(
+                
                   width: screenWidth * 0.9,
-                  height: screenHeight * 0.2,
+                  height: screenHeight * 0.23,
                   decoration: BoxDecoration(
-                    color: Colors.transparent,
+                    color: Colors.black.withOpacity(0.6),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      width: screenWidth * 0.0059,
-                      color: const Color.fromRGBO(126, 181, 208, 1),
+                      width: screenWidth * 0.007,
+                      color: Colors.black.withOpacity(0),
                     ),
                   ),
                   child: Padding(
@@ -712,19 +713,18 @@ class _HomepageState extends State<Homepage>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(height: screenHeight * 0.01),
+                        SizedBox(height: screenHeight * 0.014),
                         Text(
                           "LEADERBOARD",
                           style: TextStyle(
                             fontFamily: 'MainFont',
                             fontSize: screenHeight * 0.019,
-                            color: const Color.fromRGBO(126, 181, 208, 1),
+                            color: Color(0xfff9f5ec).withOpacity(0.9),
                           ),
                         ),
                         SizedBox(height: screenHeight * 0.025),
-                        Padding(
-                          padding: EdgeInsets.only(bottom:screenHeight * 0.0030 ),
-                            child: Leaderboard(items: leaderboardItems)),
+                        Leaderboard(items: leaderboardItems),
+
                       ],
                     ),
                   ),

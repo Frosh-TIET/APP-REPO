@@ -33,7 +33,7 @@ class NavBar extends StatelessWidget {
                   haptic: true,
                   activeColor: Colors.white,
                   duration: const Duration(milliseconds: 450),
-                  tabBackgroundColor: const Color.fromRGBO(126, 181, 208, 0.7),
+                  tabBackgroundColor: const Color.fromRGBO(29, 78, 137, 1),
                   gap: screenWidth * 0.01,
                   padding: const EdgeInsets.all(15),
                   onTabChange: (value) => onTabChange!(value),

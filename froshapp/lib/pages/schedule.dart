@@ -1,26 +1,60 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Schedule extends StatefulWidget {
-  const Schedule({super.key});
+  const Schedule({Key? key}) : super(key: key);
 
   @override
   State<Schedule> createState() => _ScheduleState();
 }
 
 class _ScheduleState extends State<Schedule> {
-  final List<String> imagePaths1 = [
-    'assets/images/b1.webp',
-    'assets/images/b2.webp',
-    'assets/images/b3.webp',
-    'assets/images/b4.webp',
-    'assets/images/b1.webp',
-    'assets/images/b2.webp',
-    'assets/images/b4.webp',
-    'assets/images/b1.webp',
-    'assets/images/b2.webp',
-    'assets/images/b4.webp',
-  ];
+  List<String> imageUrls = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    loadImages();
+  }
+
+  Future<void> loadImages() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String>? cachedUrls = prefs.getStringList('scheduleImageUrls');
+
+    if (cachedUrls != null && cachedUrls.isNotEmpty) {
+      setState(() {
+        imageUrls = cachedUrls;
+        isLoading = false;
+      });
+    } else {
+      try {
+        final storage = FirebaseStorage.instance;
+        List<String> urls = [];
+
+        for (int i = 1; i <= 8; i++) {
+          String imagePath = 'images/schedule/b$i.webp';
+          String downloadURL = await storage.ref(imagePath).getDownloadURL();
+          urls.add(downloadURL);
+        }
+
+        await prefs.setStringList('scheduleImageUrls', urls);
+
+        setState(() {
+          imageUrls = urls;
+          isLoading = false;
+        });
+      } catch (e) {
+        print('Error loading images: $e');
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,17 +77,21 @@ class _ScheduleState extends State<Schedule> {
               color: Colors.white.withOpacity(0.23),
             ),
           ),
-          ListView.builder(
-            itemCount: 10,
+          isLoading
+              ? Center(child: CircularProgressIndicator(color: Colors.transparent,))
+              : ListView.builder(
+            itemCount: imageUrls.length,
             itemBuilder: (context, index) {
               bool isEven = index % 2 == 1;
               return Align(
                 alignment:
-                    isEven ? Alignment.centerLeft : Alignment.centerRight,
+                isEven ? Alignment.centerLeft : Alignment.centerRight,
                 child: Padding(
                   padding: EdgeInsets.only(
                     left: screenWidth * 0.05,
                     right: screenWidth * 0.05,
+                    top: screenHeight * 0.02,
+                    bottom: screenHeight * 0.02,
                   ),
                   child: Container(
                     width: screenWidth * 0.43,
@@ -61,11 +99,17 @@ class _ScheduleState extends State<Schedule> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(48),
                       color: Colors.black.withOpacity(0),
-                      image: DecorationImage(
-                        image: AssetImage(imagePaths1[index]),
-                        fit: BoxFit.contain,
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(48),
+                      child: CachedNetworkImage(
+                        imageUrl: imageUrls[index],
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(color: Colors.transparent,),
+                        errorWidget: (context, url, error) =>
+                            Icon(Icons.error),
                       ),
-
                     ),
                   ),
                 ),
