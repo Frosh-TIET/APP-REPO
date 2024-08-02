@@ -22,6 +22,7 @@ class Mentors extends StatelessWidget {
                   childAspectRatio: 100 / 172,
                 ),
                 itemCount: 67,
+
                 itemBuilder: (context, index) {
                   String imagePath = 'assets/images/img$index.webp';
                   return Container(

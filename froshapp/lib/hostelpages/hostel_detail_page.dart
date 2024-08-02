@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'hostel_model.dart';
-
+import 'dart:ui';
 class HostelDetailPage extends StatefulWidget {
   final List<Hostel> hostels;
   final int initialIndex;
@@ -54,7 +54,7 @@ class _HostelDetailPageState extends State<HostelDetailPage> {
   }
 
   Future<String> _getImageUrl(String imageURL) async {
-    String? cachedUrl = _prefs.getString(imageURL);
+    String? cachedUrl =   _prefs.getString(imageURL);
     if (cachedUrl != null) {
       return cachedUrl;
     }
@@ -180,17 +180,18 @@ class _HostelDetailPageState extends State<HostelDetailPage> {
                                       topLeft: Radius.circular(60.0),
                                       topRight: Radius.circular(60.0),
                                     ),
-                                    child: CachedNetworkImage(
-                                      imageUrl: snapshot.data!,
-                                      fit: BoxFit.cover,
-                                      width: double.infinity,
-                                      height: double.infinity,
-                                      placeholder: (context, url) =>
-                                          Container(color: Colors.black),
-                                      errorWidget: (context, url, error) =>
-                                          Icon(Icons.error),
+                                    // child: ImageFiltered(
+                                    //   imageFilter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+                                      child: CachedNetworkImage(
+                                        imageUrl: snapshot.data!,
+                                        fit: BoxFit.cover,
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                        placeholder: (context, url) => Container(color: Colors.black),
+                                        errorWidget: (context, url, error) => Icon(Icons.error),
+                                      ),
                                     ),
-                                  ),
+                                  // ),
                                   Align(
                                     alignment: Alignment.topCenter,
                                     child: Padding(
@@ -227,7 +228,7 @@ class _HostelDetailPageState extends State<HostelDetailPage> {
                                         height: screenHeight * 0.5,
                                         width: screenHeight * 0.41,
                                         decoration: BoxDecoration(
-                                          color: Colors.black.withOpacity(0.3),
+                                          color: Colors.black.withOpacity(0.48),
                                           borderRadius:
                                               BorderRadius.circular(60),
                                         ),
@@ -244,7 +245,7 @@ class _HostelDetailPageState extends State<HostelDetailPage> {
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize:
-                                                      screenHeight * 0.017,
+                                                      screenHeight * 0.02  ,
                                                 ),
                                                 textAlign: TextAlign.center,
                                               ),

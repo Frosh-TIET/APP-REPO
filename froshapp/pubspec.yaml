@@ -53,6 +53,7 @@ dependencies:
   http: ^1.2.2
   widget_zoom: ^0.0.4
   double_back_to_exit: ^1.0.3
+  connectivity_plus: ^6.0.4
 
 dev_dependencies:
   flutter_test:

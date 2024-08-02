@@ -695,7 +695,7 @@ class _HomepageState extends State<Homepage>
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
                 child: Container(
                   width: screenWidth * 0.9,
-                  height: screenHeight * 0.145,
+                  height: screenHeight * 0.2,
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(20),
@@ -712,6 +712,7 @@ class _HomepageState extends State<Homepage>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        SizedBox(height: screenHeight * 0.01),
                         Text(
                           "LEADERBOARD",
                           style: TextStyle(
@@ -720,13 +721,17 @@ class _HomepageState extends State<Homepage>
                             color: const Color.fromRGBO(126, 181, 208, 1),
                           ),
                         ),
-                        Leaderboard(items: leaderboardItems),
+                        SizedBox(height: screenHeight * 0.025),
+                        Padding(
+                          padding: EdgeInsets.only(bottom:screenHeight * 0.0030 ),
+                            child: Leaderboard(items: leaderboardItems)),
                       ],
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: screenHeight * 0.16),
+
+              SizedBox(height: screenHeight * 0.05),
             ],
           ),
           Positioned(
