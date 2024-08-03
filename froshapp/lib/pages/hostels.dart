@@ -31,13 +31,13 @@ class HostelPage extends StatefulWidget {
       name: 'Vyan Hall',
       imageUrl: 'images/hostel/boys/hostelH.webp',
       detail:
-          'Vyan Hall will offer the students a well-equipped living environment inclusive of all facilities in the hostels, with gyms, TV rooms, indoor games, reading rooms, RO-integrated water coolers for clean drinking water, and 24/7 Wi-Fi. Regular maintenance and the mess facility ensure a hygienic and nutritious living experience and foster a helpful and friendly atmosphere among residents.',
+          'Vyan Hall will offer the students a well-equipped living environment inclusive of all facilities in the hostels, with gyms, TV rooms, indoor games, reading rooms, RO-integrated water coolers for clean drinking water, and 24/7 Wi-Fi. Regular maintenance and the mess facility ensure a hygienic and nutritious living experience and foster a helpful and friendly atmosphere among residents.\n\n Caretaker - Mr.Varinder Singh\n +91 9115608833',
     ),
     Hostel(
       name: 'Tejas Hall',
       imageUrl: 'images/hostel/boys/hostelJ.webp',
       detail:
-          'Tejas Hall has single-seated rooms furnished with modern furniture and integrated with all basic facilities. There is a well-equipped gym, air-conditioned reading room, and open-air theatre in the hostel. Water coolers with RO systems and four elevators have been provided to ensure convenience. With an integrated security system and CCTVs security is given utmost importance. Regular cleaning, CCTV cameras, and fire alarms maintain hygiene and security. Fully air-conditioned guest rooms facilitate comfort to the visitors and add to better living.',
+          'Tejas Hall has single-seated rooms furnished with modern furniture and integrated with all basic facilities. There is a well-equipped gym, air-conditioned reading room, and open-air theatre in the hostel. Water coolers with RO systems and four elevators have been provided to ensure convenience. Fully air-conditioned guest rooms facilitate comfort to the visitors and add to better living.\n\n Caretaker - Mr. Jaspal Singh, Mr. Raj Kumar\n +918288008178, +918559010110',
     ),
     Hostel(
       name: 'Ambaram Hall',
@@ -67,7 +67,7 @@ class HostelPage extends StatefulWidget {
       name: 'Hostel FRF/G',
       imageUrl: 'images/hostel/boys/hostelzFRF_G.webp',
       detail:
-          'The hostel offers 3-seater non-AC rooms with attached washrooms, equipped with modern facilities. It offers the latest facilities including high-speed Wi-Fi, a Sodexo-run mess, laundry facilities, and proximity to the 400 Mtr track, which provides convenience for recreation. Hostel FRF/G offers an environment full of comfort and engagement, serving students amidst their academic journey.',
+          'The hostel offers 3-seater non-AC rooms with attached washrooms, equipped with modern facilities. It offers the latest facilities including high-speed Wi-Fi, a Sodexo-run mess, laundry facilities, and proximity to the 400 Mtr track, which provides convenience for recreation. Hostel FRF/G offers an environment full of comfort and engagement, serving students amidst their academic journey.\n\n Caretaker - Mr. Brijesh Kumar \n +91 9878667829',
     ),
   ];
   final List<Hostel> girlsHostels = [
@@ -81,19 +81,19 @@ class HostelPage extends StatefulWidget {
       name: 'Vasudha Hall\nBLK-E',
       imageUrl: 'images/hostel/girls/im01.webp',
       detail:
-          'Block-E offers a variety of well-furnished room types, each equipped with essential facilities. The hostel features well-equipped gyms, housekeeping, laundry, and Wi-Fi services. Water coolers with RO systems and a mess service overseen by a student committee ensure all necessary conveniences. The shared hangout area with Block G adds vibrancy to the living space, enhancing the residents overall experience. Security guards are on duty around the clock to ensure safety.',
+          'Block-E offers a variety of well-furnished room types, each equipped with essential facilities. The hostel features well-equipped gyms, housekeeping, laundry, and Wi-Fi services. Water coolers with RO systems and a mess service overseen by a student committee ensure all necessary conveniences. The shared hangout area with Block G adds vibrancy to the living space, enhancing the residents overall experience.\n\n Caretaker - Mr.Parshotam Lal \n +919115608809',
     ),
     Hostel(
       name: 'Ira Hall',
       imageUrl: 'images/hostel/girls/im02.webp',
       detail:
-          'Ira Hall provides accommodation to undergraduate female students. The hall boasts of an energetic social atmosphere and has a dedicated mess, a night mess, a well-equipped gymnasium, an air-conditioned reading-cum-library room, and guest rooms. It is also integrated with high-speed Wi-Fi, laundry services, and lifts in the hall for ease. With an integrated security system and CCTVs security is given utmost importance. Amidst such facilities, Ira Hall focuses on holistic development and student experience.',
+          'Ira Hall provides accommodation to undergraduate female students. The hall boasts of an energetic social atmosphere and has a dedicated mess, a night mess, a well-equipped gymnasium, an air-conditioned reading-cum-library room, and guest rooms. It is also integrated with high-speed Wi-Fi, laundry services, and lifts in the hall for ease. With an integrated security system and CCTVs security is given utmost importance.\n\n Caretaker - Ms Mandeep Kaur \n +91 9115608807',
     ),
     Hostel(
       name: 'Ananta Hall',
       imageUrl: 'images/hostel/girls/im03.webp',
       detail:
-          'This architectural marvel serves as the girls hostel and has single and double-seater air-conditioned rooms with all essential amenities. Other facilities that prove to be very functional include water coolers, RO systems, housekeeping services, laundry facilities, and 24-hour Wi-Fi connectivity. Many other facilities enhance comfort, such as a well-equipped gym, air-conditioned reading rooms, and guest rooms. Security is very strict, and the mess facility that ensures healthy and nutritious food. With an advanced security system and CCTV coverage, utmost importance is placed on safety.',
+          'This architectural marvel serves as the girls hostel and has single and double-seater air-conditioned rooms with all essential amenities. Other facilities that prove to be very functional include water coolers, RO systems, housekeeping services, laundry facilities, and 24-hour Wi-Fi connectivity. Many other facilities enhance comfort, such as a well-equipped gym, air-conditioned reading rooms, and guest rooms.',
     ),
     Hostel(
       name: 'Vahni Hall',
