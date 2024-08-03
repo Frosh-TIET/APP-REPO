@@ -46,7 +46,7 @@ class CampusMap extends StatelessWidget {
                     bottom: screenHeight * 0.01, right: screenWidth * 0.05),
                 child: Container(
                   height: screenHeight * 0.06,
-                  width: screenHeight * 0.215,
+                  width: screenHeight * 0.235,
                   child: Link(
                     target: LinkTarget.blank,
                     uri: Uri.parse('https://www.froshtiet.com/templates/final.html'),

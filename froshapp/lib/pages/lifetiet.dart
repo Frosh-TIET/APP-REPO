@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:froshapp/nav/refer_nav.dart';
 
 void main() => runApp(const LifeThaparPage());
