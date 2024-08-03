@@ -71,11 +71,13 @@ class _AnimatedSocietyDialogState extends State<AnimatedSocietyDialog>
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
   late int _currentIndex;
+  late ScrollController _scrollController;
 
   @override
   void initState() {
     super.initState();
     _currentIndex = widget.currentIndex;
+    _scrollController = ScrollController(); // Initialize ScrollController
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 150),
@@ -88,11 +90,14 @@ class _AnimatedSocietyDialogState extends State<AnimatedSocietyDialog>
     setState(() {
       _currentIndex = index;
     });
+    // Reset scroll position to the top when navigating
+    _scrollController.jumpTo(0);
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _scrollController.dispose(); // Dispose ScrollController
     super.dispose();
   }
 
@@ -131,18 +136,19 @@ class _AnimatedSocietyDialogState extends State<AnimatedSocietyDialog>
                           color: Colors.white,
                           fontSize: MediaQuery.of(context).size.width * 0.07,
                           fontWeight: FontWeight.bold,
-                          fontFamily: 'Main'
+                          fontFamily: 'Main',
                         ),
                       ),
                       SizedBox(height: MediaQuery.of(context).size.width * 0.05),
                       Expanded(
                         child: SingleChildScrollView(
+                          controller: _scrollController, // Assign the controller
                           child: Text(
                             widget.items[_currentIndex]['text'],
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: MediaQuery.of(context).size.width * 0.04,
-                              fontFamily: 'desc'
+                              fontFamily: 'desc',
                             ),
                             textAlign: TextAlign.center,
                           ),
