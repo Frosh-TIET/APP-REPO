@@ -40,7 +40,7 @@ class SocietyGridItem extends StatelessWidget {
                 name,
                 style: TextStyle(
                   color: Colors.white,
-                  fontFamily: 'Audiowide',
+                  fontFamily: 'Main',
                   fontSize: MediaQuery.of(context).size.width * 0.05,
                 ),
               ),
@@ -131,6 +131,7 @@ class _AnimatedSocietyDialogState extends State<AnimatedSocietyDialog>
                           color: Colors.white,
                           fontSize: MediaQuery.of(context).size.width * 0.07,
                           fontWeight: FontWeight.bold,
+                          fontFamily: 'Main'
                         ),
                       ),
                       SizedBox(height: MediaQuery.of(context).size.width * 0.05),
@@ -141,6 +142,7 @@ class _AnimatedSocietyDialogState extends State<AnimatedSocietyDialog>
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: MediaQuery.of(context).size.width * 0.04,
+                              fontFamily: 'desc'
                             ),
                             textAlign: TextAlign.center,
                           ),

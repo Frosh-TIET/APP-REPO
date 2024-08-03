@@ -25,7 +25,7 @@ class Leaderboard extends StatelessWidget {
                   item.name,
                   style: TextStyle(
                       color: Color(0xfff9f5ec).withOpacity(0.9),
-                      fontFamily: 'Arial',
+                      fontFamily: 'Sub',
                       fontSize: screenHeight * 0.014),
                 ),
                 SizedBox(width: screenHeight * 0.01),

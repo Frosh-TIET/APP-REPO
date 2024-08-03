@@ -92,7 +92,8 @@ class _SocietyPageContent extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
               fontSize: screenWidth * 0.042,
-              fontFamily: 'Audiowide',
+              fontFamily: 'Font',
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),

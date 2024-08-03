@@ -41,18 +41,34 @@ class NavBar extends StatelessWidget {
                     const GButton(
                       icon: Icons.home,
                       text: 'Home',
+                      textStyle: TextStyle(
+                        fontFamily: 'Sub',
+                        color: Colors.white,
+                      ),
                     ),
                     const GButton(
                       icon: Icons.calendar_month,
                       text: 'Schedule',
+                      textStyle: TextStyle(
+                        fontFamily: 'Sub',
+                        color: Colors.white,
+                      ),
                     ),
                     const GButton(
                       icon: Icons.map_rounded,
                       text: 'Campus Map',
+                      textStyle: TextStyle(
+                        fontFamily: 'Sub',
+                        color: Colors.white,
+                      ),
                     ),
                     const GButton(
                       icon: Icons.link_rounded,
                       text: 'Contact Us',
+                      textStyle: TextStyle(
+                        fontFamily: 'Sub',
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),

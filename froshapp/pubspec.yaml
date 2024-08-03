@@ -101,6 +101,18 @@ flutter:
     - family: SubFont
       fonts:
         - asset: assets/fonts/Rasputin.otf
+    - family: Main
+      fonts:
+        - asset: assets/fonts/futur.ttf
+    - family: Sub
+      fonts:
+        - asset: assets/fonts/cream-DEMO.otf
+    - family: Font
+      fonts:
+        - asset: assets/fonts/Raleway-VariableFont_wght.ttf
+    - family: desc
+      fonts:
+        - asset: assets/fonts/SFNSDisplay-Regular.otf
     - family: ButtonFont
       fonts:
         - asset: assets/fonts/carme-regular.otf
