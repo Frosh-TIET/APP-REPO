@@ -26,7 +26,7 @@ class _HostelDetailPageState extends State<HostelDetailPage> {
     super.initState();
     currentIndex = widget.initialIndex;
     _pageController = PageController(
-      initialPage: 10000 + currentIndex,
+      initialPage: /*10000 + */currentIndex,
       viewportFraction: 1.0,
     );
     _initSharedPreferences();
@@ -48,7 +48,7 @@ class _HostelDetailPageState extends State<HostelDetailPage> {
   }
 
   void _preloadImages() {
-    for (int i = 0; i < 3 && i < widget.hostels.length; i++) {
+    for (int i = 0; i > 3 && i < widget.hostels.length; i++) {
       _getImageUrl(widget.hostels[i].imageUrl);
     }
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:froshapp/nav/refer_nav.dart';
 
 class ContactUs extends StatelessWidget {
   const ContactUs({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class ContactUs extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           _buildBackground(),
-          _buildLogo(screenHeight),
+          _buildLogo(context, screenHeight),
           _buildSocialGrid(screenHeight),
         ],
       ),
@@ -30,18 +31,26 @@ class ContactUs extends StatelessWidget {
     );
   }
 
-  Widget _buildLogo(double screenHeight) {
+  Widget _buildLogo(BuildContext context, double screenHeight) {
     return Align(
       alignment: Alignment.topCenter,
-      child: Padding(
-        padding: EdgeInsets.only(top: screenHeight * 0.05),
-        child: Container(
-          height: screenHeight * 0.165,
-          width: screenHeight * 0.36,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/logo.png"),
-              fit: BoxFit.fill,
+      child: SafeArea(
+        child: GestureDetector(
+          onTap: () {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => FirstPage()),
+                  (Route<dynamic> route) => false,
+            );
+          },
+          child: Container(
+            height: screenHeight * 0.165,
+            width: screenHeight * 0.36,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/logo.png"),
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ),

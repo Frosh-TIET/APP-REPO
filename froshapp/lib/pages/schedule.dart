@@ -35,7 +35,7 @@ class _ScheduleState extends State<Schedule> {
         final storage = FirebaseStorage.instance;
         List<String> urls = [];
 
-        for (int i = 1; i <= 8; i++) {
+        for (int i = 1; i <= 5; i++) {
           String imagePath = 'images/schedule/b$i.webp';
           String downloadURL = await storage.ref(imagePath).getDownloadURL();
           urls.add(downloadURL);
@@ -90,18 +90,18 @@ class _ScheduleState extends State<Schedule> {
                   padding: EdgeInsets.only(
                     left: screenWidth * 0.05,
                     right: screenWidth * 0.05,
-                    top: screenHeight * 0.02,
-                    bottom: screenHeight * 0.02,
+                    top: screenHeight * 0.015,
+                    bottom: screenHeight * 0.015,
                   ),
                   child: Container(
-                    width: screenWidth * 0.43,
-                    height: screenHeight * 0.2,
+                    width: screenWidth * 0.42,
+                    height: screenHeight * 0.19,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(48),
                       color: Colors.black.withOpacity(0),
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(48),
+                      borderRadius: BorderRadius.circular(0),
                       child: CachedNetworkImage(
                         imageUrl: imageUrls[index],
                         fit: BoxFit.cover,

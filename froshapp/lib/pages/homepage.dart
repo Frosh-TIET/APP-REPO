@@ -691,46 +691,40 @@ class _HomepageState extends State<Homepage>
                         ),
                       ),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
-                child: Container(
-                
-                  width: screenWidth * 0.9,
-                  height: screenHeight * 0.23,
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.6),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      width: screenWidth * 0.007,
-                      color: Colors.black.withOpacity(0),
-                    ),
+              Container(
+                width: screenWidth * 0.9,
+                height: screenHeight * 0.23,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.6),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    width: screenWidth * 0.007,
+                    color: Colors.black.withOpacity(0),
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      left: screenWidth * 0.025,
-                      top: screenHeight * 0.0030,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(height: screenHeight * 0.014),
-                        Text(
-                          "LEADERBOARD",
-                          style: TextStyle(
-                            fontFamily: 'MainFont',
-                            fontSize: screenHeight * 0.019,
-                            color: Color(0xfff9f5ec).withOpacity(0.9),
-                          ),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: screenWidth * 0.025,
+                    top: screenHeight * 0.0030,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(height: screenHeight * 0.014),
+                      Text(
+                        "LEADERBOARD",
+                        style: TextStyle(
+                          fontFamily: 'MainFont',
+                          fontSize: screenHeight * 0.019,
+                          color: Color(0xfff9f5ec).withOpacity(0.9),
                         ),
-                        SizedBox(height: screenHeight * 0.025),
-                        Leaderboard(items: leaderboardItems),
-
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: screenHeight * 0.025),
+                      Leaderboard(items: leaderboardItems),
+                    ],
                   ),
                 ),
               ),
-
               SizedBox(height: screenHeight * 0.05),
             ],
           ),
