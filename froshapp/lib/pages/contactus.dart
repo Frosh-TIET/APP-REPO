@@ -32,28 +32,37 @@ class ContactUs extends StatelessWidget {
   }
 
   Widget _buildLogo(BuildContext context, double screenHeight) {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: SafeArea(
-        child: GestureDetector(
-          onTap: () {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => FirstPage()),
-                  (Route<dynamic> route) => false,
-            );
-          },
-          child: Container(
-            height: screenHeight * 0.165,
-            width: screenHeight * 0.36,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/logo.png"),
-                fit: BoxFit.fill,
+    return GestureDetector(
+        onTap: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => FirstPage()),
+                    (Route<dynamic> route) => false,
+              );
+            },
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: SafeArea(
+          // child: GestureDetector(
+          //   onTap: () {
+          //     Navigator.pushAndRemoveUntil(
+          //       context,
+          //       MaterialPageRoute(builder: (context) => FirstPage()),
+          //           (Route<dynamic> route) => false,
+          //     );
+          //   },
+            child: Container(
+              height: screenHeight * 0.165,
+              width: screenHeight * 0.36,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/logo.png"),
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
           ),
-        ),
+
       ),
     );
   }

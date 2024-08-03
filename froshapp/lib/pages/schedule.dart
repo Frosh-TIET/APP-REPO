@@ -104,7 +104,7 @@ class _ScheduleState extends State<Schedule> {
                       borderRadius: BorderRadius.circular(0),
                       child: CachedNetworkImage(
                         imageUrl: imageUrls[index],
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fill,
                         placeholder: (context, url) =>
                             CircularProgressIndicator(color: Colors.transparent,),
                         errorWidget: (context, url, error) =>

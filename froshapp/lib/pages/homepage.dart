@@ -60,6 +60,7 @@ class _HomepageState extends State<Homepage>
     ));
     _imageUrlFuture = getImageUrl();
     fetchEventData();
+    fetchLeaderboardData();
   }
 
   Future<void> fetchEventData() async {
@@ -145,7 +146,7 @@ class _HomepageState extends State<Homepage>
     super.dispose();
   }
 
-    Future<void> _launchURL(String urlString) async {
+  Future<void> _launchURL(String urlString) async {
     final Uri url = Uri.parse(urlString);
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
@@ -165,7 +166,7 @@ class _HomepageState extends State<Homepage>
     try {
       FirebaseStorage storage = FirebaseStorage.instance;
       String imageUrl =
-          await storage.ref('images/logo/logo.png').getDownloadURL();
+      await storage.ref('images/logo/logo.png').getDownloadURL();
 
       // Cache the URL
       await prefs.setString('logoUrl', imageUrl);
@@ -177,17 +178,40 @@ class _HomepageState extends State<Homepage>
     }
   }
 
+  List<LeaderboardItem> leaderboardItems = [];
+
+  Future<void> fetchLeaderboardData() async {
+    try {
+      print("Fetching leaderboard data...");
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('leaderboard')
+          .orderBy('name')
+          .limit(4)
+          .get();
+
+      print("Fetched ${querySnapshot.docs.length} documents");
+
+      setState(() {
+        leaderboardItems = querySnapshot.docs.map((doc) {
+          print("Document data: ${doc.data()}");
+          return LeaderboardItem(
+            name: doc['name'] as String,
+            score: (doc['score'] as num).toDouble(),
+          );
+        }).toList();
+      });
+      print("Leaderboard items: $leaderboardItems");
+    } catch (e) {
+      print('Error fetching leaderboard data: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    print("Building Homepage with ${leaderboardItems.length} items");
+
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-
-    final List<LeaderboardItem> leaderboardItems = [
-      LeaderboardItem(name: 'Oathkeepers    ', score: 0.4),
-      LeaderboardItem(name: 'Stormbreakers  ', score: 0.5),
-      LeaderboardItem(name: 'Tridents        ', score: 0.8),
-      LeaderboardItem(name: 'Deathstars     ', score: 0.3),
-    ];
 
     return Scaffold(
       drawer: Container(
@@ -424,273 +448,282 @@ class _HomepageState extends State<Homepage>
                 flex: 3,
                 child: isLoading
                     ? Center(
-                        child: CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.white),
-                        ),
-                      )
+                  child: CircularProgressIndicator(
+                    valueColor:
+                    AlwaysStoppedAnimation<Color>(Colors.white),
+                  ),
+                )
                     : CarouselSlider.builder(
-                        itemCount: eventNames.length,
-                        itemBuilder:
-                            (BuildContext context, int index, int realIdx) {
-                          bool isCenter = index == _current;
-                          return LayoutBuilder(
-                            builder: (context, constraints) {
-                              return Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                        imagePaths[index % imagePaths.length]),
-                                    fit: BoxFit.fill,
+                  itemCount: eventNames.length,
+                  itemBuilder:
+                      (BuildContext context, int index, int realIdx) {
+                    bool isCenter = index == _current;
+                    return LayoutBuilder(
+                      builder: (context, constraints) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  imagePaths[index % imagePaths.length]),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          child: Center(
+                            child: Column(
+                              children: [
+                                AnimatedPadding(
+                                  duration:
+                                  const Duration(milliseconds: 700),
+                                  curve: Curves.easeInOut,
+                                  padding: EdgeInsets.only(
+                                    top: isCenter
+                                        ? screenHeight * 0.038
+                                        : screenHeight * 0.028,
                                   ),
-                                ),
-                                child: Center(
-                                  child: Column(
-                                    children: [
-                                      AnimatedPadding(
-                                        duration:
-                                            const Duration(milliseconds: 700),
-                                        curve: Curves.easeInOut,
-                                        padding: EdgeInsets.only(
-                                          top: isCenter
-                                              ? screenHeight * 0.038
-                                              : screenHeight * 0.028,
-                                        ),
-                                        child: AnimatedAlign(
-                                          duration:
-                                              const Duration(milliseconds: 800),
-                                          alignment: isCenter
-                                              ? Alignment.topLeft
-                                              : Alignment.center,
-                                          child: AnimatedDefaultTextStyle(
-                                            duration: const Duration(
-                                                milliseconds: 800),
-                                            style: TextStyle(
-                                              fontSize: isCenter
-                                                  ? screenHeight * 0.029
-                                                  : screenHeight * 0.019,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w900,
-                                              fontFamily: 'Main',
-                                  
-                                              shadows: <Shadow>[
-                                                Shadow(
-                                                  offset: Offset(1, 1),
-                                                  blurRadius: 1.5,
-                                                  color: Colors.white,
-                                                ),
-                                              ],
-                                            ),
-                                  
-                                            child: Center(
-                                              child: Text(
-                                                textAlign: TextAlign.center,
-                                                eventNames[index],
-                                              ),
-                                            ),
+                                  child: AnimatedAlign(
+                                    duration:
+                                    const Duration(milliseconds: 800),
+                                    alignment: isCenter
+                                        ? Alignment.topLeft
+                                        : Alignment.center,
+                                    child: AnimatedDefaultTextStyle(
+                                      duration: const Duration(
+                                          milliseconds: 800),
+                                      style: TextStyle(
+                                        fontSize: isCenter
+                                            ? screenHeight * 0.029
+                                            : screenHeight * 0.019,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w900,
+                                        fontFamily: 'Main',
+                                        shadows: <Shadow>[
+                                          Shadow(
+                                            offset: Offset(1, 1),
+                                            blurRadius: 1.5,
+                                            color: Colors.white,
                                           ),
+                                        ],
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          textAlign: TextAlign.center,
+                                          eventNames[index],
                                         ),
                                       ),
-                                      SizedBox(
-                                          height: isCenter
-                                              ? screenHeight * 0.001
-                                              : screenHeight * 0.01),
-                                      //icons
-                                      AnimatedPadding(
-                                        duration:
-                                            const Duration(milliseconds: 1500),
-                                        curve: Curves.linearToEaseOut,
-                                        padding: EdgeInsets.only(
-                                          left: isCenter
-                                              ? screenWidth * 0.07
-                                              : screenHeight * 0.056,
-                                          top: isCenter
-                                              ? screenHeight * 0.03
-                                              : screenHeight * 0.0,
-                                        ),
-                                        child: Column(
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                    height: isCenter
+                                        ? screenHeight * 0.001
+                                        : screenHeight * 0.01),
+                                //icons
+                                AnimatedPadding(
+                                  duration:
+                                  const Duration(milliseconds: 1500),
+                                  curve: Curves.linearToEaseOut,
+                                  padding: EdgeInsets.only(
+                                    left: isCenter
+                                        ? screenWidth * 0.07
+                                        : screenHeight * 0.056,
+                                    top: isCenter
+                                        ? screenHeight * 0.03
+                                        : screenHeight * 0.0,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Align(
+                                        //DATES
+                                        child: Row(
                                           children: [
-                                            Align(
-                                              //DATES
-                                              child: Row(
-                                                children: [
-                                                  Icon(
-                                                    Icons.calendar_month_rounded,
-                                                    size: isCenter
-                                                        ? screenHeight * 0.026
-                                                        : screenHeight * 0.017,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Text(
-                                                      eventDates[index],
-                                                      style: TextStyle(
-                                                        fontSize: isCenter
-                                                            ? screenHeight *
-                                                                0.0185
-                                                            : screenHeight *
-                                                                0.014,
-                                                        fontFamily: 'Sub',
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
+                                            Icon(
+                                              Icons
+                                                  .calendar_month_rounded,
+                                              size: isCenter
+                                                  ? screenHeight * 0.026
+                                                  : screenHeight * 0.017,
+                                            ),
+                                            Padding(
+                                              padding:
+                                              const EdgeInsets.only(
+                                                  left: 10),
+                                              child: Text(
+                                                eventDates[index],
+                                                style: TextStyle(
+                                                  fontSize: isCenter
+                                                      ? screenHeight *
+                                                      0.0185
+                                                      : screenHeight *
+                                                      0.014,
+                                                  fontFamily: 'Sub',
+                                                  fontWeight:
+                                                  FontWeight.w600,
+                                                ),
                                               ),
-                                            ),
-                                            SizedBox(
-                                                height: screenHeight * 0.007),
-                                            Row(
-                                              //TIMES
-                                              children: [
-                                                AnimatedBuilder(
-                                                  animation: _animation,
-                                                  builder: (context, child) {
-                                                    return Transform.rotate(
-                                                      angle: _animation.value,
-                                                      child: Icon(
-                                                        Icons.alarm_on_rounded,
-                                                        size: isCenter
-                                                            ? screenHeight * 0.026
-                                                            : screenHeight *
-                                                                0.017,
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      left: 10),
-                                                  child: Text(
-                                                    time[index],
-                                                    style: TextStyle(
-                                                      fontSize: isCenter
-                                                          ? screenHeight * 0.0185
-                                                          : screenHeight * 0.014,
-                                                      fontFamily: 'Sub',
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                                height: screenHeight * 0.007),
-                                            //location
-                                            Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.location_on_rounded,
-                                                  size: isCenter
-                                                      ? screenHeight * 0.026
-                                                      : screenHeight * 0.017,
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      left: 10),
-                                                  child: Text(
-                                                    location[index],
-                                                    style: TextStyle(
-                                                      fontSize: isCenter
-                                                          ? screenHeight * 0.0185
-                                                          : screenHeight * 0.014,
-                                                      fontFamily: 'Sub',
-                                                      fontWeight: FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
                                             ),
                                           ],
                                         ),
                                       ),
-                                      SizedBox(height: screenHeight * 0.015),
-                                      GestureDetector(
-                                        onTap: () async {
-                                          try {
-                                            await _launchURL(buttonLinks[index]);
-                                          } catch (e) {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              SnackBar(
-                                                  content: Text(
-                                                      'Could not launch URL: $e')),
-                                            );
-                                          }
-                                        },
-                                        child: AnimatedContainer(
-                                          duration:
-                                              const Duration(milliseconds: 800),
-                                          curve: Curves.easeInOut,
-                                          padding: EdgeInsets.symmetric(
-                                            vertical: isCenter
-                                                ? screenHeight * 0.009
-                                                : screenHeight * 0.005,
-                                            horizontal: isCenter
-                                                ? screenHeight * 0.0008
-                                                : screenHeight * 0.0005,
+                                      SizedBox(
+                                          height: screenHeight * 0.007),
+                                      Row(
+                                        //TIMES
+                                        children: [
+                                          AnimatedBuilder(
+                                            animation: _animation,
+                                            builder: (context, child) {
+                                              return Transform.rotate(
+                                                angle: _animation.value,
+                                                child: Icon(
+                                                  Icons.alarm_on_rounded,
+                                                  size: isCenter
+                                                      ? screenHeight *
+                                                      0.026
+                                                      : screenHeight *
+                                                      0.017,
+                                                ),
+                                              );
+                                            },
                                           ),
-                                          height: screenHeight * 0.05,
-                                          width: screenHeight * 0.22,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            color: Colors.black,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color:
-                                                    Colors.black.withOpacity(0.5),
-                                                spreadRadius: 1,
-                                                blurRadius: 5,
-                                                offset: Offset(0, 5),
-                                              ),
-                                            ],
-                                          ),
-                                          child: Center(
+                                          Padding(
+                                            padding:
+                                            const EdgeInsets.only(
+                                                left: 10),
                                             child: Text(
-                                              buttonTexts[index],
+                                              time[index],
                                               style: TextStyle(
-                                                fontFamily: 'Sub',
                                                 fontSize: isCenter
-                                                    ? screenHeight * 0.022
-                                                    : screenHeight * 0.02,
-                                                fontWeight: FontWeight.w800,
-                                                color: Colors.white,
+                                                    ? screenHeight *
+                                                    0.0185
+                                                    : screenHeight *
+                                                    0.014,
+                                                fontFamily: 'Sub',
+                                                fontWeight:
+                                                FontWeight.w600,
                                               ),
                                             ),
                                           ),
-                                        ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                          height: screenHeight * 0.007),
+                                      //location
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.location_on_rounded,
+                                            size: isCenter
+                                                ? screenHeight * 0.026
+                                                : screenHeight * 0.017,
+                                          ),
+                                          Padding(
+                                            padding:
+                                            const EdgeInsets.only(
+                                                left: 10),
+                                            child: Text(
+                                              location[index],
+                                              style: TextStyle(
+                                                fontSize: isCenter
+                                                    ? screenHeight *
+                                                    0.0185
+                                                    : screenHeight *
+                                                    0.014,
+                                                fontFamily: 'Sub',
+                                                fontWeight:
+                                                FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
                                 ),
-                              );
-                            },
-                          );
-                        },
-                        options: CarouselOptions(
-                          height: screenHeight * 0.32,
-                          viewportFraction: 0.58,
-                          initialPage: 0,
-                          enableInfiniteScroll: true,
-                          reverse: false,
-                          autoPlayInterval: const Duration(seconds: 10),
-                          autoPlayAnimationDuration:
-                              const Duration(milliseconds: 1800),
-                          autoPlayCurve: Curves.linearToEaseOut,
-                          enlargeCenterPage: true,
-                          enlargeFactor: 0.3,
-                          scrollDirection: Axis.horizontal,
-                          onPageChanged: (index, reason) {
-                            setState(() {
-                              _current = index;
-                            });
-                          },
-                        ),
-                      ),
+                                SizedBox(height: screenHeight * 0.015),
+                                GestureDetector(
+                                  onTap: () async {
+                                    try {
+                                      await _launchURL(
+                                          buttonLinks[index]);
+                                    } catch (e) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                                'Could not launch URL: $e')),
+                                      );
+                                    }
+                                  },
+                                  child: AnimatedContainer(
+                                    duration:
+                                    const Duration(milliseconds: 800),
+                                    curve: Curves.easeInOut,
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: isCenter
+                                          ? screenHeight * 0.009
+                                          : screenHeight * 0.005,
+                                      horizontal: isCenter
+                                          ? screenHeight * 0.0008
+                                          : screenHeight * 0.0005,
+                                    ),
+                                    height: screenHeight * 0.05,
+                                    width: screenHeight * 0.22,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.circular(10),
+                                      color: Colors.black,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black
+                                              .withOpacity(0.5),
+                                          spreadRadius: 1,
+                                          blurRadius: 5,
+                                          offset: Offset(0, 5),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        buttonTexts[index],
+                                        style: TextStyle(
+                                          fontFamily: 'Sub',
+                                          fontSize: isCenter
+                                              ? screenHeight * 0.022
+                                              : screenHeight * 0.02,
+                                          fontWeight: FontWeight.w800,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  options: CarouselOptions(
+                    height: screenHeight * 0.32,
+                    viewportFraction: 0.58,
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    reverse: false,
+                    autoPlayInterval: const Duration(seconds: 10),
+                    autoPlayAnimationDuration:
+                    const Duration(milliseconds: 1800),
+                    autoPlayCurve: Curves.linearToEaseOut,
+                    enlargeCenterPage: true,
+                    enlargeFactor: 0.3,
+                    scrollDirection: Axis.horizontal,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _current = index;
+                      });
+                    },
+                  ),
+                ),
               ),
               Container(
                 width: screenWidth * 0.9,
@@ -721,7 +754,12 @@ class _HomepageState extends State<Homepage>
                         ),
                       ),
                       SizedBox(height: screenHeight * 0.025),
-                      Leaderboard(items: leaderboardItems),
+                      leaderboardItems.isEmpty
+                          ? CircularProgressIndicator(
+                        valueColor:
+                        AlwaysStoppedAnimation<Color>(Colors.white),
+                      )
+                          : Leaderboard(items: leaderboardItems),
                     ],
                   ),
                 ),

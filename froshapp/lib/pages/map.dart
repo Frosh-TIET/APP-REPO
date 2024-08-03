@@ -67,6 +67,7 @@ class CampusMap extends StatelessWidget {
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: screenHeight * 0.019,
+                              fontFamily: 'Sub'
                             ),
                           ),
                           Padding(

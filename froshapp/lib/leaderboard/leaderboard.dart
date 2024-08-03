@@ -4,10 +4,12 @@ import 'leaderboard_item.dart';
 class Leaderboard extends StatelessWidget {
   final List<LeaderboardItem> items;
 
-  const Leaderboard({super.key, required this.items});
+  const Leaderboard({Key? key, required this.items}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print("Building Leaderboard with ${items.length} items");
+
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Column(
@@ -21,15 +23,20 @@ class Leaderboard extends StatelessWidget {
             padding: EdgeInsets.only(bottom: screenHeight * 0.0165),
             child: Row(
               children: [
-                Text(
-                  item.name,
-                  style: TextStyle(
+                Expanded(
+                  flex: 2,
+                  child: Text(
+                    item.name,
+                    style: TextStyle(
                       color: Color(0xfff9f5ec).withOpacity(0.9),
                       fontFamily: 'Sub',
-                      fontSize: screenHeight * 0.014),
+                      fontSize: screenHeight * 0.0145,
+                    ),
+                  ),
                 ),
                 SizedBox(width: screenHeight * 0.01),
                 Expanded(
+                  flex: 5,
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: FractionallySizedBox(
