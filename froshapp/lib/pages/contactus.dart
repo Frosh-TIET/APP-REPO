@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:froshapp/nav/refer_nav.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
-class ContactUs extends StatelessWidget {
+class ContactUs extends StatefulWidget {
   const ContactUs({Key? key}) : super(key: key);
+
+  @override
+  _ContactUsState createState() => _ContactUsState();
+}
+
+class _ContactUsState extends State<ContactUs> {
+  Future<String>? _logoUrlFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _logoUrlFuture = _getLogoUrl();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,39 +47,57 @@ class ContactUs extends StatelessWidget {
   }
 
   Widget _buildLogo(BuildContext context, double screenHeight) {
-    return GestureDetector(
-        onTap: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => FirstPage()),
-                    (Route<dynamic> route) => false,
+    return Align(
+      alignment: Alignment.topCenter,
+      child: SafeArea(
+        child: FutureBuilder<String>(
+          future: _logoUrlFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator(
+                color: Colors.transparent,
               );
-            },
-      child: Align(
-        alignment: Alignment.topCenter,
-        child: SafeArea(
-          // child: GestureDetector(
-          //   onTap: () {
-          //     Navigator.pushAndRemoveUntil(
-          //       context,
-          //       MaterialPageRoute(builder: (context) => FirstPage()),
-          //           (Route<dynamic> route) => false,
-          //     );
-          //   },
-            child: Container(
-              height: screenHeight * 0.165,
-              width: screenHeight * 0.36,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/logo.png"),
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else if (snapshot.hasData) {
+              return Container(
+                height: screenHeight * 0.165,
+                width: screenHeight * 0.36,
+                child: CachedNetworkImage(
+                  imageUrl: snapshot.data!,
                   fit: BoxFit.fill,
+                  placeholder: (context, url) => CircularProgressIndicator(
+                    color: Colors.transparent,
+                  ),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
-              ),
-            ),
-          ),
-
+              );
+            } else {
+              return Container(); 
+            }
+          },
+        ),
       ),
     );
+  }
+
+  Future<String> _getLogoUrl() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? cachedUrl = prefs.getString('logo_url');
+
+    if (cachedUrl != null) {
+      return cachedUrl;
+    }
+
+    try {
+      final ref = FirebaseStorage.instance.ref().child('logo.png');
+      String url = await ref.getDownloadURL();
+      await prefs.setString('logo_url', url);
+      return url;
+    } catch (e) {
+      print('Error fetching logo URL: $e');
+      return 'assets/images/logo.png'; // Fallback to local asset
+    }
   }
 
   Widget _buildSocialGrid(double screenHeight) {
@@ -79,15 +112,41 @@ class ContactUs extends StatelessWidget {
 
   List<Widget> _buildSocialItems(double screenHeight) {
     final List<Map<String, dynamic>> socialItems = [
-      {'url': 'https://github.com/Frosh-TIET', 'asset': 'assets/images/iconGit.webp', 'scale': 0.0006},
-      {'url': 'https://www.facebook.com/froshtiet/', 'asset': 'assets/images/iconFb.webp', 'scale': 0.0006},
-      {'url': 'https://www.instagram.com/froshtiet/', 'asset': 'assets/images/iconIg.webp', 'scale': 0.0006},
-      {'url': 'https://www.youtube.com/froshtiet/', 'asset': 'assets/images/iconYt.webp', 'scale': 0.0006},
-      {'url': 'mailto:frosh@thapar.edu', 'asset': 'assets/images/iconMail.webp', 'scale': 0.0006},
-      {'url': 'https://www.froshtiet.com/', 'asset': 'assets/images/iconWeb.webp', 'scale': 0.0006},
+      {
+        'url': 'https://github.com/Frosh-TIET',
+        'asset': 'assets/images/iconGit.webp',
+        'scale': 0.0006
+      },
+      {
+        'url': 'https://www.facebook.com/froshtiet/',
+        'asset': 'assets/images/iconFb.webp',
+        'scale': 0.0006
+      },
+      {
+        'url': 'https://www.instagram.com/froshtiet/',
+        'asset': 'assets/images/iconIg.webp',
+        'scale': 0.0006
+      },
+      {
+        'url': 'https://www.youtube.com/froshtiet/',
+        'asset': 'assets/images/iconYt.webp',
+        'scale': 0.0006
+      },
+      {
+        'url': 'mailto:frosh@thapar.edu',
+        'asset': 'assets/images/iconMail.webp',
+        'scale': 0.0006
+      },
+      {
+        'url': 'https://www.froshtiet.com/',
+        'asset': 'assets/images/iconWeb.webp',
+        'scale': 0.0006
+      },
     ];
 
-    return socialItems.map((item) => _buildSocialItem(item, screenHeight)).toList();
+    return socialItems
+        .map((item) => _buildSocialItem(item, screenHeight))
+        .toList();
   }
 
   Widget _buildSocialItem(Map<String, dynamic> item, double screenHeight) {

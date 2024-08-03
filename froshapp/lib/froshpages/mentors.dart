@@ -5,6 +5,7 @@ class Mentors extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int isLast = 66;
     return Column(
       children: [
         SizedBox(height: MediaQuery.of(context).size.height * 0.001),
@@ -15,31 +16,52 @@ class Mentors extends StatelessWidget {
               child: GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   crossAxisSpacing: MediaQuery.of(context).size.width * 0.02,
                   mainAxisSpacing: MediaQuery.of(context).size.height * 0.01,
                   childAspectRatio: 100 / 172,
                 ),
-                itemCount: 67,
-
+                itemCount: 68,
                 itemBuilder: (context, index) {
                   String imagePath = 'assets/images/img$index.webp';
-                  return Container(
-                    width: 100,
-                    height: 172,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(27),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(27),
-                      child: Image.asset(
-                        imagePath,
-                        fit: BoxFit.cover,
+                  if (isLast != index) {
+                    return Container(
+                      width: 100,
+                      height: 172,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(27),
                       ),
-                    ),
-                  );
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(27),
+                        child: Image.asset(
+                          imagePath,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  } else {
+                    return Container(
+                      width: 100,
+                      height: 172,
+                      decoration: BoxDecoration(
+                        color: Colors.red.withOpacity(0),
+                        borderRadius: BorderRadius.circular(27),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Image.asset(
+                            color: Colors.black.withOpacity(0),
+                            imagePath,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    );
+                  }
                 },
               ),
             ),
