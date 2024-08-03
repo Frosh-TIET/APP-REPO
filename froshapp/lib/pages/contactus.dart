@@ -90,7 +90,7 @@ class _ContactUsState extends State<ContactUs> {
     }
 
     try {
-      final ref = FirebaseStorage.instance.ref().child('logo.png');
+      final ref = FirebaseStorage.instance.ref().child('images/logo/logo.png');
       String url = await ref.getDownloadURL();
       await prefs.setString('logo_url', url);
       return url;
