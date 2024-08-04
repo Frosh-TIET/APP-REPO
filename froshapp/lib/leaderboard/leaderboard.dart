@@ -34,7 +34,7 @@ class Leaderboard extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: screenHeight * 0.01),
+                SizedBox(width: screenHeight * 0.03),
                 Expanded(
                   flex: 4,
                   child: Align(
