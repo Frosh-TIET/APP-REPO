@@ -95,12 +95,6 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: MainFont
-      fonts:
-        - asset: assets/fonts/Bigerside_Expanded.otf
-    - family: SubFont
-      fonts:
-        - asset: assets/fonts/Rasputin.otf
     - family: Main
       fonts:
         - asset: assets/fonts/futur.ttf
@@ -109,23 +103,11 @@ flutter:
         - asset: assets/fonts/cream-DEMO.otf
     - family: Font
       fonts:
-        - asset: assets/fonts/Raleway-VariableFont_wght.ttf
+        - asset: assets/fonts/Raleway-Medium.ttf
     - family: desc
       fonts:
         - asset: assets/fonts/SFNSDisplay-Regular.otf
-    - family: ButtonFont
-      fonts:
-        - asset: assets/fonts/carme-regular.otf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-    # - family: SubFont
-    #   fonts:
-    #     - asset: assets/fonts/Rasputin.otf
-    #     - asset: fonts/TrajanPro_Bold.ttf
-    #       weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+
 
 flutter_native_splash:
   color: "#000000"

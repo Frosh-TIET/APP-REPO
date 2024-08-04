@@ -37,17 +37,20 @@ class SocietyGrid extends StatelessWidget {
           childAspectRatio: 0.82,
         ),
         itemBuilder: (BuildContext context, int index) {
-          return SocietyGridItem(
-            image: items[index]['image']!,
-            name: items[index]['name']!,
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AnimatedSocietyDialog(items: items, currentIndex: index);
-                },
-              );
-            },
+          return Align(
+            alignment: Alignment.center,
+            child: SocietyGridItem(
+              image: items[index]['image']!,
+              name: items[index]['name']!,
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AnimatedSocietyDialog(items: items, currentIndex: index);
+                  },
+                );
+              },
+            ),
           );
         },
       ),
@@ -65,10 +68,11 @@ final List<Map<String, dynamic>> nonTechItems = [
   },
 
   {
-    "image": "assets/images/ac.png",
-    "name": "Adventure Club",
-    "text": "A forum for adventure enthusiasts, trekkers, climbers and armchair mountaineers in the student community. It works to develop the spirit of adventure in Thaparians. While the stock activities are trekking, rock climbing and mountain cycling, the adventure club has also organized skiing and river rafting sporadically."
+    "image": "assets/images/echos.png",
+    "name": "ECHOES",
+    "text": "Echoes Club publishes quarterly periodicals created by and for students. These publications highlight all activities at TIET, including cultural, technical, and sports events, as well as academic achievements, fostering a sense of community and keeping everyone informed about campus life."
   },
+
   {
     "image": "assets/images/nox.png",
     "name": "Dance Club",
@@ -86,9 +90,9 @@ final List<Map<String, dynamic>> nonTechItems = [
     "text": "Ek Bharat Shreshtha Bharat (EBSB) programme has been initiated by AICTE for promoting National Integration through systematic exchange between paired States/UTs in the Cultural, Literary and Linguistic fields."
   },
   {
-    "image": "assets/images/electoral.png",
-    "name": "Electoral Club",
-    "text": "To organise various events and student activities as desired by the Election Commissioner of Punjab/ Deputy Commissioner of Punjab/ Tehsildar Election of Patiala. To encourage young voters about their voting rights through various student activities in campus."
+    "image": "assets/images/gut.jpg",
+    "name": "GUT",
+    "text": "Girl Up is a United Nations Foundation’s adolescent girl campaign. This society envisions a world where every girl can reach her full potential and lead the way to bigger dreams, healthier communities and stronger nations. The Girl Up platform exposes girls to issues at the intersection of gender equality, sports and storytelling."
   },
 
   {
@@ -96,16 +100,7 @@ final List<Map<String, dynamic>> nonTechItems = [
     "name": "ECHOES",
     "text": "Echoes Club publishes quarterly periodicals created by and for students. These publications highlight all activities at TIET, including cultural, technical, and sports events, as well as academic achievements, fostering a sense of community and keeping everyone informed about campus life."
   },
-  {
-    "image": "assets/images/elpis.png",
-    "name": "ELPIS",
-    "text": "Elpis is a Psychology Society of Thapar Institute. Elpis is for everyone interested in delving in the field of psychology. Whether you have a background in psychology or are simply fascinated by the world of psychology, everyone is welcome to join our community."
-  },
-  {
-    "image": "assets/images/enactus.png",
-    "name": "ENACTUS",
-    "text": "ENACTUS is a community of students, academics, and business leaders dedicated to leveraging entrepreneurial action to improve lives and create a better world. The society focuses on innovative solutions and social impact, empowering members to make a positive difference through collaboration and entrepreneurship."
-  },
+
   {
     "image": "assets/images/eureka.jpg",
     "name": "EUREKA",
@@ -117,12 +112,17 @@ final List<Map<String, dynamic>> nonTechItems = [
     "name": "ECC",
     "text": "To Instil a sense of responsibility in students to respect and conserve energy resources, as well as to implement Energy saving methods in the hostels, academic areas and their neighbourhood as a step to sustainability."
   },
-  {
-    "image": "assets/images/edc.png",
-    "name": "EDC",
-    "text": "EDC aims at developing the spirit of entrepreneurship among the students of Thapar Institute of Engineering and Technology. It not only ignites the minds but also nurtures the ideas of students . EDC is committed to build a strong platform for budding entrepreneurs as a career, as a path to success, as a journey of wisdom."
-  },
 
+  {
+    "image": "assets/images/sm1.jfif",
+    "name": "SPICMACAY",
+    "text": "SPIC MACAY is a non-political nationwide voluntary movement that organises programmes of classical music and dance, folk arts, crafts, yog, classic cinema screenings, heritage walks, etc. inside school and college campuses throughout the world to make students more aware about Indian and world heritage."
+  },
+  {
+    "image": "assets/images/ebsb.png",
+    "name": "EBSB",
+    "text": "Ek Bharat Shreshtha Bharat (EBSB) programme has been initiated by AICTE for promoting National Integration through systematic exchange between paired States/UTs in the Cultural, Literary and Linguistic fields."
+  },
   {
     'image': 'assets/images/faps.png',
     'name': 'FAPS',
@@ -147,18 +147,36 @@ final List<Map<String, dynamic>> nonTechItems = [
     "name": "AISEC",
     "text": "AIESEC is an international youth run not for profit organization present in 130+ countries, AIESEC in Patiala is the local chapter of AIESEC India. AIESEC was started in 1948 to attain peace and fulfillment of humankind’s potential through leadership development. This is done through cross-cultural exchanges."
   },
-
+  {
+    "image": "assets/images/ac.png",
+    "name": "Adventure Club",
+    "text": "A forum for adventure enthusiasts, trekkers, climbers and armchair mountaineers in the student community. It works to develop the spirit of adventure in Thaparians. While the stock activities are trekking, rock climbing and mountain cycling, the adventure club has also organized skiing and river rafting sporadically."
+  },
+  {
+    "image": "assets/images/electoral.png",
+    "name": "Electoral Club",
+    "text": "To organise various events and student activities as desired by the Election Commissioner of Punjab/ Deputy Commissioner of Punjab/ Tehsildar Election of Patiala. To encourage young voters about their voting rights through various student activities in campus."
+  },
   {
     'image': 'assets/images/ls.png',
     'name': 'LS',
     'text':
     'The Literary Society aims to foster a deep appreciation for language and diverse literary expressions among students. It encourages exploration of various forms and genres, promoting a love for literature and enhancing understanding and critical appreciation of the written word.'
   },
-
+  {
+    "image": "assets/images/aisec.png",
+    "name": "AISEC",
+    "text": "AIESEC is an international youth run not for profit organization present in 130+ countries, AIESEC in Patiala is the local chapter of AIESEC India. AIESEC was started in 1948 to attain peace and fulfillment of humankind’s potential through leadership development. This is done through cross-cultural exchanges."
+  },
   {
     "image": "assets/images/mudra.png",
     "name": "MUDRA",
     "text": "The objective of this society is to hone the extra-curricular skills of students in the area of Music, Dramatics and developing managerial prowess contributing towards their overall personality. It organizes several big events such as MUDRA night and, Izhaar etc."
+  },
+  {
+    "image": "assets/images/edc.png",
+    "name": "EDC",
+    "text": "EDC aims at developing the spirit of entrepreneurship among the students of Thapar Institute of Engineering and Technology. It not only ignites the minds but also nurtures the ideas of students . EDC is committed to build a strong platform for budding entrepreneurs as a career, as a path to success, as a journey of wisdom."
   },
   {
     "image": "assets/images/NSS.png",
@@ -171,21 +189,21 @@ final List<Map<String, dynamic>> nonTechItems = [
     "text": "In the ongoing era, our fragile earth needs acute attention for its prevalence, PWS endures to maintain the biodiversity, conservation of water, air and energy resources."
   },
   {
+    "image": "assets/images/elpis.png",
+    "name": "ELPIS",
+    "text": "Elpis is a Psychology Society of Thapar Institute. Elpis is for everyone interested in delving in the field of psychology. Whether you have a background in psychology or are simply fascinated by the world of psychology, everyone is welcome to join our community."
+  },
+  {
     "image": "assets/images/pws.png",
     "name": "PRATIGYA",
     "text": "PRATIGYA, a society, is working, consistently for social welfare. This society develops teams of student volunteers from the undergraduate, post-graduate and Management programs, who teach the underprivileged kids from classes I to XII including children of class four employees of Thapar Institute as well as kids residing outside Thapar."
   },
   {
-    "image": "assets/images/rotor.png",
-    "name": "ROTARACT CLUB",
-    "text": "Rotaract Club of TIET Derabassi aims to make a tangible difference in the lives of all. Join us to engage directly with the community, contribute to meaningful projects and become an agent of change.Together we can inspire, serve, and create a better world."
+    "image": "assets/images/mudra.png",
+    "name": "MUDRA",
+    "text": "The objective of this society is to hone the extra-curricular skills of students in the area of Music, Dramatics and developing managerial prowess contributing towards their overall personality. It organizes several big events such as MUDRA night and, Izhaar etc."
   },
 
-  {
-    "image": "assets/images/sm1.jfif",
-    "name": "SPICMACAY",
-    "text": "SPIC MACAY is a non-political nationwide voluntary movement that organises programmes of classical music and dance, folk arts, crafts, yog, classic cinema screenings, heritage walks, etc. inside school and college campuses throughout the world to make students more aware about Indian and world heritage."
-  },
   {
     "image": "assets/images/sae.png",
     "name": "SAE",
@@ -196,6 +214,7 @@ final List<Map<String, dynamic>> nonTechItems = [
     "name": "TICC",
     "text": "Thapar Institute Counselling Cell, hereinafter referred to as TICC, has a duty to respect and support the rights, needs, and privacy of students experiencing mental health difficulties and provides a supportive environment that assists students with mental health difficulties to realize their full potential and to fully complete their course."
   },
+
   {
     "image": "assets/images/tietfitnessclub.png",
     "name": "TFC",
@@ -211,16 +230,54 @@ final List<Map<String, dynamic>> nonTechItems = [
     "name": "YUTC",
     "text": "The objective of Youth United is to encourage development of society as a whole through its activities like publishing periodicals on social issues, organize community service events & visits. Youth United organizes painting competition among small children, visits institutions like Pingalwara, Old age homes, School for Deaf and Dumb etc. It also organizes ‘The joy of giving week’ as a part of its initiative to inculcate cultural and social values amongst the residents of the Thapar Technology campus."
   },
+  {
+    "image": "assets/images/rotor.png",
+    "name": "ROTARACT CLUB",
+    "text": "Rotaract Club of TIET Derabassi aims to make a tangible difference in the lives of all. Join us to engage directly with the community, contribute to meaningful projects and become an agent of change.Together we can inspire, serve, and create a better world."
+  },
+  {
+    "image": "assets/images/sm1.jfif",
+    "name": "SPICMACAY",
+    "text": "SPIC MACAY is a non-political nationwide voluntary movement that organises programmes of classical music and dance, folk arts, crafts, yog, classic cinema screenings, heritage walks, etc. inside school and college campuses throughout the world to make students more aware about Indian and world heritage."
+  },
+  {
+    "image": "assets/images/enactus.png",
+    "name": "ENACTUS",
+    "text": "ENACTUS is a community of students, academics, and business leaders dedicated to leveraging entrepreneurial action to improve lives and create a better world. The society focuses on innovative solutions and social impact, empowering members to make a positive difference through collaboration and entrepreneurship."
+  },
 ];
 
 
 final List<Map<String, dynamic>> techItems =
 [
   {
+    'image': 'assets/images/ccs.png',
+    'name': 'CCS',
+    'text': 'Creative Computing Society strives to help the students to develop problem-solving skills in tech through various workshops and competitions. The students get to know their best lying potential and develop an analytical temperament. The society has had numerous pivotal collaborations with organisations like GDSC, Mozilla Webmaker to name a few.'
+  },
+
+  {
+    'image': 'assets/images/gdsc.png',
+    'name': 'DSC',
+    'text': 'Google Developer Student Clubs (DSC) are community groups for students from any academic background in their undergraduate or graduate term. By joining a DSC, students build their professional and personal network, get access to Google Developer Resources, and work together to build solutions for local problems in a peer-to-peer learning environment.'
+  },
+  {
+    "image": "assets/images/gene.png",
+    "name": "GENE",
+    "text": "GENE Society aims at providing professional excellence to students in organizing technical events like seminars, workshops, guest lectures, panel discussions. The society promotes industry-academia interactions and empowers students to work collectively in a team as well as to work independently honing their leadership skills."
+  },
+  {
+    "image": "assets/images/toastmasters.png",
+    "name": "TM",
+    "text": "Thapar Toastmasters Club, a chapter of Toastmasters International is an organization that helps its members to improve their public speaking, communication and leadership skills.The club facilitates members to overcome their stage fear and improve their communication skills."
+  },
+
+  {
     'image': 'assets/images/acm.png',
     'name': 'ACM',
     'text': 'Thapar ACM Student Chapter is a technical society under the guidance of one of the most premier organizations in the computing world, ACM. Striving towards a single goal i.e. improving the coding culture at Thapar. Organizing classes and workshops for everyone in the college to enhance their skill set.'
   },
+
 
   {
     'image': 'assets/images/aiche.png',
@@ -301,11 +358,7 @@ final List<Map<String, dynamic>> techItems =
     'name': 'MARS',
     'text': 'Mechatronics and Robotics Society (MARS) provides an ideal platform for students of Mechanical, Mechatronics, Electronics, Computers and Electrical Engineering background to hone their skills and showcase their talent in many interdisciplinary activities. MARS conducts different workshops, competitions, technical quizzes and expert lectures.'
   },
-  {
-    'image': 'assets/images/mlsc.png',
-    'name': 'MLSC',
-    'text': 'Microsoft Learning Student Chapter( MLSC)  in collaboration with Microsoft aims to provide guidance, technical training, project guidance that improves students knowledge and learning skills. With various competitions and workshops around coding and problem solving skills they help the students develop the skill set required to be future ready.'
-  },
+
 
   {
     'image': 'assets/images/owasp.png',
@@ -358,9 +411,9 @@ final List<Map<String, dynamic>> techItems =
   },
 
   {
-    "image": "assets/images/toastmasters.png",
-    "name": "TM",
-    "text": "Thapar Toastmasters Club, a chapter of Toastmasters International is an organization that helps its members to improve their public speaking, communication and leadership skills.The club facilitates members to overcome their stage fear and improve their communication skills."
+    'image': 'assets/images/mlsc.png',
+    'name': 'MLSC',
+    'text': 'Microsoft Learning Student Chapter( MLSC)  in collaboration with Microsoft aims to provide guidance, technical training, project guidance that improves students knowledge and learning skills. With various competitions and workshops around coding and problem solving skills they help the students develop the skill set required to be future ready.'
   },
 
 ];

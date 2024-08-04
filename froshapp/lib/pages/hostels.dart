@@ -37,7 +37,7 @@ class HostelPage extends StatefulWidget {
       name: 'Tejas Hall',
       imageUrl: 'images/hostel/boys/hostelJ.webp',
       detail:
-          'Tejas Hall has single-seated rooms furnished with modern furniture and integrated with all basic facilities. There is a well-equipped gym, air-conditioned reading room, and open-air theatre in the hostel. Water coolers with RO systems and four elevators have been provided to ensure convenience. Fully air-conditioned guest rooms facilitate comfort to the visitors and add to better living.\n\n Caretaker - Mr. Jaspal Singh, Mr. Raj Kumar\n +918288008178, +918559010110',
+          'Tejas Hall has single-seated rooms furnished with modern furniture and integrated with all basic facilities. There is a well-equipped gym, air-conditioned reading room, and open-air theatre in the hostel. Water coolers with RO systems and four elevators have been provided to ensure convenience. Fully air-conditioned guest rooms facilitate comfort to the visitors and add to better living.\n\n Caretaker - Mr. Jaspal Singh, Mr. Raj Kumar\n +91 8288008178, +91 8559010110',
     ),
     Hostel(
       name: 'Ambaram Hall',
@@ -81,7 +81,7 @@ class HostelPage extends StatefulWidget {
       name: 'Vasudha Hall\nBLK-E',
       imageUrl: 'images/hostel/girls/im01.webp',
       detail:
-          'Block-E offers a variety of well-furnished room types, each equipped with essential facilities. The hostel features well-equipped gyms, housekeeping, laundry, and Wi-Fi services. Water coolers with RO systems and a mess service overseen by a student committee ensure all necessary conveniences. The shared hangout area with Block G adds vibrancy to the living space, enhancing the residents overall experience.\n\n Caretaker - Mr.Parshotam Lal \n +919115608809',
+          'Block-E offers a variety of well-furnished room types, each equipped with essential facilities. The hostel features well-equipped gyms, housekeeping, laundry, and Wi-Fi services. Water coolers with RO systems and a mess service overseen by a student committee ensure all necessary conveniences. The shared hangout area with Block G adds vibrancy to the living space, enhancing the residents overall experience.\n\n Caretaker - Mr.Parshotam Lal \n +91 9115608809',
     ),
     Hostel(
       name: 'Ira Hall',
