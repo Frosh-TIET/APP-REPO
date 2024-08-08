@@ -1,8 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
 import 'package:widget_zoom/widget_zoom.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class CampusMap extends StatelessWidget {
+class CampusMap extends StatefulWidget {
+  @override
+  _CampusMapState createState() => _CampusMapState();
+}
+
+class _CampusMapState extends State<CampusMap> {
+  String directionsLink = 'https://www.froshtiet.com'; // Default link
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDirectionsLink();
+  }
+
+  Future<void> fetchDirectionsLink() async {
+    try {
+      QuerySnapshot mapSnapshot = await FirebaseFirestore.instance
+          .collection('map')
+          .limit(1)
+          .get();
+
+      if (mapSnapshot.docs.isNotEmpty) {
+        DocumentSnapshot mapDoc = mapSnapshot.docs.first;
+        setState(() {
+          directionsLink = mapDoc.get('link') ?? directionsLink;
+        });
+      }
+    } catch (e) {
+      print('Error fetching directions link: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -49,7 +81,7 @@ class CampusMap extends StatelessWidget {
                   width: screenHeight * 0.235,
                   child: Link(
                     target: LinkTarget.blank,
-                    uri: Uri.parse('https://www.froshtiet.com/templates/final.html'),
+                    uri: Uri.parse(directionsLink),
                     builder: (context, followlink) => ElevatedButton(
                       onPressed: followlink,
                       style: ElevatedButton.styleFrom(
@@ -65,9 +97,9 @@ class CampusMap extends StatelessWidget {
                           Text(
                             'Get Directions',
                             style: TextStyle(
-                              color: Colors.black,
-                              fontSize: screenHeight * 0.019,
-                              fontFamily: 'Sub'
+                                color: Colors.black,
+                                fontSize: screenHeight * 0.019,
+                                fontFamily: 'Sub'
                             ),
                           ),
                           Padding(
