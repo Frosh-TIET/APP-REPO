@@ -37,17 +37,17 @@ dependencies:
   circular_menu: ^4.0.0
   carousel_slider: ^4.2.1
   url_launcher: ^6.3.0
-  flutter_bloc: ^7.3.3
+  flutter_bloc: ^8.1.6
   connectivity_widget: ^3.0.0
   video_player: ^2.9.1
   flutter_animate: ^4.5.0
-  firebase_core: ^3.2.0
+  firebase_core: ^3.3.0
   firebase_storage: ^12.1.1
   shared_preferences: ^2.2.3
   cached_network_image: ^3.2.3
   flutter_blurhash: ^0.8.2
   cloud_firestore: ^5.1.0
-  firebase_messaging: ^15.0.3
+  firebase_messaging: ^15.0.4
   flutter_native_splash: ^2.4.1
   flutter_local_notifications: ^17.2.1+2
   http: ^1.2.2
