@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'hostel_model.dart';
-import 'dart:ui';
+
 class HostelDetailPage extends StatefulWidget {
   final List<Hostel> hostels;
   final int initialIndex;

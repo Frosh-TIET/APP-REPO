@@ -14,6 +14,8 @@ class Schedule extends StatefulWidget {
 class _ScheduleState extends State<Schedule> {
   List<String> imageUrls = [];
   bool isLoading = true;
+  final String cacheKey = 'scheduleImageUrls';
+  final String lastUpdatedKey = 'scheduleLastUpdated';
 
   @override
   void initState() {
@@ -23,36 +25,47 @@ class _ScheduleState extends State<Schedule> {
 
   Future<void> loadImages() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String>? cachedUrls = prefs.getStringList('scheduleImageUrls');
+    List<String>? cachedUrls = prefs.getStringList(cacheKey);
+    int? lastUpdated = prefs.getInt(lastUpdatedKey);
 
-    if (cachedUrls != null && cachedUrls.isNotEmpty) {
-      setState(() {
-        imageUrls = cachedUrls;
-        isLoading = false;
-      });
-    } else {
-      try {
-        final storage = FirebaseStorage.instance;
-        List<String> urls = [];
-
-        for (int i = 1; i <= 5; i++) {
-          String imagePath = 'images/schedule/b$i.webp';
-          String downloadURL = await storage.ref(imagePath).getDownloadURL();
-          urls.add(downloadURL);
-        }
-
-        await prefs.setStringList('scheduleImageUrls', urls);
-
+    if (cachedUrls != null && cachedUrls.isNotEmpty && lastUpdated != null) {
+      // Check if cache is older than 30 seconds
+      if (DateTime.now().millisecondsSinceEpoch - lastUpdated > 30000) {
+        await fetchAndUpdateImages(prefs);
+      } else {
         setState(() {
-          imageUrls = urls;
-          isLoading = false;
-        });
-      } catch (e) {
-        print('Error loading images: $e');
-        setState(() {
+          imageUrls = cachedUrls;
           isLoading = false;
         });
       }
+    } else {
+      await fetchAndUpdateImages(prefs);
+    }
+  }
+
+  Future<void> fetchAndUpdateImages(SharedPreferences prefs) async {
+    try {
+      final storage = FirebaseStorage.instance;
+      List<String> urls = [];
+
+      for (int i = 1; i <= 5; i++) {
+        String imagePath = 'images/schedule/b$i.webp';
+        String downloadURL = await storage.ref(imagePath).getDownloadURL();
+        urls.add(downloadURL);
+      }
+
+      await prefs.setStringList(cacheKey, urls);
+      await prefs.setInt(lastUpdatedKey, DateTime.now().millisecondsSinceEpoch);
+
+      setState(() {
+        imageUrls = urls;
+        isLoading = false;
+      });
+    } catch (e) {
+      print('Error loading images: $e');
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
