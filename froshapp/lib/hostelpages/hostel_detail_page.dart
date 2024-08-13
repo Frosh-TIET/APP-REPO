@@ -78,6 +78,7 @@ class _HostelDetailPageState extends State<HostelDetailPage> {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
     var screenHeight = mediaQuery.size.height;
+    var screenWidth = mediaQuery.size.height;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -223,10 +224,10 @@ class _HostelDetailPageState extends State<HostelDetailPage> {
                                     alignment: Alignment.bottomCenter,
                                     child: Padding(
                                       padding: EdgeInsets.only(
-                                          bottom: screenHeight * 0.063),
+                                          bottom: screenWidth * 0.063),
                                       child: Container(
                                         height: screenHeight * 0.5,
-                                        width: screenHeight * 0.41,
+                                        width: screenWidth* 0.47,
                                         decoration: BoxDecoration(
                                           color: Colors.black.withOpacity(0.48),
                                           borderRadius:
@@ -245,7 +246,7 @@ class _HostelDetailPageState extends State<HostelDetailPage> {
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize:
-                                                      screenHeight * 0.02  ,
+                                                      screenHeight * 0.018  ,
                                                 ),
                                                 textAlign: TextAlign.center,
                                               ),

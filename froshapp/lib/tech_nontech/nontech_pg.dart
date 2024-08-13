@@ -258,7 +258,7 @@ final List<Map<String, dynamic>> techItems =
 
   {
     'image': 'assets/images/gdsc.png',
-    'name': 'DSC',
+    'name': 'GDSC',
     'text': 'Google Developer Student Clubs (DSC) are community groups for students from any academic background in their undergraduate or graduate term. By joining a DSC, students build their professional and personal network, get access to Google Developer Resources, and work together to build solutions for local problems in a peer-to-peer learning environment.'
   },
   {
@@ -294,16 +294,6 @@ final List<Map<String, dynamic>> techItems =
     'image': 'assets/images/bck.png',
     'name': 'BCS',
     'text': 'Backslash Computing Society has been envisioned to promote and inculcate interest in the field of Computer Science for the students of Derabassi Campus. Backslash aims at providing an opportunity for technical enthusiasts to interact with each other and a platform to display and hone their skills in the wonderful world of computing.'
-  },
-  {
-    'image': 'assets/images/ccs.png',
-    'name': 'CCS',
-    'text': 'Creative Computing Society strives to help the students to develop problem-solving skills in tech through various workshops and competitions. The students get to know their best lying potential and develop an analytical temperament. The society has had numerous pivotal collaborations with organisations like GDSC, Mozilla Webmaker to name a few.'
-  },
-  {
-    'image': 'assets/images/gdsc.png',
-    'name': 'DSC',
-    'text': 'Google Developer Student Clubs (DSC) are community groups for students from any academic background in their undergraduate or graduate term. By joining a DSC, students build their professional and personal network, get access to Google Developer Resources, and work together to build solutions for local problems in a peer-to-peer learning environment.'
   },
   {
     "image": "assets/images/eureka.jpg",
