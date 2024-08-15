@@ -9,7 +9,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
   late VideoPlayerController _controller;
-  late Future<void> _initializeVideoPlayerFuture;
   late AnimationController _animationController;
   late Animation<double> _animation;
   bool _videoFinished = false;
@@ -17,27 +16,33 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset('assets/videos/splash_video.mp4');
-    _initializeVideoPlayerFuture = _controller.initialize();
-    _controller.setLooping(false);
+    _initializeVideo();
+    _setupAnimation();
+  }
 
+  void _initializeVideo() async {
+    _controller = VideoPlayerController.asset('assets/videos/splash_video.mp4');
+    await _controller.initialize();
+    setState(() {});
+    _controller.play();
+    _controller.addListener(_checkVideoCompletion);
+  }
+
+  void _setupAnimation() {
     _animationController = AnimationController(
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 1000),
       vsync: this,
     );
 
     _animation = Tween<double>(begin: 1.0, end: 0.0).animate(_animationController);
+  }
 
-    _initializeVideoPlayerFuture.then((_) {
-      setState(() {});
-      _controller.play();
-    });
-
-    _controller.addListener(() {
-      if (_controller.value.position >= _controller.value.duration) {
+  void _checkVideoCompletion() {
+    if (_controller.value.position >= _controller.value.duration - Duration(milliseconds: 500)) {
+      if (!_animationController.isAnimating) {
         _startFadeOut();
       }
-    });
+    }
   }
 
   void _startFadeOut() {
@@ -53,11 +58,9 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     return Scaffold(
       body: Stack(
         children: [
-          // FirstPage is always present underneath
           Positioned.fill(
             child: FirstPage(),
           ),
-          // Video overlay with fade-out effect
           if (!_videoFinished)
             AnimatedBuilder(
               animation: _animation,
@@ -67,11 +70,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                   child: child,
                 );
               },
-              child: FutureBuilder(
-                future: _initializeVideoPlayerFuture,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    return ColoredBox(
+              child: _controller.value.isInitialized
+                  ? ColoredBox(
                       color: Colors.black,
                       child: Center(
                         child: AspectRatio(
@@ -79,13 +79,9 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                           child: VideoPlayer(_controller),
                         ),
                       ),
-                    );
-                  } else {
-                    return Container(color: Colors.black);
-                  }
-                },
-                ),
-              ),
+                    )
+                  : Container(color: Colors.black),
+            ),
         ],
       ),
     );

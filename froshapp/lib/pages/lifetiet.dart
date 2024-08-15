@@ -71,7 +71,7 @@ class InfoCard extends StatelessWidget {
                 width: double.infinity,
                 height: double.infinity),
             Positioned(
-                top: size.height * 0.02,
+                top: size.height * 0.005,
                 left: size.width * 0.04,
                 child: GestureDetector(
                   onTap: () {

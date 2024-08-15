@@ -81,7 +81,7 @@ class _SocietyPageContent extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: screenHeight * 0.043,
-        width: screenHeight * 0.19,
+        width: screenWidth * 0.34,
         decoration: BoxDecoration(
           color: isSelected ? const Color.fromRGBO(29, 78, 137, 1) : const Color(0xff5b615f),
           borderRadius: BorderRadius.circular(6),

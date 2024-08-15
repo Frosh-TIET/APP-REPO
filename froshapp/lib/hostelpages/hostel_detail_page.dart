@@ -227,7 +227,7 @@ class _HostelDetailPageState extends State<HostelDetailPage> {
                                           bottom: screenWidth * 0.063),
                                       child: Container(
                                         height: screenHeight * 0.5,
-                                        width: screenWidth* 0.47,
+                                        width: screenWidth* 0.41,
                                         decoration: BoxDecoration(
                                           color: Colors.black.withOpacity(0.48),
                                           borderRadius:

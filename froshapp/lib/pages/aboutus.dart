@@ -24,6 +24,7 @@ class _AboutUsState extends State<AboutUsPage> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: Stack(
@@ -50,12 +51,12 @@ class _AboutUsState extends State<AboutUsPage> {
                       );
                     },
                     child: Container(
-                      height: screenHeight * 0.165,
-                      width: screenHeight * 0.36,
+                      height: screenHeight * 0.15,
+                      width: screenWidth * 0.6,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage("assets/images/logo.png"),
-                          fit: BoxFit.fill,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
@@ -63,7 +64,7 @@ class _AboutUsState extends State<AboutUsPage> {
                 ),
               ),
               // Buttons
-              SizedBox(height: screenHeight * 0.043),
+              SizedBox(height: screenHeight * 0.03),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -81,10 +82,12 @@ class _AboutUsState extends State<AboutUsPage> {
           ),
           // Back button
           Positioned(
-            top: screenHeight * 0.087,
-            left: screenHeight * 0.012,
+            top: screenHeight * 0.05,
+            left: screenWidth * 0.03,
             child: IconButton(
-              icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 30),
+              icon: Icon(Icons.arrow_back_ios, 
+                color: Colors.white, 
+                size: screenWidth * 0.06),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -96,32 +99,37 @@ class _AboutUsState extends State<AboutUsPage> {
   }
 
   Widget _buildButton(String title) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double buttonWidth = screenWidth * (title == 'OSC' ? 0.153 : title == 'CORE' ? 0.2 : 0.22);
+
     return GestureDetector(
       onTap: () => _togglePage(title),
       child: Container(
-        width: title == 'OSC'
-            ? 60
-            : title == 'CORE'
-                ? 80
-                : 90,
+        width: buttonWidth,
+        padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.of(context).size.height * 0.01,
+          horizontal: MediaQuery.of(context).size.width * 0.02,
+        ),
         decoration: BoxDecoration(
           color: selectedPage == title
               ? const Color.fromRGBO(29, 78, 137, 1)
               : const Color(0xff5b615f),
           border: Border.all(
-              color: selectedPage == title
-                  ? Color.fromRGBO(29, 78, 137, 1)
-                  : Color(0xff5b615f),
-              width: MediaQuery.of(context).size.width * 0.017),
-          borderRadius: const BorderRadius.all(Radius.circular(6)),
+            color: selectedPage == title
+                ? Color.fromRGBO(29, 78, 137, 1)
+                : Color(0xff5b615f),
+            width: MediaQuery.of(context).size.width * 0.005,
+          ),
+          borderRadius: BorderRadius.circular(screenWidth * 0.015),
         ),
         child: Text(
           title.toUpperCase(),
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white,
-              fontSize: MediaQuery.of(context).size.width * 0.03,
-              fontFamily: 'Audiowide'),
+            color: Colors.white,
+            fontSize: screenWidth * 0.028,
+            fontFamily: 'Audiowide',
+          ),
         ),
       ),
     );
